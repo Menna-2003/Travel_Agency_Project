@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Tour>
+@{
+	Layout = "_DashBoard";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Tours table</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tour Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Group Number</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Distination</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guide Service</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Transportation</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ( var item in Model ) {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">@item.Name</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">@item.Date</p>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">$@item.Price</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">@item.GroupNumber</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">@item.Distination</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">in progress</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">@item.GuideIncluded</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-xs font-weight-bold">@item.TransportationType.Name</span>
+                                        </td>
+
+                                        <td>
+                                            <a asp-action="EditTour" asp-route-id="@item.ID" class="btn" role="button" style="background-color: #fa8b02; color: #fff;">
+                                                <span class="material-symbols-outlined"> Edit </span>
+                                            </a>
+                                            <a asp-action="DeleteTour" asp-route-id="@item.ID" class="btn btn-danger" role="button">
+                                                <span class="material-symbols-outlined"> Delete </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>  

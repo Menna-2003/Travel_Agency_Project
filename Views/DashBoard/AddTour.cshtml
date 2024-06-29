@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_DashBoard";
+}
+@model Tour
+
+<div class="container-fluid py-4">
+    <form method="post" asp-action="AddTour">
+        <div class="form-row d-flex gap-4">
+            <div class="form-group col-md-6">
+                <label asp-for="Name" for="tourName">Tour Name</label>
+                <input asp-for="Name" type="text" class="form-control" id="tourName" placeholder="Enter Tour Name" />
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Distination" for="distination">Distination</label>
+                <input asp-for="Distination" type="text" class="form-control" id="distination" placeholder="ex : Canada" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" for="discription">Description</label>
+            <input asp-for="Description" type="text" class="form-control" id="discription" />
+        </div>
+        <div class="form-row d-flex gap-4">
+            <div class="form-group col">
+                <label asp-for="Date" for="toutDate">Date</label>
+                <input asp-for="Date" type="date" class="form-control" id="toutDate" />
+            </div>
+            <div class="form-group col">
+                <label asp-for="Time" for="toutTime">Time</label>
+                <input asp-for="Time" type="time" class="form-control" id="toutTime" />
+            </div>
+            <div class="form-group col">
+                <label asp-for="Duration" for="tourDuration">Duration</label>
+                <input asp-for="Duration" type="number" class="form-control" id="tourDuration" placeholder="ex : 3" />
+            </div>
+        </div>
+        <div class="form-row d-flex gap-4">
+            <div class="form-group col">
+                <label asp-for="Price" for="price">Price</label>
+                <input asp-for="Price" type="number" class="form-control" id="price" />
+            </div>
+            <div class="form-group col">
+                <label asp-for="Fees" for="fees">Fees</label>
+                <input asp-for="Fees" type="number" class="form-control" id="fees" />
+            </div>
+            <div class="form-group col">
+                <label asp-for="GroupNumber" for="groupNumber">Group Number</label>
+                <input asp-for="GroupNumber" type="number" class="form-control" id="groupNumber" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input asp-for="GuideIncluded" class="form-check-input" type="checkbox" id="guideCheck" />
+                <label asp-for="GuideIncluded" class="form-check-label" for="guideCheck"> Guide Included ? </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="TransportationId" for="Transportation">Transportation Type</label>
+                <select asp-for="TransportationId" id="Transportation" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="1">Car</option>
+                    <option value="2">Plane</option>
+                    <option value="3">Bike</option>
+                    <option value="4">Bus</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row mt-5 custom-file">
+            <input  type="file" class="custom-file-input" id="TourPic" />
+            <label  class="custom-file-label" for="TourPic">Upload Tour Image</label>
+        </div>
+
+        <button type="submit" class="btn" style="background-color: #fa8b02; color: #fff; margin: 50px 0">Add Tour</button>
+    </form>
+</div>
