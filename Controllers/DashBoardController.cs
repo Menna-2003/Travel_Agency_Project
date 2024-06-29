@@ -47,7 +47,7 @@ namespace Travel_Agency_Project.Controllers {
             Tour? tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             _db.Tours.Remove(tour);
             _db.SaveChanges();
-            return RedirectToAction( "GetToursData" );
+            return RedirectToAction( "Index" );
         }
         #endregion
 
