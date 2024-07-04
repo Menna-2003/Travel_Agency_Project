@@ -1,0 +1,33 @@
+﻿@page
+@model Travel_Agency_Project.Pages.TransportationWithSca.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<h3>Transportation Details</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor( model => model.Transportation.ID )
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor( model => model.Transportation.ID )
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Transportation.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Transportation.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Transportation.ID" class="btn" role="button" style="background-color: #fa8b02; color: #fff;">Edit</a> 
+    <a asp-page="./Index" class="btn btn-secondary" role="button">Back to List</a>
+</div>

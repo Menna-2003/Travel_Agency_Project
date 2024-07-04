@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "_DashBoard";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Tour Guide table</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Assigned Tour</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @* @foreach ( var item in Model ) { *@
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">Menna Mohamed</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">Last Call for Paris</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn" role="button" style="background-color: #fa8b02; color: #fff;">
+                                                <span class="material-symbols-outlined"> Confirm </span>
+                                            </a>
+                                            <a class="btn btn-secondary" role="button" asp-controller="DashBoard" asp-action="TourGuideDetails">
+                                                <span class="material-symbols-outlined"> View Tour Guide </span>
+                                            </a>
+                                            <a class="btn btn-danger" role="button">
+                                                <span class="material-symbols-outlined"> Remove </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @* } *@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>  

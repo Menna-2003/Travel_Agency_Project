@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "_DashBoard";
+}
+@model Tour
+
+
+<div class="container py-4">
+    <div class="card m-5" style="width: 1000px">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="~/images/tourPackages/Florence.png" class="img-fluid rounded-start" alt="..." />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">@Model.Distination</h6>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Price: @Model.Price</h6>
+                    <p class="card-text">@Model.Description</p>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">Date:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.Date</span></div>
+                                <div class="col">Time:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.Time</span></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">Duration:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.Duration</span></div>
+                                <div class="col">Fees:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.Fees</span></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">Group Number:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.GroupNumber</span></div>
+                                <div class="col">Guide Service:<span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">@Model.GuideIncluded</span></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">
+                                    Transportation:
+                                        @{
+                                            if ( Model.TransportationId == 6 ) {
+                                                <span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">Car</span>
+                                            } else if ( Model.TransportationId == 9 ) {
+                                            <span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">Plane</span>
+                                            } else if ( Model.TransportationId == 5 ) {
+                                            <span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">Bike</span>
+                                            } else if ( Model.TransportationId == 7 ) {
+                                            <span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);">Bus</span>
+                                            } else {
+                                            <span style="margin: 0 0 0 10px;font-weight: bolder; color: rgb(74, 74, 74);"></span>
+                                            }
+                                        }
+                                </div>
+                                <div class="col">Status: <span class="text-uppercase fw-bolder" style="color: #fa8b02; margin: 0 0 0 20px"> In Process </span></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

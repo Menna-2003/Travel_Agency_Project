@@ -58,36 +58,36 @@
                 <label asp-for="TransportationType.ID" for="Transportation">Transportation Type</label>
                 <select asp-for="TransportationId" id="Transportation" class="form-control">
                     @{
-                        if(Model.TransportationId == 1 ) {
+                        if(Model.TransportationId == 6 ) {
                             <option >Choose...</option>
-                            <option selected value="1">Car</option>
-                            <option value="2">Plane</option>
-                            <option value="3">Bike</option>
-                            <option value="4">Bus</option>
-                        } else if ( Model.TransportationId == 2 ) {
+                            <option value="5">Bike</option>
+                            <option selected value="6">Car</option>
+                            <option value="7">Bus</option>
+                            <option value="9">Plane</option>
+                        } else if ( Model.TransportationId == 5 ) {
                             <option>Choose...</option>
-                            <option value="1">Car</option>
-                            <option selected value="2">Plane</option>
-                            <option value="3">Bike</option>
-                            <option value="4">Bus</option>
-                        } else if ( Model.TransportationId == 3 ) {
+                            <option selected value="5">Bike</option>
+                            <option value="6">Car</option>
+                            <option value="7">Bus</option>
+                            <option value="9">Plane</option>
+                        } else if ( Model.TransportationId == 7 ) {
                             <option >Choose...</option>
-                            <option value="1">Car</option>
-                            <option value="2">Plane</option>
-                            <option selected value="3">Bike</option>
-                            <option value="4">Bus</option>
-                        } else if ( Model.TransportationId == 4 ) {
+                            <option value="5">Bike</option>
+                            <option value="6">Car</option>
+                            <option selected value="7">Bus</option>
+                            <option value="9">Plane</option>
+                        } else if ( Model.TransportationId == 9 ) {
                             <option >Choose...</option>
-                            <option value="1">Car</option>
-                            <option value="2">Plane</option>
-                            <option value="3">Bike</option>
-                            <option selected value="4">Bus</option>
+                            <option value="5">Bike</option>
+                            <option value="6">Car</option>
+                            <option value="7">Bus</option>
+                            <option selected value="9">Plane</option>
                         } else {
                             <option selected>Choose...</option>
-                            <option value="1">Car</option>
-                            <option value="2">Plane</option>
-                            <option value="3">Bike</option>
-                            <option selected value="4">Bus</option>
+                            <option value="5">Bike</option>
+                            <option value="6">Car</option>
+                            <option value="7">Bus</option>
+                            <option value="9">Plane</option>
                         }
                     }
                 </select>

@@ -1,20 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Travel_Agency_Project.Data;
 using Travel_Agency_Project.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Travel_Agency_Project.Utility;
 
 namespace Travel_Agency_Project.Controllers {
+    [Authorize]
     public class DashBoardController : Controller {
-        private static List<Tour> _tours = new List<Tour>();
-        private static List<Transportation> _transportations = new List<Transportation>();
         private readonly ApplicationDbContext _db;
 
         public DashBoardController ( ApplicationDbContext db ) {
-            _transportations.Add( new Transportation { ID = 1, Name = "Car" } );
-            _transportations.Add( new Transportation { ID = 2, Name = "Plane" } );
-            _transportations.Add( new Transportation { ID = 3, Name = "Bike" } );
-            _transportations.Add( new Transportation { ID = 4, Name = "Bus" } );
             _db = db;
         }
 
@@ -24,10 +20,12 @@ namespace Travel_Agency_Project.Controllers {
         }
 
         #region AddTour
+        [Authorize(Roles = RL.RoleAdmin)]
         public IActionResult AddTour () {
             return View();
         }
         [HttpPost]
+        [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult AddTour ( Tour tour ) {
             _db.Tours.Add( tour );
             _db.SaveChanges();
@@ -43,6 +41,7 @@ namespace Travel_Agency_Project.Controllers {
         //#endregion
 
         #region DeleteTour
+        [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult DeleteTour (int id) {
             Tour? tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             _db.Tours.Remove(tour);
@@ -52,11 +51,13 @@ namespace Travel_Agency_Project.Controllers {
         #endregion
 
         #region EditTour
+        [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult EditTour ( int id ) {
             Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             return View( tour );
         }
         [HttpPost]
+        [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult EditTour ( Tour tour ) {
             Tour tr = _db.Tours.SingleOrDefault(c=>c.ID == tour.ID);
 
@@ -77,6 +78,18 @@ namespace Travel_Agency_Project.Controllers {
         }
         #endregion
 
+        public IActionResult ViewTour ( int id ) {
+            Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
+            return View( tour );
+        }
+        [Authorize( Roles = RL.RoleAdmin )]
+        public IActionResult TourGuide () {
+            return View(  );
+        }
+        [Authorize( Roles = RL.RoleAdmin )]
+        public IActionResult TourGuideDetails () {
+            return View();
+        }
         public IActionResult Profile () {
             return View();
         }

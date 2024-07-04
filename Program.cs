@@ -1,14 +1,32 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Travel_Agency_Project.Data;
+using Travel_Agency_Project.Models;
+using Travel_Agency_Project.Utility;
 
 var builder = WebApplication.CreateBuilder( args );
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+// Add Email Service
+builder.Services.AddScoped<IEmailSender, EmailService>();
+
 
 // DataBase Connection
 builder.Services.AddDbContext<ApplicationDbContext>( options => options.UseSqlServer(
     builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
+
+builder.Services.AddIdentity<AppUser,IdentityRole>( options => {
+	options.SignIn.RequireConfirmedEmail = false;
+} ).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+// Access denied Path correction
+builder.Services.ConfigureApplicationCookie( options => {
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+} );
+
 
 var app = builder.Build();
 
@@ -29,5 +47,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}" );
-
+app.MapRazorPages();
 app.Run();

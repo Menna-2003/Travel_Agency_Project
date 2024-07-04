@@ -1,0 +1,127 @@
+﻿@page
+@model Travel_Agency_Project.Pages.TransportationWithSca.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Transportation Table</h6>
+                </div>
+                <p class="ms-5">
+                    <a asp-page="Create" style="color:#fa8b02">Create New</a>
+                </p>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @Html.DisplayNameFor( model => model.Transportation[0].ID )
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                         @Html.DisplayNameFor( model => model.Transportation[0].Name )
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ( var item in Model.Transportation ) {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">@Html.DisplayFor( modelItem => item.ID )</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">@Html.DisplayFor( modelItem => item.Name )</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a asp-page="./Edit" asp-route-id="@item.ID" class="btn" role="button" style="background-color: #fa8b02; color: #fff;">Edit</a>
+                                            <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-secondary" role="button">Details</a>
+                                            <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-danger" role="button">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@*
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Tours table</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tour Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Duration</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guide Service</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Transportation</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ( var item in Model ) {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">@item.Name</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm font-weight-bold mb-0">@item.Date</p>
+                                        </td>
+
+
+                                        <td>
+                                            <a asp-action="EditTour" asp-route-id="@item.ID" class="btn" role="button" style="background-color: #fa8b02; color: #fff;">
+                                                <span class="material-symbols-outlined"> Edit </span>
+                                            </a>
+                                            <a asp-action="DeleteTour" asp-route-id="@item.ID" class="btn btn-danger" role="button">
+                                                <span class="material-symbols-outlined"> Delete </span>
+                                            </a>
+                                            <a asp-action="ViewTour" asp-route-id="@item.ID" class="btn btn-secondary" role="button">
+                                                <span class="material-symbols-outlined"> View </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>   *@
