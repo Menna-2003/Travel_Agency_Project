@@ -15,8 +15,7 @@ namespace Travel_Agency_Project.Controllers {
         }
 
         public IActionResult Index () {
-            var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
-            return View( tours );
+            return View();
         }
 
         #region AddTour
@@ -33,12 +32,13 @@ namespace Travel_Agency_Project.Controllers {
         }
         #endregion
 
-        //#region GetData
-        //public IActionResult GetToursData () {
-        //    var tours = _db.Tours.Include(t => t.TransportationType).ToList();
-        //    return View( tours );
-        //}
-        //#endregion
+        #region GetData
+        [Authorize( Roles = RL.RoleAdmin )]
+        public IActionResult GetToursData () {
+            var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
+            return View( tours );
+        }
+        #endregion
 
         #region DeleteTour
         [Authorize( Roles = RL.RoleAdmin )]
@@ -84,7 +84,7 @@ namespace Travel_Agency_Project.Controllers {
         }
         [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult TourGuide () {
-            return View(  );
+            return View();
         }
         [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult TourGuideDetails () {

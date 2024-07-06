@@ -1,78 +1,42 @@
-﻿@model IEnumerable<Tour>
+﻿
 @{
     Layout = "_DashBoard";
 }
 
-<div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-4">
-                <div class="card-header pb-0">
-                    <h6>Tours table</h6>
-                </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center justify-content-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tour Name</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Duration</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guide Service</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Transportation</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ( var item in Model ) {
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2">
-                                                <div class="my-auto">
-                                                    <h6 class="mb-0 text-sm">@item.Name</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">@item.Date</p>
-                                        </td>
-                                        
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">@item.Duration</p>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">$@item.Price</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">@item.GuideIncluded</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">@item.TransportationType.Name</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">in progress</span>
-                                        </td>
-                                        <td>
-                                            <a asp-action="EditTour" asp-route-id="@item.ID" class="btn" role="button" style="background-color: #fa8b02; color: #fff;">
-                                                <span class="material-symbols-outlined"> Edit </span>
-                                            </a>
-                                            <a asp-action="ViewTour" asp-route-id="@item.ID" class="btn btn-secondary" role="button">
-                                                <span class="material-symbols-outlined"> View </span>
-                                            </a>
-                                            <a asp-action="DeleteTour" asp-route-id="@item.ID" class="btn btn-danger" role="button">
-                                                <span class="material-symbols-outlined"> Delete </span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+<section class="w-100 px-4 py-5">
+    <div class="row d-flex justify-content-center">
+        <div class="w-100">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="d-flex">
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="mb-1">Menna Mohamed</h5>
+                            <hr />
+                            <div class="row mb-5">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="text-muted mb-0 border-0 bg-opacity-10" type="text" disabled value="nonamedo357@gmail.com"/>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="text-muted mb-0 border-0 bg-opacity-10" type="text" disabled placeholder="0102226345" value=""/>
+                                </div>
+                            </div>
+
+                            <div class="d-flex pt-1">
+                                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn me-1 text-light text-bolder" style="background-color: #fa8b02">Edit Personal Data</button>
+                                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">Delete Account</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>  
+</section>

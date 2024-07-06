@@ -13,7 +13,6 @@ builder.Services.AddRazorPages();
 // Add Email Service
 builder.Services.AddScoped<IEmailSender, EmailService>();
 
-
 // DataBase Connection
 builder.Services.AddDbContext<ApplicationDbContext>( options => options.UseSqlServer(
     builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
@@ -27,6 +26,26 @@ builder.Services.ConfigureApplicationCookie( options => {
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 } );
 
+void ConfigureServices ( IServiceCollection services ) {
+    services.AddRazorPages()
+            .AddRazorPagesOptions( options => {
+                options.Conventions.AuthorizeAreaFolder( "Identity", "/Account/Manage" );
+                options.Conventions.AuthorizeAreaPage( "Identity", "/Account/Logout" );
+            } );
+
+    services.ConfigureApplicationCookie( options => {
+        options.LoginPath = $"/Identity/Account/Login";
+        options.LogoutPath = $"/Identity/Account/Logout";
+        options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+    } );
+}
+void Configure ( IApplicationBuilder app, IWebHostEnvironment env ) {
+    // Your other middleware configuration
+
+    app.UseEndpoints( endpoints => {
+        endpoints.MapRazorPages();
+    } );
+}
 
 var app = builder.Build();
 
