@@ -1,0 +1,384 @@
+:root {
+    --base-color: #fa8b02;
+}
+button,
+button.btn {
+    transition: all 0.3s;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#navbar,
+.searching {
+    background-color: #4a4a4ab0;
+}
+
+#navbar .navbar-item .nav-link {
+    color: #e1e1e1;
+    position: relative;
+}
+#navbar .navbar-item .nav-link:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+
+#navbar .navbar-item .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    background-color: #fff;
+    width: 0%;
+    height: 2px;
+    transform: translateX(-50%);
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+#navbar .navbar-item .active::before {
+    visibility: visible;
+    width: 80%;
+}
+
+#navbar .navbar-item .nav-link:hover::before {
+    visibility: visible;
+    width: 80%;
+}
+
+.searching {
+    height: 180px;
+}
+.searching .innertext {
+    font-size: 30px;
+    font-weight: 500;
+}
+.accounts .btn {
+    background-color: var(--base-color);
+    margin: 0 10px;
+}
+#log_in {
+    color: white;
+    text-decoration: none;
+}
+.first {
+    font-family: "Dancing Script";
+    font-size: 70px;
+}
+.container-searching {
+    margin-top: 5%;
+    width: 900px;
+    min-height: 72vb;
+}
+.innersearching {
+    background-color: #fff;
+    height: 75px;
+}
+
+.search-icon {
+    background-color: #fa8b02;
+    margin: 11px;
+    border: none;
+}
+
+span.btn {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    z-index: 500;
+    display: none;
+}
+span.btn i {
+    font-size: 45px;
+    color: #fff;
+}
+.homeContainer {
+    /*background-image: url(~/images/backGroundImg.png);
+    background-size: cover;
+    width: 100%;*/
+    height: 84vb;
+}
+.homeBackGround{
+    width:100%;
+    height:100vb;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-2;
+}
+@media (max-width: 780px) {
+    span .btn {
+        display: inline;
+    }
+    #navbar .navbar-nav {
+        display: none;
+    }
+    #navbar .accounts {
+        display: none;
+    }
+    .innersearching {
+        flex-wrap: wrap;
+    }
+    .searching {
+        height: 335px;
+    }
+    .search-icon {
+        position: absolute;
+        top: 0;
+        right: 10px;
+    }
+}
+
+/* *************   Reservation Container **************** */
+.ReservationContainer {
+    margin: 80px 0;
+    /*background-image: url(~/images/bg.png);*/
+    height: 90vb;
+    position:relative;
+}
+.ReservationsBG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+    width: 100%;
+    height: 86vb;
+}
+.ReservationContainer .btn.car,
+.ReservationContainer .btn.bike {
+    background: #fff;
+    width: 100px;
+    border-radius: 20px;
+    margin: 35px 10px;
+    background-color: var(--base-color);
+    color: #fff;
+    border: 3px solid var(--base-color);
+    background-color: #fff;
+    color: var(--base-color);
+}
+.ReservationContainer .btn.active {
+    background-color: var(--base-color);
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.bikeCar-reservation .container.inner {
+    background-color: rgb(255, 255, 255, 0.3);
+    /* width: 60%; */
+    padding: 25px 55px;
+}
+.bikeCar-reservation .container.outer {
+    justify-content: start;
+    align-content: space-evenly;
+}
+.bikeCar-reservation .bike {
+    position: relative;
+}
+.bikeCar-reservation .bike img {
+    width: 600px;
+    position: absolute;
+    left: -730px;
+    top: 70px;
+}
+.bikeCar-reservation .bike .car {
+    visibility: hidden;
+    width: 800px;
+    left: -830px;
+}
+.bikeCar-reservation .inner .col.d-grid {
+    justify-items: left;
+    gap: 5px;
+}
+.bikeCar-reservation .inner input,
+.bikeCar-reservation .inner select {
+    padding: 6px 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+#date,
+#time {
+    height: 36px;
+}
+#submit-btn {
+    background-color: var(--base-color);
+    padding: 7px;
+    width: 25%;
+}
+.privateTrip {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 7%;
+    font-size: 25px;
+    transition: all 0.3s;
+}
+.privateTrip:hover {
+    color: #fff;
+    text-shadow: 3px 3px 2px var(--base-color);
+}
+@media (max-width: 780px) {
+    .bikeCar-reservation .bike img {
+        display: none;
+    }
+    .bikeCar-reservation input {
+        width: 310px;
+    }
+    #date,
+    #time,
+    #service {
+        width: 310px;
+    }
+    .bikeCar-reservation #submit-btn {
+        width: 80%;
+    }
+}
+
+/* ******************   Package  **************************** */
+
+.details img {
+    width: 40px;
+}
+.details .row {
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.transportations .container {
+    gap: 35px;
+}
+.transportations .container .box {
+    height: 550px;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+.transportations .container .box:hover {
+    transform: scale(1.15);
+}
+.transportations .container .box .pic {
+    margin: -15px 0 0 -16px;
+}
+.transportations .container .box .bookP {
+    border: 1px solid var(--base-color);
+    background-color: #fff;
+    width: 80%;
+    margin: auto;
+    border-radius: 20px;
+    height: 40px;
+    color: var(--base-color);
+}
+.transportations .container .box button {
+    transition: all 0.3s;
+}
+.transportations .container .box button:hover {
+    color: #fff;
+    background-color: var(--base-color);
+}
+.transportations .transportationsCont {
+    display: flex;
+}
+@media (max-width: 780px) {
+    .transportations .transportationsCont {
+        display: grid;
+    }
+}
+
+/* ******************   popularTrips  **************************** */
+.popularTrips {
+    margin: 80px 0;
+}
+.popularTrips .arrows .left:hover,
+.popularTrips .arrows .right:hover {
+    transform: scale(1.09);
+}
+.popularTrips .arrows .left,
+.popularTrips .arrows .right {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+.popularTrips .arrows .right {
+    background-color: var(--base-color);
+    color: white;
+}
+.popularTrips .arrows .left {
+    background-color: #eee;
+    color: #8b8b8b;
+}
+.popularTrips .frame {
+    border: solid white;
+    border-width: 0px 100px;
+    width: 100%;
+    height: 536px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+.popularTrips .frame .content {
+    position: absolute;
+    gap: 25px;
+    top: 10%;
+    left: 0px;
+    transition: all 0.5s;
+}
+
+.popularTrips .frame .content .box img {
+    width: 250px;
+    margin-bottom: 20px;
+}
+.popularTrips .frame .content .box {
+    transition: all 0.3s;
+}
+.popularTrips .frame .content .box:hover {
+    transform: scale(1.05);
+}
+.popularTrips .frame .content .box span {
+    color: var(--base-color);
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 800;
+    font-size: larger;
+}
+.popularTrips .frame .content .box a {
+    text-decoration: none;
+    color: var(--base-color);
+}
+
+.footerLayout {
+    background-color: #333333;
+}
+    .footerLayout i {
+        color: var(--base-color);
+    }
+
+@media (max-width: 780px) {
+    .popularTrips .frame {
+        border-width: 0px 78px;
+    }
+}
+
+/* *************  bike reservation  **************** */
+
+.footerCont {
+    display: flex;
+}
+
+@media (max-width: 780px) {
+    .footerCont {
+        display: grid;
+    }
+}
+
+/* *************  filterBar  **************** */
+
+.filterBar select{
+    width: 200px;
+    margin: 10px 0;
+}
+.filterBar button{
+    width: 90%;
+}

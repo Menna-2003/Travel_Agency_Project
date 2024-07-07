@@ -2,6 +2,412 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<div class="homeContainer">
+    <img src="~/images/backGroundImg.png" class="homeBackGround"/>
+
+    <div class="container container-searching">
+        <div class="text">
+            <h1 class="first text-center text-light">Enjoy in the best way</h1>
+            <p class="text-center text-light font-weight-bolder">Enjoy our services for your trip anytime</p>
+        </div>
+        <div class="container d-grid rounded-3 searching position-relative">
+            <div class="innertext text-light text-center pt-3">Filter Trips</div>
+            <div class="d-flex innersearching rounded-top">
+                <select class="form-select border-0" aria-label="Default select example">
+                    <option selected>Date</option>
+                    <option value="jan">jan</option>
+                    <option value="feb">feb</option>
+                    <option value="march">march</option>
+                </select>
+                <select class="form-select border-0" aria-label="Default select example">
+                    <option selected>Minimum Price</option>
+                    <option>$50</option>
+                    <option>$100</option>
+                    <option>$500</option>
+                    <option>$1000</option>
+                    <option>$1500</option>
+                    <option>$2000</option>
+                    <option>$5000</option>
+                </select>
+                <select class="form-select border-0" aria-label="Default select example">
+                    <option selected>Maximum Price</option>
+                    <option>$50</option>
+                    <option>$100</option>
+                    <option>$500</option>
+                    <option>$1000</option>
+                    <option>$1500</option>
+                    <option>$2000</option>
+                    <option>$5000</option>
+                </select>
+                <select class="form-select border-0" aria-label="Default select example">
+                    <option selected>Transportation</option>
+                    <option value="1">Tok Tok</option>
+                    <option value="2">Bike</option>
+                    <option value="3">Bus</option>
+                    <option value="4">Private Car</option>
+                </select>
+                <button class="search-icon d-flex justify-content-center align-items-center rounded-3">
+                    <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 25px; padding: 0px 15px"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="popularTrips">
+    <div class="container header d-flex justify-content-between">
+        <h3>Explore Our Popular Trips</h3>
+        <div class="arrows d-flex justify-content-end gap-3">
+            <div class="left">&lt;</div>
+            <div class="right">&gt;</div>
+        </div>
+    </div>
+    <div class="frame">
+        <div class="content d-flex">
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="images/tour packages/lucaBikeTour.png" alt="" />
+                    <h6 class="text-black">luca Bike Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/CinqueTerre.png" alt="" />
+                    <h6 class="text-black">Cinque Terre Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/Florence.png" alt="" />
+                    <h6 class="text-black">Florence</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/Gardaland.png" alt="" />
+                    <h6 class="text-black">Gardaland Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/lucaBikeTour.png" alt="" />
+                    <h6 class="text-black">luca Bike Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="images/tour packages/lucaBikeTour.png" alt="" />
+                    <h6 class="text-black">luca Bike Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/CinqueTerre.png" alt="" />
+                    <h6 class="text-black">Cinque Terre Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/Florence.png" alt="" />
+                    <h6 class="text-black">Florence</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/Gardaland.png" alt="" />
+                    <h6 class="text-black">Gardaland Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+            <a href="#">
+                <div class="box d-grid">
+                    <img src="~/images/tour packages/lucaBikeTour.png" alt="" />
+                    <h6 class="text-black">luca Bike Tour</h6>
+                    <p class="text-black">from <span>30$</span></p>
+                    <div class="d-flex gap-5 text-black">
+                        <p><i class="bi bi-calendar3"></i> EVERY DAY</p>
+                        <p><i class="bi bi-people-fill"></i>10-30</p>
+                    </div>
+                    <a href="#">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="ReservationContainer">
+    <img src="~/images/bg.png" class = "ReservationsBG" />
+    <div class="text-center">
+        <button class="btn bike active">Bike</button>
+        <button class="btn car">Car</button>
+    </div>
+    <div class="bikeCar-reservation text-center d-flex">
+        <div class="container outer d-grid">
+            <div class="row justify-content-center fw-bolder fs-3 title">Book Now Bike</div>
+            <div class="row">
+                <div class="container inner rounded-3">
+                    <div class="row">
+                        <div class="col d-grid">
+                            <label for="name">Name and SurName</label>
+                            <input type="text" id="name" class="rounded-3 border-0" placeholder="Enter your full Name" />
+                        </div>
+                        <div class="col d-grid">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="rounded-3 border-0" placeholder="Enter your Email" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-grid">
+                            <label for="phone">Telephone Number</label>
+                            <input type="tel" id="phone" class="rounded-3 border-0" placeholder="Enter your phone number" />
+                        </div>
+                        <div class="col d-grid">
+                            <label for="type">Type</label>
+                            <select name="Type" id="type" class="rounded-3 border-0">
+                                <option value="" selected>Select type</option>
+                                <option value="">one</option>
+                                <option value="">two</option>
+                                <option value="">three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-grid">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" class="rounded-3 border-0" />
+                        </div>
+                        <div class="col d-grid">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" class="rounded-3 border-0" />
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button class="rounded-3 border-0 text-light" id="submit-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bike car">
+            <img src="~/images/bike-picture.png" class="bike" alt="" srcset="" />
+            <img src="~/images/car.png" class="car" alt="" srcset="" />
+        </div>
+    </div>
+    <a href="#" class="privateTrip">Do You Want a Private Trip?</a>
+</div>
+
+<div class="transportations container">
+    <h2 class="m-5">Transportations</h2>
+    <div class="container packagesCont transportationsCont justify-content-center">
+        <div class="box d-grid shadow p-3 mb-5 bg-white rounded" style="width: 265px">
+            <img class="pic" src="~/images/toktok.png" alt="" style="width: 265px" />
+            <h5>Tok Tok</h5>
+            <h2>$10</h2>
+            <div class="details container">
+                <div class="row d-flex">
+                    <img src="~/images/calender.png" alt="" />
+                    <div>Your Tok Tok for a day</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="~/images/map.png" alt="" />
+                    <div>Inside City</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/ticket.png" alt="" />
+                    <div>Discount on group</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/support.png" alt="" />
+                    <div>Guaranteed Support</div>
+                </div>
+            </div>
+            <button class="bookP">Book Now</button>
+        </div>
+        <div class="box d-grid shadow p-3 mb-5 bg-white rounded" style="width: 265px">
+            <img class="pic" src="images/bikeTour.png" alt="" style="width: 265px" />
+            <h5>Bike</h5>
+            <h2>$15</h2>
+            <div class="details container">
+                <div class="row d-flex">
+                    <img src="images/calender.png" alt="" />
+                    <div>Your bike for a day</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/map.png" alt="" />
+                    <div>Inside City</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/ticket.png" alt="" />
+                    <div>Discount on group</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/support.png" alt="" />
+                    <div>Guaranteed Support</div>
+                </div>
+            </div>
+            <button class="bookP">Book Now</button>
+        </div>
+        <div class="box d-grid shadow p-3 mb-5 bg-white rounded" style="width: 265px">
+            <img class="pic" src="images/bus.png" alt="" style="width: 265px; height: 264px" />
+            <h5>Bus</h5>
+            <h2>$100</h2>
+            <div class="details container">
+                <div class="row d-flex">
+                    <img src="images/calender.png" alt="" />
+                    <div>Your Bus for a day</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/map.png" alt="" />
+                    <div>Inside and Outside City</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/ticket.png" alt="" />
+                    <div>Discount on group</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/support.png" alt="" />
+                    <div>Guaranteed Support</div>
+                </div>
+            </div>
+            <button class="bookP">Book Now</button>
+        </div>
+        <div class="box d-grid shadow p-3 mb-5 bg-white rounded" style="width: 265px">
+            <img class="pic" src="images/transfer.png" alt="" style="width: 265px" />
+            <h5>Private Car</h5>
+            <h2>$60</h2>
+            <div class="details container">
+                <div class="row d-flex">
+                    <img src="images/calender.png" alt="" />
+                    <div>Your Car for a day</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/map.png" alt="" />
+                    <div>Inside and Outside City</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/ticket.png" alt="" />
+                    <div>Discount on group</div>
+                </div>
+                <div class="row d-flex">
+                    <img src="images/support.png" alt="" />
+                    <div>Guaranteed Support</div>
+                </div>
+            </div>
+            <button class="bookP">Book Now</button>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
+    <div class="container logo">
+        <img src="~/images/logo.png" alt="" srcset="" />
+    </div>
+    <div class="container footerCont justify-content-between border-bottom border-top pb-5 pt-5 mt-3 mb-3">
+        <div class="services">
+            <h5>Services</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Bike and Rickshaw rental</li>
+                <li>Guided Tours of Lucca</li>
+                <li>Guided Bike Tour of Lucca</li>
+                <li>Trip In The Tuscan Hills</li>
+                <li>Transportation With Luxury Cars</li>
+                <li>Wine Tours By Bus With Guide</li>
+            </ul>
+        </div>
+        <div class="home">
+            <h5>Home</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Tour Packages</li>
+            </ul>
+        </div>
+        <div class="help">
+            <h5>Help</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Terms of use</li>
+                <li>Provicy Policy</li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <h5>Contacts</h5>
+            <ul class="list-unstyled mt-4">
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Maadi, Cairo</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+205828555454</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>example@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <div class="socialMedia">
+            <h5>Social Media</h5>
+            <ul class="list-unstyled d-flex mt-4 gap-4 justify-content-center">
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container m-0">
+        <p class="text-center">Copyright © 2022. All rights reserved.</p>
+    </div>
+</footer>
