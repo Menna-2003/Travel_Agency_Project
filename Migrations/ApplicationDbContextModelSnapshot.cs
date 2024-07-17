@@ -223,6 +223,42 @@ namespace Travel_Agency_Project.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Travel_Agency_Project.Models.Reservations", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<TimeSpan>("AppointmentTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TransportationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TransportationId");
+
+                    b.ToTable("Reservations");
+                });
+
             modelBuilder.Entity("Travel_Agency_Project.Models.Tour", b =>
                 {
                     b.Property<int>("ID")
@@ -231,7 +267,13 @@ namespace Travel_Agency_Project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Date")
+                    b.Property<int>("AdultsTickets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChildrenTickets")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContentType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -243,17 +285,27 @@ namespace Travel_Agency_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fees")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GroupNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("GuideIncluded")
                         .HasColumnType("bit");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("InfantTickets")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Meals")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -262,7 +314,7 @@ namespace Travel_Agency_Project.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<string>("Time")
+                    b.Property<string>("StartDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -274,6 +326,89 @@ namespace Travel_Agency_Project.Migrations
                     b.HasIndex("TransportationId");
 
                     b.ToTable("Tours");
+                });
+
+            modelBuilder.Entity("Travel_Agency_Project.Models.TourGuide", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("TourGuides");
+                });
+
+            modelBuilder.Entity("Travel_Agency_Project.Models.TourReservationDetails", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("AdultTickets")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardSecurityCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ChildTickets")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExpireDate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InfantTickets")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayPalPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayPalUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PickupLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("TourReservationDetails");
                 });
 
             modelBuilder.Entity("Travel_Agency_Project.Models.Transportation", b =>
@@ -344,6 +479,17 @@ namespace Travel_Agency_Project.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Travel_Agency_Project.Models.Reservations", b =>
+                {
+                    b.HasOne("Travel_Agency_Project.Models.Transportation", "TransportationType")
+                        .WithMany()
+                        .HasForeignKey("TransportationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransportationType");
+                });
+
             modelBuilder.Entity("Travel_Agency_Project.Models.Tour", b =>
                 {
                     b.HasOne("Travel_Agency_Project.Models.Transportation", "TransportationType")
@@ -353,6 +499,17 @@ namespace Travel_Agency_Project.Migrations
                         .IsRequired();
 
                     b.Navigation("TransportationType");
+                });
+
+            modelBuilder.Entity("Travel_Agency_Project.Models.TourGuide", b =>
+                {
+                    b.HasOne("Travel_Agency_Project.Models.Tour", "Tour")
+                        .WithMany()
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tour");
                 });
 #pragma warning restore 612, 618
         }

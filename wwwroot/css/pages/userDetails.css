@@ -1,0 +1,43 @@
+:root {
+    --base-color: #fa8b02;
+}
+.buttons .one,
+.buttons .two {
+    background-color: var(--base-color);
+}
+.buttons .one::after,
+.buttons .two::after {
+    color: var(--base-color);
+}
+
+/* ********************************** */
+
+.left_container {
+    margin-top: 100px;
+}
+    .left_container .inputElement {
+        width: 250px;
+        height: 40px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 0.5px solid #c8c8c8;
+    }
+input:focus-visible {
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#pickupLocation{
+    width: 250px;
+    height: 40px;
+    padding: 0 7px 0 20px;
+    border: 1px solid #c7c7c7;
+    margin: 10px 0 15px 0;
+    display: block;
+}
+@media (max-width: 780px) {
+    .left_container .inputElement {
+        width: 375px;
+        height: 50px;
+    }
+}

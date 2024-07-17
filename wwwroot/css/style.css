@@ -2,9 +2,14 @@
     --base-color: #fa8b02;
 }
 
-{
-    flex-direction: column !important;
+body {
+    overflow-x: hidden;
 }
+
+
+/*{
+flex-direction: column !important;
+}*/
 
 button,
 button.btn {
@@ -25,7 +30,7 @@ button.btn {
 }
 
 #navbar .navbar-item .nav-link {
-    color: #fa8b02;
+    color: #001d5c;
     font-size: 16px;
     font-weight: bold;
     position: relative;
@@ -40,7 +45,7 @@ button.btn {
         position: absolute;
         bottom: 0px;
         left: 50%;
-        background-color: var(--base-color);
+        background-color: #001d5c;
         width: 0%;
         height: 2px;
         transform: translateX(-50%);
@@ -59,7 +64,7 @@ button.btn {
 }
 
 .searching {
-    height: 180px;
+    min-height: 180px;
 }
 
     .searching .innertext {
@@ -67,12 +72,12 @@ button.btn {
         font-weight: 500;
     }
 /*.accounts .btn {
-    background-color: var(--base-color);
-    margin: 0 10px;
+background-color: var(--base-color);
+margin: 0 10px;
 }
 #log_in {
-    color: white;
-    text-decoration: none;
+color: white;
+text-decoration: none;
 }*/
 .first {
     font-family: "Dancing Script";
@@ -81,18 +86,18 @@ button.btn {
 
 .container-searching {
     margin-top: 5%;
-    width: 900px;
+    width: 75%;
     min-height: 72vb;
 }
 
 .innersearching {
-    background-color: #fff;
-    height: 75px;
+    background-color: #ffffffa3;
+    height: 95px;
 }
 
 .search-icon {
     background-color: #fa8b02;
-    margin: 11px;
+    margin: 0;
     border: none;
 }
 
@@ -111,8 +116,8 @@ span.btn {
 
 .homeContainer {
     /*background-image: url(~/images/backGroundImg.png);
-    background-size: cover;
-    width: 100%;*/
+background-size: cover;
+width: 100%;*/
     height: 84vb;
 }
 
@@ -371,7 +376,7 @@ span.btn {
         border: solid white;
         border-width: 0px 100px;
         width: 100%;
-        height: 536px;
+        height: 630px;
         margin: 0;
         position: relative;
         overflow: hidden;
@@ -380,9 +385,9 @@ span.btn {
         .popularTrips .frame .content {
             position: absolute;
             gap: 25px;
-            top: 10%;
+            top: 9%;
             left: 0px;
-            transition: all 0.5s;
+            transition: all 0.7s;
         }
 
             .popularTrips .frame .content .box img {
@@ -399,15 +404,24 @@ span.btn {
                 }
 
                 .popularTrips .frame .content .box span {
-                    color: var(--base-color);
+                    color: #000;
                     font-family: "Times New Roman", Times, serif;
-                    font-weight: 800;
-                    font-size: larger;
+                    font-weight: bolder;
+                    font-size: 20px;
                 }
 
                 .popularTrips .frame .content .box a {
                     text-decoration: none;
                     color: var(--base-color);
+                }
+
+                .popularTrips .frame .content .box p {
+                    color: #000 !important;
+                }
+
+                .popularTrips .frame .content .box i {
+                    color: var(--base-color);
+                    margin: 0 15px 0 0;
                 }
 
 .footerLayout {

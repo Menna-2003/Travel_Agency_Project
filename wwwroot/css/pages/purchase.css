@@ -1,0 +1,91 @@
+:root {
+    --base-color: #fa8b02;
+}
+.buttons .one {
+    background-color: var(--base-color);
+}
+.buttons .one::after {
+    color: var(--base-color);
+}
+
+/* -**************------------***************----- */
+.container .left select,
+.container .left p,
+.container .left .option .text,
+.container .left .option {
+    width: 50%;
+}
+.qty .count {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: #eee;
+}
+.qty .plus,
+.qty .minus {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font: 25px/1 Arial, sans-serif;
+    border: 1px solid #eee;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.3s;
+}
+.qty .plus:hover,
+.qty .minus:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+.qty .minus {
+    border-radius: 10px 0 0 10px;
+}
+span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input {
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled {
+    background-color: white;
+}
+.container .left .option {
+    height: 100px;
+    border-radius: 20px;
+    border: 1px solid #c6c5c5;
+    transition: all 0.3s;
+}
+.container .left .option:hover {
+    transform: scale(1.04);
+}
+
+.container .left .option p {
+    color: var(--base-color);
+}
+@media (max-width: 780px) {
+    .container .left select {
+        width: 100%;
+    }
+    .container .left select,
+    .container .left p,
+    .container .left .option .text,
+    .container .left .option {
+        width: 100%;
+    }
+}

@@ -1,0 +1,120 @@
+:root {
+    --base-color: #fa8b02;
+}
+.buttons .one,
+.buttons .two,
+.buttons .three {
+    background-color: var(--base-color);
+}
+.buttons .one::after,
+.buttons .two::after,
+.buttons .three::after {
+    color: var(--base-color);
+}
+
+/* ********************************** */
+
+.left_container {
+    margin-top: 100px;
+}
+    .left_container input {
+        accent-color: var(--base-color);
+        /*width: 17px !important;
+        height: 38px !important;*/
+    }
+  /*  .left_container #payment1,
+    .left_container #payment2 {
+        
+    }*/
+    .left_container .method1,
+    .left_container .method2 {
+        width: 90%;
+        border: 1px solid #d6d6d6;
+        border-radius: 20px;
+    }
+.left_container .method2 div {
+    border: none;
+}
+.left_container .method1 label,
+.left_container .method2 label {
+    gap: 6%;
+}
+
+.left_container .method2 label {
+    gap: 0;
+}
+.left_container .method2 label h5 {
+    margin: 0 200px 0 0;
+}
+.cardDetails,
+.accountDetails {
+    position: relative;
+}
+.cardDetails input,
+.accountDetails input {
+    width: 220px;
+    height: 54px;
+    padding: 25px 24px;
+    border-radius: 10px;
+    border: 1px solid #c0c0c0;
+    outline: none;
+}
+.cardDetails input:focus-within,
+.accountDetails input:focus-within {
+    border: 2px solid var(--base-color);
+}
+#ccnLabel,
+#expirydatelabel,
+#securityCodeLabel,
+#emaillabel,
+#passlabel {
+    position: absolute;
+    top: -14px;
+    left: 11px;
+    background-color: #fff;
+    width: 120px;
+    text-align: center;
+    color: #787878;
+}
+#expirydatelabel,
+#passlabel {
+    left: 260px;
+}
+#securityCodeLabel {
+    top: 64px;
+    left: 10px;
+    width: 160px;
+}
+
+@media (max-width: 780px) {
+    .left_container form {
+        max-width: 404px;
+    }
+    .left_container .method1,
+    .left_container .method2 {
+        width: 80%;
+    }
+    #expirydatelabel {
+        left: 17px;
+        top: 100px;
+    }
+    #securityCodeLabel {
+        top: 195px;
+    }
+    #ccnLabel {
+        top: 8px;
+    }
+    .cardDetails input {
+        /* width: 220px;
+        height: 54px;
+        padding: 25px 24px;
+        border-radius: 10px;
+        border: 1px solid #c0c0c0;
+        outline: none; */
+        margin: 20px 0;
+    }
+    .method2 label,
+    .method2 label h5 {
+        width: 200px;
+    }
+}

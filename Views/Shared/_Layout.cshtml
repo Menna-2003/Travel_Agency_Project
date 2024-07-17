@@ -14,9 +14,17 @@
           crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <link rel="stylesheet" href="~/css/myTickets.css" />
     <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/myTickets.css" />
+    <link rel="stylesheet" href="~/css/pages/tripDetails.css" />
 
+    <link rel="stylesheet" href="~/css/pages/style.css" />
+    <link rel="stylesheet" href="~/css/pages/purchase.css" />
+    <link rel="stylesheet" href="~/css/pages/payment.css" />
+    <link rel="stylesheet" href="~/css/pages/userDetails.css" />
+    <link rel="stylesheet" href="~/css/pages/confirmOrder.css" />
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,22 +65,22 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav">
                     <li class="navbar-item">
-                        <a href="index.html" class="nav-link active text-black" aria-current="page">Home</a>
+                        <a asp-controller="Home" asp-action="Index" class="nav-link active" aria-current="page">Home</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="pages/AboutUs.html" class="nav-link text-black">About Us</a>
+                        <a asp-controller="Home" asp-action="ViewAllTours" class="nav-link">Tour Packages</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="pages/tourPackages.html" class="nav-link text-black">Tour Packages</a>
+                        <a asp-action="AboutUs" class="nav-link">About Us</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#" class="nav-link text-black">Contact Us</a>
+                        <a href="#footer" class="nav-link">Contact Us</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="nav-link" asp-area="" asp-controller="DashBoard" asp-action="Index">DashBoard</a>
                     </li>
                 </ul>
-                <div class="accounts">
-                    <a href="accounts/login.html" id="log_in" class="text-black">log in</a>
-                    <button type="button" class="btn text-light">Sign Up</button>
-                </div>
+                
             </div>
         </div>
 
@@ -91,13 +99,13 @@
                         <a asp-controller="Home" asp-action="ViewAllTours" class="nav-link">Tour Packages</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="pages/AboutUs.html" class="nav-link">About Us</a>
+                        <a asp-action="AboutUs" class="nav-link">About Us</a>
                     </li>
                     <li class="navbar-item">
                         <a href="#footer" class="nav-link">Contact Us</a>
                     </li>
                     <li class="navbar-item">
-                        <a class="nav-link" asp-area="" asp-controller="DashBoard" asp-action="Index">DashBoard</a>
+                        <a class="nav-link" asp-area="" asp-controller="DashBoard" asp-action="Index">Profile</a>
                     </li>
                 </ul>
                 <div>
@@ -108,8 +116,6 @@
     
     </header>
 
-
-
     <div>
         <main role="main" class="pb-3 mb-10">
             @RenderBody()
@@ -117,6 +123,8 @@
     </div>
 
 
+    <script src="~/js/js/payment.js"></script>
+    <script src="~/js/js/main.js"></script>
 
     <script src="~/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -129,5 +137,13 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous">
     </script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 </body>
 </html>

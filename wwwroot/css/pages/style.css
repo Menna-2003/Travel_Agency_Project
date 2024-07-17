@@ -1,0 +1,274 @@
+:root {
+    --base-color: #fa8b02;
+}
+/*
+#navbar .navbar-item .nav-link {
+    color: #e1e1e1;
+    position: relative;
+}
+#navbar .navbar-item .nav-link:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+
+#navbar .navbar-item .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    background-color: var(--base-color);
+    width: 0%;
+    height: 2px;
+    transform: translateX(-50%);
+    visibility: hidden;
+    transition: 0.4s ease-in-out;
+}
+
+#navbar .navbar-item .nav-link:hover::before {
+    visibility: visible;
+    width: 80%;
+}
+
+button,
+button.btn {
+    transition: all 0.3s;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.accounts .btn {
+    background-color: var(--base-color);
+    margin: 0 10px;
+}
+#log_in {
+    color: white;
+    text-decoration: none;
+}
+*/
+.progress {
+    position: absolute;
+    top: 165px;
+    left: 380px;
+    z-index: -1;
+}
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.buttons .one,
+.buttons .two,
+.buttons .three {
+    background-color: #eee;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+}
+.buttons .one::after,
+.buttons .two::after,
+.buttons .three::after {
+    content: "Booking Datails";
+    position: absolute;
+    top: 35px;
+    left: -45px;
+    width: 125px;
+    text-align: center;
+    color: #eee;
+}
+.buttons .two::after {
+    content: "Your Datails";
+}
+.buttons .three::after {
+    content: "Payment";
+}
+
+.backBtn {
+    cursor: pointer;
+    position: absolute;
+    width: 200px;
+    top: 140px;
+    left: 80px;
+    transition: all 0.3s;
+}
+.backBtn:hover {
+    transform: scale(1.05);
+}
+.backBtn span {
+    color: #b0b0b0;
+}
+span.btn i {
+    font-size: 45px;
+    color: #000;
+}
+span.btn{
+    right: 20px;
+}
+@media (max-width: 780px) {
+    .progress {
+        /* display: none; */
+        position: absolute;
+        top: -50px;
+    }
+    .buttons {
+        display: flex;
+        gap: 50px;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+/* -------------------------------------------------------- */
+
+.ticketOverview {
+    position: absolute;
+    right: 100px;
+    top: 300px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    width: 500px;
+    height: 550px;
+    justify-items: center;
+    transition: all 0.5s;
+}
+.ticketOverview:hover {
+    transform: scale(1.06);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.ticketOverview .box i {
+    color: var(--base-color);
+    margin: 0 10px 0 0;
+}
+.ticketOverview .box img {
+    width: 150px;
+    height: 100px;
+    border-radius: 20px;
+}
+.ticketOverview .details .circleCounter {
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.ticketOverview .details .price {
+    margin-left: 200px;
+    font-weight: 500;
+}
+.ticketOverview .details .totalPrice .price {
+    margin-left: 275px;
+    color: var(--base-color);
+}
+.ticketOverview .details .totalPrice span:first-child {
+    font-size: 20px;
+}
+.ticketOverview .nextStepBtn {
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    background-color: var(--base-color);
+    color: white;
+}
+    .ticketOverview .nextStepBtnLink {
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+    }
+@media (max-width: 780px) {
+    .ticketOverview {
+        position: inherit;
+        margin: 0 0 50px -34px;
+        /* top: 1200px;
+        left: -38px; */
+        transform: scale(0.8);
+    }
+    .backBtn {
+        top: 135px;
+        left: 10px;
+    }
+}
+
+/* *************************************** */
+
+.dot{
+    color: var(--base-color);
+}
+
+/*  Date Picker  */
+
+.datPickerFilter label {
+    font-size: 18px;
+}
+
+.datPickerFilter input {
+    padding: 10px 15px !important;
+    border: 1px solid #CFD8DC !important;
+    border-radius: 4px !important;
+    box-sizing: border-box;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    letter-spacing: 1px;
+    position: relative;
+    width: 100%;
+}
+
+    .datPickerFilter input:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #FFA000 !important;
+        outline-width: 0;
+    }
+
+.daterangepicker {
+    background-color: #fff;
+    border-radius: 0 !important;
+    align-content: center !important;
+    padding: 0 !important;
+}
+
+/*Weekday Heading*/
+thead tr:nth-child(2) {
+    color: #BDBDBD !important;
+}
+
+tbody tr td {
+    padding: 5px 7px !important;
+}
+
+.month {
+    font-size: 16px !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+.start-date, .end-date {
+    border-radius: 0px !important;
+}
+
+.available:hover {
+    border-radius: 0px !important;
+}
+
+.off {
+    color: #EEEEEE !important;
+}
+
+    .off:hover {
+        background-color: #EEEEEE !important;
+        color: #fff !important;
+    }
+
+.drp-buttons {
+    display: none !important;
+}

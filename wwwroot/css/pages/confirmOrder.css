@@ -1,0 +1,15 @@
+.btnHome {
+    padding: 12px 30px;
+    width: fit-content;
+    border: 1px solid #fa8b02;
+    border-radius: 30px;
+    color: #fa8b02;
+    text-decoration: none;
+    margin: auto;
+    transition: all 0.3s;
+}
+.btnHome:hover {
+    color: #fff;
+    background-color: #fa8b02;
+    transform: scale(1.05);
+}

@@ -1,0 +1,90 @@
+﻿@model TourFilterViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="container packagesContainer mt-5">
+    <h3>Tour Packages</h3>
+
+    <div class="d-flex gap-3 mt-5">
+        <div class="filterBar rounded-top mt-5">
+            <select class="form-select border-0" aria-label="Default select example">
+                <option selected>Date</option>
+                <option value="jan">jan</option>
+                <option value="feb">feb</option>
+                <option value="march">march</option>
+            </select>
+            <select class="form-select border-0" aria-label="Default select example">
+                <option selected>Minimum Price</option>
+                <option>$50</option>
+                <option>$100</option>
+                <option>$500</option>
+                <option>$1000</option>
+                <option>$1500</option>
+                <option>$2000</option>
+                <option>$5000</option>
+            </select>
+            <select class="form-select border-0" aria-label="Default select example">
+                <option selected>Maximum Price</option>
+                <option>$50</option>
+                <option>$100</option>
+                <option>$500</option>
+                <option>$1000</option>
+                <option>$1500</option>
+                <option>$2000</option>
+                <option>$5000</option>
+            </select>
+            <select class="form-select border-0" aria-label="Default select example">
+                <option selected>Transportation</option>
+                <option value="1">Tok Tok</option>
+                <option value="2">Bike</option>
+                <option value="3">Bus</option>
+                <option value="4">Private Car</option>
+            </select>
+            <button class="search-icon d-flex justify-content-center align-items-center rounded-3 p-2">
+                <i class="fa-solid fa-magnifying-glass" style="color: white; font-size: 25px; padding: 0px 15px"></i>
+            </button>
+        </div>
+
+        <div class="d-flex flex-wrap gap-5" style="justify-content: center;">
+
+            @foreach ( var tour in Model.tours ) {
+                <div class="d-grid pBox">
+                    <img src="@Url.Action("GetImage", "Home", new { id = tour.ID })" alt="Tour Image" style="max-width: 100%; height: auto;" />
+                    <h4 class="text-black text-center mb-3">@tour.Name</h4>
+                    <p class="text-black"><i class="fa-solid fa-hand-holding-dollar"></i> <span>$@tour.Price</span></p>
+                    <p><i class="fa-solid fa-calendar"></i>Start Date : @tour.StartDate</p>
+                    <p><i class="fa-solid fa-calendar"></i>End Date : @tour.EndDate</p>
+                    <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    @* <div class="pages d-flex gap-2 justify-content-center mt-5">
+        <a href="" class="left">&lt;</a>
+        <a href="" class="active">1</a>
+        <a href="">2</a>
+        <a href="">3</a>
+        <a href="">4</a>
+        <a href="" class="right">&gt;</a>
+    </div> *@
+
+    <ul class="pages d-flex gap-2 justify-content-center mt-5">
+        @if ( Model.CurrentPage > 1 ) {
+            <li><a asp-controller="Tour" asp-action="Index" asp-route-page="1">&lt;</a></li>
+            <li><a asp-controller="Tour" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)">&lt;</a></li>
+        }
+        @for ( int i = 1; i <= Model.TotalNumberOfPages; i++ ) {
+            <li class="@(i == Model.CurrentPage ? "active" : "")">
+                <a asp-controller="Tour" asp-action="Index" asp-route-page="@i">@i</a>
+            </li>
+        }
+        @if ( Model.CurrentPage < Model.TotalNumberOfPages ) {
+            <li><a asp-controller="Tour" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)">&gt;</a></li>
+            <li><a asp-controller="Tour" asp-action="Index" asp-route-page="@Model.TotalNumberOfPages">&gt;</a></li>
+        }
+    </ul>
+
+</div>

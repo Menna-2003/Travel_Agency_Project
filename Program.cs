@@ -41,9 +41,14 @@ void ConfigureServices ( IServiceCollection services ) {
 }
 void Configure ( IApplicationBuilder app, IWebHostEnvironment env ) {
     // Your other middleware configuration
-
+    app.UseStaticFiles();
     app.UseEndpoints( endpoints => {
         endpoints.MapRazorPages();
+
+        endpoints.MapControllers();
+        endpoints.MapDefaultControllerRoute();
+        // Allow unauthenticated access to the images folder
+        endpoints.MapFallbackToFile( "images/{*path}", "images/{path}" );
     } );
 }
 

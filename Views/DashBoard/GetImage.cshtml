@@ -1,0 +1,16 @@
+﻿@model Travel_Agency_Project.Models.Tour
+@{
+    Layout = "_DashBoard";
+}
+<div>
+    <h1>@Model.Name</h1>
+    <p>@Model.Description</p>
+    <p>Destination: @Model.Distination</p>
+    <p>Price: @Model.Price</p>
+    <!-- Other fields -->
+    @if ( Model.ImageData != null ) {
+        <img src="@Url.Action("GetImage", "DashBoard", new { id = Model.ID })" alt="Tour Image" style="max-width: 100%; height: auto;" />
+    } else {
+        <p>No image available</p>
+    }
+</div>

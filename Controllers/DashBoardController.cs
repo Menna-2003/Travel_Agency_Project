@@ -25,9 +25,18 @@ namespace Travel_Agency_Project.Controllers {
         }
         [HttpPost]
         [Authorize( Roles = RL.RoleAdmin )]
-        public IActionResult AddTour ( Tour tour ) {
+        public async Task<IActionResult> AddTour ( Tour tour, IFormFile Image ) {
+            
+            if ( Image != null && Image.Length > 0 ) {
+                using ( var memoryStream = new MemoryStream() ) {
+                    await Image.CopyToAsync( memoryStream );
+                    tour.ImageData = memoryStream.ToArray();
+                    tour.ContentType = Image.ContentType;
+                }
+            }
+
             _db.Tours.Add( tour );
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
             return RedirectToAction( "Index" );
         }
         #endregion
@@ -58,22 +67,36 @@ namespace Travel_Agency_Project.Controllers {
         }
         [HttpPost]
         [Authorize( Roles = RL.RoleAdmin )]
-        public IActionResult EditTour ( Tour tour ) {
-            Tour tr = _db.Tours.SingleOrDefault(c=>c.ID == tour.ID);
+        public async Task<IActionResult> EditTourAsync ( Tour tour, IFormFile Image ) {
+            var existingTour = await _db.Tours.FindAsync( tour.ID );
+            if ( existingTour == null ) {
+                return NotFound();
+            }
 
-            tr.Name = tour.Name;
-            tr.GroupNumber = tour.GroupNumber;
-            tr.Description = tour.Description;
-            tr.Price = tour.Price;
-            tr.Time = tour.Time;
-            tr.Duration = tour.Duration;
-            tr.Distination = tour.Distination;
-            tr.TransportationId = tour.TransportationId;
-            tr.Date = tour.Date;
-            tr.Fees = tour.Fees;
-            tr.GuideIncluded = tour.GuideIncluded;
-            _db.Tours.Update( tr );
-            _db.SaveChanges();
+            existingTour.Name = tour.Name;
+            existingTour.StartDate = tour.StartDate;
+            existingTour.EndDate = tour.EndDate;
+            existingTour.AdultsTickets = tour.AdultsTickets;
+            existingTour.ChildrenTickets = tour.ChildrenTickets;
+            existingTour.InfantTickets = tour.InfantTickets;
+            existingTour.HotelName = tour.HotelName;
+            existingTour.Meals= tour.Meals;
+            existingTour.Description = tour.Description;
+            existingTour.Price = tour.Price;
+            existingTour.Distination = tour.Distination;
+            existingTour.TransportationId = tour.TransportationId;
+            existingTour.GuideIncluded = tour.GuideIncluded;
+
+            if ( Image != null && Image.Length > 0 ) {
+                using ( var memoryStream = new MemoryStream() ) {
+                    await Image.CopyToAsync( memoryStream );
+                    existingTour.ImageData = memoryStream.ToArray();
+                    existingTour.ContentType = Image.ContentType;
+                }
+            }
+
+            _db.Tours.Update( existingTour );
+            await _db.SaveChangesAsync();
             return RedirectToAction( "Index" );
         }
         #endregion
@@ -92,6 +115,16 @@ namespace Travel_Agency_Project.Controllers {
         }
         public IActionResult Profile () {
             return View();
+        }
+
+
+        public IActionResult GetImage ( int id ) {
+            var tour = _db.Tours.Find( id );
+            if ( tour == null || tour.ImageData == null ) {
+                return NotFound();
+            }
+
+            return File( tour.ImageData, tour.ContentType );
         }
     }
 }

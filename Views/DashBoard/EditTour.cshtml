@@ -21,30 +21,102 @@
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="Date" for="toutDate">Date</label>
-                <input asp-for="Date" value="@Model.Date" type="date" class="form-control" id="toutDate" />
+                <label asp-for="StartDate" for="StartDate">Start Date</label>
+                <input asp-for="StartDate" value="@Model.StartDate" type="date" class="form-control" id="StartDate" />
             </div>
             <div class="form-group col">
-                <label asp-for="Time" for="toutTime">Time</label>
-                <input asp-for="Time" value="@Model.Time" type="time" class="form-control" id="toutTime" />
+                <label asp-for="EndDate" for="EndDate">End Date</label>
+                <input asp-for="EndDate" value="@Model.EndDate" type="date" class="form-control" id="EndDate" />
+            </div>
+        </div>
+        <div class="form-row d-flex gap-4">
+            <div class="form-group col">
+                <label asp-for="AdultsTickets" for="price">Adults Tickets</label>
+                <input asp-for="AdultsTickets" value="@Model.AdultsTickets"  type="number" class="form-control" id="AdultsTickets" />
             </div>
             <div class="form-group col">
-                <label asp-for="Duration" for="tourDuration">Duration</label>
-                <input asp-for="Duration" value="@Model.Duration" type="number" class="form-control" id="tourDuration" placeholder="ex : 3" />
+                <label asp-for="ChildrenTickets" for="ChildrenTickets ">Children Tickets </label>
+                <input asp-for="ChildrenTickets " value="@Model.ChildrenTickets" type="number" class="form-control" id="ChildrenTickets" />
+            </div>
+            <div class="form-group col">
+                <label asp-for="InfantTickets" for="InfantTickets">Infant Tickets</label>
+                <input asp-for="InfantTickets" value="@Model.InfantTickets" type="number" class="form-control" id="InfantTickets" />
+            </div>
+        </div>
+        <div class="form-row d-flex gap-4">
+            <div class="form-group col-md-6">
+                <label asp-for="HotelName" for="HotelName">Hotel Name</label>
+                <input asp-for="HotelName" value="@Model.HotelName" type="text" class="form-control" id="HotelName" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Meals" for="Meals">Meals Type</label>
+                <select asp-for="Meals" id="Meals" class="form-control">
+                    @{
+                        if ( Model.Meals == "Choose..." ) {
+                            <option selected value="Choose..">Choose...</option>
+                            <option value="Self catering">Self catering</option>
+                            <option value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "Self catering" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option selected value="Self catering">Self catering</option>
+                            <option value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "Breakfast included" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option  value="Self catering">Self catering</option>
+                            <option selected value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "All meals included" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option value="Self catering">Self catering</option>
+                            <option  value="Breakfast included">Breakfast included</option>
+                            <option selected value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "All-inclusive" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option value="Self catering">Self catering</option>
+                            <option value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option selected value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "Breakfast & lunch included" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option value="Self catering">Self catering</option>
+                            <option value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option selected value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        } else if ( Model.Meals == "Breakfast & dinner included" ) {
+                            <option value="Choose..">Choose...</option>
+                            <option value="Self catering">Self catering</option>
+                            <option value="Breakfast included">Breakfast included</option>
+                            <option value="All meals included">All meals included</option>
+                            <option value="All-inclusive">All-inclusive</option>
+                            <option value="Breakfast & lunch included">Breakfast & lunch included</option>
+                            <option selected value="Breakfast & dinner included">Breakfast & dinner included</option>
+                        }
+                    }
+                </select>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
                 <label asp-for="Price" for="price">Price</label>
                 <input asp-for="Price" value="@Model.Price" type="number" class="form-control" id="price" />
-            </div>
-            <div class="form-group col">
-                <label asp-for="Fees" for="fees">Fees</label>
-                <input asp-for="Fees" value="@Model.Fees" type="number" class="form-control" id="fees" />
-            </div>
-            <div class="form-group col">
-                <label asp-for="GroupNumber" for="groupNumber">Group Number</label>
-                <input asp-for="GroupNumber" value="@Model.GroupNumber" type="number" class="form-control" id="groupNumber" />
             </div>
         </div>
         <div class="form-group">

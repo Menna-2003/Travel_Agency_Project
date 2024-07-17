@@ -97,11 +97,11 @@ table thead th {
 
 .packagesContainer .pBox {
     transition: all 0.5s;
-    width: 250px;
+    width: 207px;
 }
-.packagesContainer .pBox img {
-    width: 250px;
-}
+    .packagesContainer .pBox img {
+        width: 207px;
+    }
 .packagesContainer .pBox:hover {
     transform: scale(1.06);
 }
@@ -110,10 +110,10 @@ table thead th {
     text-decoration: none;
     transition: all 0.5s;
 }
-.packagesContainer .pBox:hover a {
-    transform: translateX(15px);
-    color: var(--base-color);
-}
+    .packagesContainer .pBox:hover a {
+        transform: translateX(15px);
+        color: var(--base-color);
+    }
 @media (max-width: 780px) {
     .packagesContainer .pBox {
         justify-items: center;
