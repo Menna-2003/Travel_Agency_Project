@@ -11,7 +11,7 @@ namespace Travel_Agency_Project.Controllers {
             _db = db;
         }
         public IActionResult Index ( int? page ) {
-            const int pageSize = 8; // Number of tours per page
+            const int pageSize = 10; // Number of tours per page
 
             // Ensure page number is valid, default to 1 if not specified or less than 1
             int currentPage = page ?? 1;
@@ -43,17 +43,35 @@ namespace Travel_Agency_Project.Controllers {
         }
 
 
-        public IActionResult Filter ( string destination, DateTime? startDate, DateTime? endDate, decimal? minPrice, decimal? maxPrice ) {
+        public IActionResult Filter ( string destination, DateTime? startDate, DateTime? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
 
-            var _tours = _db.Tours.Include( m => m.TransportationType ).
-            Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
-                        (( !minPrice.HasValue || m.Price >= minPrice ) &&
-                        ( !maxPrice.HasValue || m.Price <= maxPrice )) ).ToList();
+            //var _tours = _db.Tours.Include( m => m.TransportationType ).
+            //Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
+            //            ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
+            //            ( !maxPrice.HasValue || m.Price <= maxPrice ) ) ).ToList();
+
+            // Apply filtering conditions
+            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable().Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
+                        ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
+                        ( !maxPrice.HasValue || m.Price <= maxPrice ) ) );
+
+            const int pageSize = 10; // Number of tours per page
+            // Ensure page number is valid, default to 1 if not specified or less than 1
+            int currentPage = page ?? 1;
+            if ( currentPage < 1 ) {
+                currentPage = 1;
+            }
+            int skipNumberTours = ( currentPage - 1 ) * pageSize;
+            int totalNumberOfPages = ( int ) Math.Ceiling( query.Count() / ( double ) pageSize );
+
+            var _tours = query.Skip( skipNumberTours ).Take( pageSize ).ToList();
 
             var AllTours = new TourFilterViewModel() {
                 tours = _tours,
                 MinPrice = minPrice,
                 MaxPrice = maxPrice,
+                CurrentPage = currentPage,
+                TotalNumberOfPages = totalNumberOfPages
             };
             return View( AllTours );
         }

@@ -16,93 +16,159 @@
     <div class="three">3</div>
 </div>
 
-<div class="container left_container d-grid justify-content-start" >
-    <h4 class="mb-4" style="max-width: 300px">Select a payment method</h4>
-    <form action="">
-        <div class="method1 p-3 w-auto overflow-hidden">
-            <div class="w-auto d-flex gap-4 p-3 mb-3">
-                <input type="radio" id="payment1" name="payments" style="width: 17px;height: 38px" />
-                <label class="d-flex align-items-center" for="payment1">
-                    <h5>PayPal</h5>
-                    <p class="w-75 m-0">You will be redirected to the PayPal website after submitting your order</p>
-                    <img src="../images/PayPal.svg" alt="" />
-                </label>
-            </div>
-            <div class="accountDetails m-4">
-                <div class="form-outline d-inline" data-mdb-input-init>
-                    <label for="email" id="emaillabel">Username</label>
-                    <input id="email" type="email" required placeholder="example@gmail.com" />
+<div class="d-flex m-5 justify-content-center gap-5">
+    <div class="left_container d-grid w-50 mt-5">
+        <h4 class="mb-4" style="max-width: 300px">Select a payment method</h4>
+        <form action="">
+            <div class="method1 p-3 w-auto overflow-hidden">
+                <div class="w-auto d-flex gap-4 p-3 mb-3">
+                    <input type="radio" id="payment1" name="payments" style="width: 17px;height: 38px" />
+                    <label class="d-flex align-items-center" for="payment1">
+                        <h5>PayPal</h5>
+                        <p class="w-75 m-0">You will be redirected to the PayPal website after submitting your order</p>
+                        <img src="../images/PayPal.svg" alt="" />
+                    </label>
                 </div>
-                <div class="form-outline d-inline ms-4" data-mdb-input-init>
-                    <label for="pass" id="passlabel">Password</label>
-                    <input id="pass" type="password" required placeholder="Enter your password" />
-                </div>
-            </div>
-        </div>
-        <div class="method2 p-3 w-auto overflow-hidden mt-2">
-            <div class="d-flex gap-4">
-                <input type="radio" id="payment2" name="payments" style="width: 17px;height: 38px" />
-                <label class="d-flex flex-wrap align-items-center" for="payment2">
-                    <h5 style="min-width: 200px">Pay with Credit Card</h5>
-                    <div class="icons d-flex">
-                        <img src="../images/Visa.svg" alt="" />
-                        <img src="../images/Discover.svg" alt="" />
-                        <img src="../images/Maestro.svg" alt="" />
-                        <img src="../images/Mastercard.svg" alt="" />
+                <div class="accountDetails m-4">
+                    <div class="form-outline d-inline" data-mdb-input-init>
+                        <label for="email" id="emaillabel">Username</label>
+                        <input id="email" type="email" required placeholder="example@gmail.com" />
                     </div>
-                </label>
-            </div>
-            <div class="cardDetails m-4">
-                <div class="form-outline d-inline" data-mdb-input-init>
-                    <label for="ccn" id="ccnLabel">Card number</label>
-                    <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required />
-                </div>
-
-                <div class="form-outline d-inline ms-4" data-mdb-input-init>
-                    <label for="expirydate" id="expirydatelabel">Expiration Date</label>
-                    <input id="expirydate" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" placeholder="MM/YY" required />
-                </div>
-
-                <div class="form-outline mt-lg-4" data-mdb-input-init>
-                    <label for="securityCode" id="securityCodeLabel">Card Security Code</label>
-                    <input id="securityCode" type="password" maxlength="6" placeholder="******" required />
+                    <div class="form-outline d-inline ms-4" data-mdb-input-init>
+                        <label for="pass" id="passlabel">Password</label>
+                        <input id="pass" type="password" required placeholder="Enter your password" />
+                    </div>
                 </div>
             </div>
+            <div class="method2 p-3 w-auto overflow-hidden mt-2">
+                <div class="d-flex gap-4">
+                    <input type="radio" id="payment2" name="payments" style="width: 17px;height: 38px" />
+                    <label class="d-flex flex-wrap align-items-center" for="payment2">
+                        <h5 style="min-width: 200px">Pay with Credit Card</h5>
+                        <div class="icons d-flex">
+                            <img src="../images/Visa.svg" alt="" />
+                            <img src="../images/Discover.svg" alt="" />
+                            <img src="../images/Maestro.svg" alt="" />
+                            <img src="../images/Mastercard.svg" alt="" />
+                        </div>
+                    </label>
+                </div>
+                <div class="cardDetails m-4">
+                    <div class="form-outline d-inline" data-mdb-input-init>
+                        <label for="ccn" id="ccnLabel">Card number</label>
+                        <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required />
+                    </div>
+
+                    <div class="form-outline d-inline ms-4" data-mdb-input-init>
+                        <label for="expirydate" id="expirydatelabel">Expiration Date</label>
+                        <input id="expirydate" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" placeholder="MM/YY" required />
+                    </div>
+
+                    <div class="form-outline mt-lg-4" data-mdb-input-init>
+                        <label for="securityCode" id="securityCodeLabel">Card Security Code</label>
+                        <input id="securityCode" type="password" maxlength="6" placeholder="******" required />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="ticketOverview p-4 d-grid">
+        <h3>Your Tickets Overview</h3>
+        <div class="box d-flex mt-4 gap-4">
+            <img src="../images/tripPic.png" alt="" srcset="" />
+            <div class="text">
+                <h5>Wine tasting In Tuscany</h5>
+                <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
+                <p><i class="fa-regular fa-clock"></i>15:00</p>
+            </div>
         </div>
-    </form>
+        <div class="details d-grid gap-4 mt-4">
+            <div class="one w-100">
+                <div class="circleCounter">2</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="two">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="three">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="totalPrice">
+                <span>Total Price</span>
+                <span class="price">€86.00</span>
+            </div>
+        </div>
+        <a class="nextStepBtnLink w-100 text-center" asp-action="ConfirmOrder"><button class="nextStepBtn mt-4">Confirm</button></a>
+
+    </div>
+
 </div>
 
-<div class="ticketOverview p-4 d-grid">
-    <h3>Your Tickets Overview</h3>
-    <div class="box d-flex mt-5 gap-4">
-        <img src="../images/tripPic.png" alt="" srcset="" />
-        <div class="text">
-            <h5>Wine tasting In Tuscany</h5>
-            <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-            <p><i class="fa-regular fa-clock"></i>15:00</p>
-        </div>
-    </div>
-    <div class="details d-grid gap-4 mt-4">
-        <div class="one">
-            <div class="circleCounter">2</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="two">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="three">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="totalPrice">
-            <span>Total Price</span>
-            <span class="price">€86.00</span>
-        </div>
-    </div>
-    <a class="nextStepBtnLink" asp-action="ConfirmOrder"><button class="nextStepBtn w-75 mt-4">Confirm</button></a>
 
-</div>
+<footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
+    <div class="container logo">
+        <img src="~/images/logo.png" alt="" srcset="" />
+    </div>
+    <div class="container footerCont justify-content-between border-bottom border-top pb-5 pt-5 mt-3 mb-3">
+        <div class="services">
+            <h5>Services</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Bike and Rickshaw rental</li>
+                <li>Guided Tours of Lucca</li>
+                <li>Guided Bike Tour of Lucca</li>
+                <li>Trip In The Tuscan Hills</li>
+                <li>Transportation With Luxury Cars</li>
+                <li>Wine Tours By Bus With Guide</li>
+            </ul>
+        </div>
+        <div class="home">
+            <h5>Home</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Tour Packages</li>
+            </ul>
+        </div>
+        <div class="help">
+            <h5>Help</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Terms of use</li>
+                <li>Provicy Policy</li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <h5>Contacts</h5>
+            <ul class="list-unstyled mt-4">
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Maadi, Cairo</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+205828555454</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>example@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <div class="socialMedia">
+            <h5>Social Media</h5>
+            <ul class="list-unstyled d-flex mt-4 gap-4 justify-content-center">
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container m-0">
+        <p class="text-center">Copyright © 2022. All rights reserved.</p>
+    </div>
+</footer>

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+<div class="ReservationContainer m-0">
+    <img src="~/images/bg.png" class="ReservationsBG" />
+    <div class="text-center">
+        <button class="btn bike active">Bike</button>
+        <button class="btn car">Car</button>
+    </div>
+    <div class="bikeCar-reservation text-center d-flex">
+        <div class="container outer d-grid">
+            <div class="row justify-content-center fw-bolder fs-3 title">Book Now Bike</div>
+            <div class="row">
+                <div class="container inner rounded-3">
+                    <form>
+                        <div class="row">
+                            <div class="col d-grid">
+                                <label for="name">Name and SurName</label>
+                                <input type="text" id="name" class="rounded-3 border-0" placeholder="Enter your full Name" />
+                            </div>
+                            <div class="col d-grid">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="rounded-3 border-0" placeholder="Enter your Email" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-grid">
+                                <label for="phone">Telephone Number</label>
+                                <input type="tel" id="phone" class="rounded-3 border-0" placeholder="Enter your phone number" />
+                            </div>
+                            <div class="col d-grid">
+                                <label for="type">Type</label>
+                                <select name="Type" id="type" class="rounded-3 border-0">
+                                    <option value="" selected>Select type</option>
+                                    <option value="">Bike</option>
+                                    <option value="">Car</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-grid">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" class="rounded-3 border-0" />
+
+                                @*  <label asp-for="BookingDate" class="control-label"></label>
+                                <input asp-for="BookingDate" class="form-control" />
+                                <span asp-validation-for="BookingDate" class="text-danger"></span> *@
+                            </div>
+                            <div class="col d-grid">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" class="rounded-3 border-0" />
+                                @*
+                                <label asp-for="AppointmentTime" class="control-label"></label>
+                                <input asp-for="AppointmentTime" class="form-control" type="time" />
+                                <span asp-validation-for="AppointmentTime" class="text-danger"></span> *@
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button class="rounded-3 border-0 text-light" id="submit-btn">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bike car">
+            <img src="~/images/bike-picture.png" class="bike" alt="" srcset="" />
+            <img src="~/images/car.png" class="car" alt="" srcset="" />
+        </div>
+    </div>
+    <a href="#" class="privateTrip">Do You Want a Private Trip?</a>
+</div>

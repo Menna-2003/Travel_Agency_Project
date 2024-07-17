@@ -7,6 +7,7 @@
     <i class="fa-solid fa-arrow-left" style="color: #b0b0b0"></i>
     <span>Back</span>
 </a>
+
 <div class="progress w-50 h-auto m-1">
     <div class="progress-bar" role="progressbar" style="width: 50%; background-color: #fa8b02; height: 5px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
@@ -17,70 +18,140 @@
     <div class="three">3</div>
 </div>
 
-<div class="container left_container d-grid justify-content-start mb-5">
-    <h4 class="mb-5">Who shall we send these tickets to?</h4>
-    <form action="">
-        <div class="container">
-            <div class="row gap-lg-5 gap-sm-2">
-                <div class="col">
-                    <label for="fname" class="d-block">First Name</label>
-                    <input class="mt-4 mb-4 inputElement" type="text" id="fname" name="fname" placeholder="Enter your First Name" />
+<div class="d-flex mt-5 justify-content-center gap-5">
+    <div class="left_container d-grid justify-content-start mt-5">
+        <h4 class="mb-5">Who shall we send these tickets to?</h4>
+        <form action="">
+            <div class="container">
+                <div class="row gap-lg-5 gap-sm-2">
+                    <div class="col">
+                        <label for="fname" class="d-block">First Name</label>
+                        <input class="mt-4 mb-4" type="text" id="fname" name="fname" placeholder="Enter your First Name" />
+                    </div>
+                    <div class="col">
+                        <label for="lname" class="d-block">Last Name</label>
+                        <input class="mt-4 mb-4" type="text" id="lname" name="lname" placeholder="Enter your Last Name" />
+                    </div>
                 </div>
-                <div class="col">
-                    <label for="lname" class="d-block">Last Name</label>
-                    <input class="mt-4 mb-4 inputElement" type="text" id="lname" name="lname" placeholder="Enter your Last Name" />
+                <div class="row gap-lg-5 gap-sm-2">
+                    <div class="col">
+                        <label for="telephone" class="d-block">Telephone Number</label>
+                        <input class="mt-4 mb-4 w-50" type="tel" id="telephone" name="telephone" placeholder="Enter your Telephone Number" />
+                    </div>
                 </div>
+                <div class="row gap-lg-5 gap-sm-2">
+                    <div class="col">
+                        <label for="Address" class="d-block">Address</label>
+                        <input class="mt-4 mb-4 w-100" type="text" id="Address" name="Address" placeholder="Enter your Address" />
+                    </div>
+                </div>
+                <label for="pickupLocation" class="d-block">Select Pickup Location</label>
+                <select name="pickupLocation" id="pickupLocation" width="276" class="rounded">
+                    <option value="">Select...</option>
+                    <option value="">Maadi</option>
+                    <option value="">6th October</option>
+                    <option value="">Nasr City</option>
+                    <option value="">Madinty</option>
+                    <option value=""></option>
+                </select>
             </div>
-            <div class="row gap-lg-5 gap-sm-2">
-                <div class="col">
-                    <label for="telephone" class="d-block">Telephone Number</label>
-                    <input class="mt-4 mb-4 w-50 inputElement" type="tel" id="telephone" name="telephone" placeholder="Enter your Telephone Number" />
-                </div>
+        </form>
+    </div>
+
+    <div class="ticketOverview p-4 d-grid">
+        <h3>Your Tickets Overview</h3>
+        <div class="box d-flex mt-4 gap-4">
+            <img src="../images/tripPic.png" alt="" srcset="" />
+            <div class="text">
+                <h5>Wine tasting In Tuscany</h5>
+                <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
+                <p><i class="fa-regular fa-clock"></i>15:00</p>
             </div>
-            <label for="pickupLocation" class="d-block">Select Pickup Location</label>
-            <select name="pickupLocation" id="pickupLocation" width="276" class="rounded">
-                <option value="">Select...</option>
-                <option value="">Maadi</option>
-                <option value="">6th October</option>
-                <option value="">Nasr City</option>
-                <option value="">Madinty</option>
-                <option value=""></option>
-            </select>
         </div>
-    </form>
+        <div class="details d-grid gap-4 mt-4">
+            <div class="one w-100">
+                <div class="circleCounter">2</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="two">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="three">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="totalPrice">
+                <span>Total Price</span>
+                <span class="price">€86.00</span>
+            </div>
+        </div>
+        <a class="nextStepBtnLink w-100 text-center" asp-action="Payment"><button class="nextStepBtn mt-4">Go to next step</button></a>
+
+    </div>
 </div>
 
-<div class="ticketOverview p-4 d-grid">
-    <h3>Your Tickets Overview</h3>
-    <div class="box d-flex mt-5 gap-4">
-        <img src="../images/tripPic.png" alt="" srcset="" />
-        <div class="text">
-            <h5>Wine tasting In Tuscany</h5>
-            <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-            <p><i class="fa-regular fa-clock"></i>15:00</p>
+<footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
+    <div class="container logo">
+        <img src="~/images/logo.png" alt="" srcset="" />
+    </div>
+    <div class="container footerCont justify-content-between border-bottom border-top pb-5 pt-5 mt-3 mb-3">
+        <div class="services">
+            <h5>Services</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Bike and Rickshaw rental</li>
+                <li>Guided Tours of Lucca</li>
+                <li>Guided Bike Tour of Lucca</li>
+                <li>Trip In The Tuscan Hills</li>
+                <li>Transportation With Luxury Cars</li>
+                <li>Wine Tours By Bus With Guide</li>
+            </ul>
+        </div>
+        <div class="home">
+            <h5>Home</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Tour Packages</li>
+            </ul>
+        </div>
+        <div class="help">
+            <h5>Help</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Terms of use</li>
+                <li>Provicy Policy</li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <h5>Contacts</h5>
+            <ul class="list-unstyled mt-4">
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Maadi, Cairo</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+205828555454</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>example@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <div class="socialMedia">
+            <h5>Social Media</h5>
+            <ul class="list-unstyled d-flex mt-4 gap-4 justify-content-center">
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
         </div>
     </div>
-    <div class="details d-grid gap-4 mt-4">
-        <div class="one">
-            <div class="circleCounter">2</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="two">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="three">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="totalPrice">
-            <span>Total Price</span>
-            <span class="price">€86.00</span>
-        </div>
+    <div class="container m-0">
+        <p class="text-center">Copyright © 2022. All rights reserved.</p>
     </div>
-    <a class="nextStepBtnLink" asp-action="Payment"><button class="nextStepBtn w-75 mt-4">Go to the Next Step</button></a>
-
-</div>
+</footer>

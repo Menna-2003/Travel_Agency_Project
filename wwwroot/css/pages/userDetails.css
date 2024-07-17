@@ -12,22 +12,21 @@
 
 /* ********************************** */
 
-.left_container {
-    margin-top: 100px;
-}
-    .left_container .inputElement {
+    .left_container input {
         width: 250px;
         height: 40px;
         padding: 10px 20px;
         border-radius: 10px;
         border: 0.5px solid #c8c8c8;
     }
+
 input:focus-visible {
     border: none;
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-#pickupLocation{
+
+#pickupLocation {
     width: 250px;
     height: 40px;
     padding: 0 7px 0 20px;
@@ -35,8 +34,9 @@ input:focus-visible {
     margin: 10px 0 15px 0;
     display: block;
 }
+
 @media (max-width: 780px) {
-    .left_container .inputElement {
+    .left_container input {
         width: 375px;
         height: 50px;
     }

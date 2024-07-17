@@ -1,55 +1,7 @@
 :root {
     --base-color: #fa8b02;
 }
-/*
-#navbar .navbar-item .nav-link {
-    color: #e1e1e1;
-    position: relative;
-}
-#navbar .navbar-item .nav-link:hover {
-    color: #fff;
-    transform: scale(1.05);
-}
 
-#navbar .navbar-item .nav-link::before {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    background-color: var(--base-color);
-    width: 0%;
-    height: 2px;
-    transform: translateX(-50%);
-    visibility: hidden;
-    transition: 0.4s ease-in-out;
-}
-
-#navbar .navbar-item .nav-link:hover::before {
-    visibility: visible;
-    width: 80%;
-}
-
-button,
-button.btn {
-    transition: all 0.3s;
-}
-button:hover {
-    transform: scale(1.05);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.accounts .btn {
-    background-color: var(--base-color);
-    margin: 0 10px;
-}
-#log_in {
-    color: white;
-    text-decoration: none;
-}
-span.btn i {
-    font-size: 45px;
-    color: #000;
-}
-*/
 /*  */
 /*  */
 /*  */
@@ -133,11 +85,17 @@ table thead th {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s;
+    /*transition: all 0.3s;*/
     text-decoration: none;
 }
-.pages a:hover,
-.pages .active {
-    background-color: var(--base-color);
-    color: #fff;
-}
+    .pages a:hover,
+    .pages .active {
+        background-color: var(--base-color);
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }

@@ -17,8 +17,8 @@
     <div class="three">3</div>
 </div>
 
-<div class="container d-flex pb-5">
-    <div class="left container mt-5">
+<div class="d-flex m-5 justify-content-center gap-5">
+    <div class="containerLeft w-50 mt-5">
         <h4>Select Your Tickets</h4>
         <p class="bg-light p-3">
             Free for kids under 6 and disabled visitors (74%+) <br />
@@ -58,40 +58,103 @@
             </div>
         </div>
     </div>
+
+    <div class="ticketOverview p-4 d-grid">
+        <h3>Your Tickets Overview</h3>
+        <div class="box d-flex mt-4 gap-4">
+            <img src="../images/tripPic.png" alt="" srcset="" />
+            <div class="text">
+                <h5>Wine tasting In Tuscany</h5>
+                <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
+                <p><i class="fa-regular fa-clock"></i>15:00</p>
+            </div>
+        </div>
+        <div class="details d-grid gap-4 mt-4">
+            <div class="one w-100">
+                <div class="circleCounter">2</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="two">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="three">
+                <div class="circleCounter">1</div>
+                <span>Adult (18+) (€32.00)</span>
+                <span class="price">€64.00</span>
+            </div>
+            <div class="totalPrice">
+                <span>Total Price</span>
+                <span class="price">€86.00</span>
+            </div>
+        </div>
+        <a class="nextStepBtnLink w-100 text-center" asp-action="UserDetails"><button class="nextStepBtn mt-4">Go to next step</button></a>
+    </div>
 </div>
 
-<div class="ticketOverview p-4 d-grid">
-    <h3>Your Tickets Overview</h3>
-    <div class="box d-flex mt-5 gap-4">
-        <img src="../images/tripPic.png" alt="" srcset="" />
-        <div class="text">
-            <h5>Wine tasting In Tuscany</h5>
-            <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-            <p><i class="fa-regular fa-clock"></i>15:00</p>
+<footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
+    <div class="container logo">
+        <img src="~/images/logo.png" alt="" srcset="" />
+    </div>
+    <div class="container footerCont justify-content-between border-bottom border-top pb-5 pt-5 mt-3 mb-3">
+        <div class="services">
+            <h5>Services</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Bike and Rickshaw rental</li>
+                <li>Guided Tours of Lucca</li>
+                <li>Guided Bike Tour of Lucca</li>
+                <li>Trip In The Tuscan Hills</li>
+                <li>Transportation With Luxury Cars</li>
+                <li>Wine Tours By Bus With Guide</li>
+            </ul>
+        </div>
+        <div class="home">
+            <h5>Home</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Tour Packages</li>
+            </ul>
+        </div>
+        <div class="help">
+            <h5>Help</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Terms of use</li>
+                <li>Provicy Policy</li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <h5>Contacts</h5>
+            <ul class="list-unstyled mt-4">
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Maadi, Cairo</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+205828555454</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>example@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <div class="socialMedia">
+            <h5>Social Media</h5>
+            <ul class="list-unstyled d-flex mt-4 gap-4 justify-content-center">
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
         </div>
     </div>
-    <div class="details d-grid gap-4 mt-4">
-        <div class="one">
-            <div class="circleCounter">2</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="two">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="three">
-            <div class="circleCounter">1</div>
-            <span>Adult (18+) (€32.00)</span>
-            <span class="price">€64.00</span>
-        </div>
-        <div class="totalPrice">
-            <span>Total Price</span>
-            <span class="price">€86.00</span>
-        </div>
+    <div class="container m-0">
+        <p class="text-center">Copyright © 2022. All rights reserved.</p>
     </div>
-    <a class="nextStepBtnLink" asp-action="UserDetails"><button class="nextStepBtn w-75 mt-4">Go to the Next Step</button></a>
-</div>
+</footer>
+
 
 <script src="~/js/js/main.js"></script>

@@ -43,6 +43,10 @@ namespace Travel_Agency_Project.Controllers {
             return View();
         }
 
+        public ActionResult Reservations () {
+            return View();  
+        }
+
         [AllowAnonymous]
         public IActionResult GetImage ( int id ) {
             var tour = _db.Tours.Find( id );
