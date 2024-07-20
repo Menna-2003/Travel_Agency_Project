@@ -2,7 +2,6 @@
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +20,8 @@
 
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/myTickets.css" />
-    <link rel="stylesheet" href="~/css/pages/tripDetails.css" />
 
+    <link rel="stylesheet" href="~/css/pages/tripDetails.css" />
     <link rel="stylesheet" href="~/css/pages/style.css" />
     <link rel="stylesheet" href="~/css/pages/purchase.css" />
     <link rel="stylesheet" href="~/css/pages/payment.css" />
@@ -35,31 +34,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-    @*     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Travel_Agency_Project</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DashBoard" asp-action="Index">DashBoard</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
- *@
-
         <span class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-list"></i></span>
-
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 
@@ -88,7 +66,6 @@
                 
             </div>
         </div>
-
         <nav class="navbar navbar-expand" id="navbar">
             <div class="container">
                 
@@ -118,22 +95,15 @@
                 </div>
             </div>
         </nav>
-    
     </header>
-
     <div>
         <main role="main" class="pb-3 mb-10">
             @RenderBody()
         </main>
     </div>
-
-
     <script src="~/js/js/payment.js"></script>
-    <script src="~/js/js/main.js"></script>
-
     <script src="~/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -142,10 +112,8 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous">
     </script>
-
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

@@ -65,6 +65,7 @@ namespace Travel_Agency_Project.Controllers {
             Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             return View( tour );
         }
+        
         [HttpPost]
         [Authorize( Roles = RL.RoleAdmin )]
         public async Task<IActionResult> EditTourAsync ( Tour tour, IFormFile Image ) {
@@ -105,19 +106,21 @@ namespace Travel_Agency_Project.Controllers {
             Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             return View( tour );
         }
+        
         [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult TourGuide () {
             return View();
         }
+        
         [Authorize( Roles = RL.RoleAdmin )]
         public IActionResult TourGuideDetails () {
             return View();
         }
+        
         public IActionResult Profile () {
             return View();
         }
-
-
+        
         public IActionResult GetImage ( int id ) {
             var tour = _db.Tours.Find( id );
             if ( tour == null || tour.ImageData == null ) {

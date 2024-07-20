@@ -9,11 +9,11 @@ namespace Travel_Agency_Project.Models {
         }
 
         [Required]
-        public string AdultTickets { get; set; }
+        public int AdultTickets { get; set; }
         [Required]
-        public string ChildTickets { get; set; }
+        public int ChildTickets { get; set; }
         [Required]
-        public string InfantTickets { get; set; }
+        public int InfantTickets { get; set; }
 
         [Required]
         [RegularExpression( @"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Invalid Name" )]
@@ -29,32 +29,24 @@ namespace Travel_Agency_Project.Models {
         }
 
         [Required]
-        [DataType( DataType.PhoneNumber )]
-        [RegularExpression( @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number" )]
+        //[DataType( DataType.PhoneNumber )]
+        //[RegularExpression( @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number" )]
         public string PhoneNumber {
             get; set;
         }
 
         [Required]
-        public string PickupLocation { get; set; }
+        public string PickupLocation {
+            get; set;
+        }
 
         [Required]
         public int PaymentMethod {
             get; set;
         }
-        public string PayPalUsername {
-            get; set;
-        }
-        public string PayPalPassword {
-            get; set;
-        }
-        public int CardNumber {
-            get; set;
-        }
-        public int ExpireDate {
-            get; set;
-        }
-        public int CardSecurityCode {
+
+        [Required]
+        public int TourID {
             get; set;
         }
 

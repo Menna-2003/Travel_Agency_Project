@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Payment
+@{
     Layout = "_Layout";
 }
 <a asp-action="UserDetails" class="backBtn w-25 container text-decoration-none">
@@ -16,33 +17,24 @@
     <div class="three">3</div>
 </div>
 
-<div class="d-flex m-5 justify-content-center gap-5">
-    <div class="left_container d-grid w-50 mt-5">
-        <h4 class="mb-4" style="max-width: 300px">Select a payment method</h4>
-        <form action="">
+<form asp-action="Payment" method="post">
+    <div class="d-flex m-5 justify-content-center gap-5">
+        <div class="left_container d-grid w-50 mt-5">
+            <h4 class="mb-4" style="max-width: 300px">Select a payment method</h4>
             <div class="method1 p-3 w-auto overflow-hidden">
                 <div class="w-auto d-flex gap-4 p-3 mb-3">
-                    <input type="radio" id="payment1" name="payments" style="width: 17px;height: 38px" />
-                    <label class="d-flex align-items-center" for="payment1">
-                        <h5>PayPal</h5>
-                        <p class="w-75 m-0">You will be redirected to the PayPal website after submitting your order</p>
-                        <img src="../images/PayPal.svg" alt="" />
+                    <input asp-for="PaymentMethod" type="radio" id="payment1" style="width: 17px;height: 38px" value="1" />
+                    <label class="d-flex align-items-center w-100" for="payment1">
+                        <h5>Pay Cash</h5>
                     </label>
                 </div>
                 <div class="accountDetails m-4">
-                    <div class="form-outline d-inline" data-mdb-input-init>
-                        <label for="email" id="emaillabel">Username</label>
-                        <input id="email" type="email" required placeholder="example@gmail.com" />
-                    </div>
-                    <div class="form-outline d-inline ms-4" data-mdb-input-init>
-                        <label for="pass" id="passlabel">Password</label>
-                        <input id="pass" type="password" required placeholder="Enter your password" />
-                    </div>
+                    <p class="m-0">You will be paying Before the tour begins</p>
                 </div>
             </div>
             <div class="method2 p-3 w-auto overflow-hidden mt-2">
                 <div class="d-flex gap-4">
-                    <input type="radio" id="payment2" name="payments" style="width: 17px;height: 38px" />
+                    <input asp-for="PaymentMethod" type="radio" id="payment2" style="width: 17px;height: 38px" value="2" />
                     <label class="d-flex flex-wrap align-items-center" for="payment2">
                         <h5 style="min-width: 200px">Pay with Credit Card</h5>
                         <div class="icons d-flex">
@@ -54,61 +46,47 @@
                     </label>
                 </div>
                 <div class="cardDetails m-4">
-                    <div class="form-outline d-inline" data-mdb-input-init>
-                        <label for="ccn" id="ccnLabel">Card number</label>
-                        <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required />
-                    </div>
-
-                    <div class="form-outline d-inline ms-4" data-mdb-input-init>
-                        <label for="expirydate" id="expirydatelabel">Expiration Date</label>
-                        <input id="expirydate" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" placeholder="MM/YY" required />
-                    </div>
-
-                    <div class="form-outline mt-lg-4" data-mdb-input-init>
-                        <label for="securityCode" id="securityCodeLabel">Card Security Code</label>
-                        <input id="securityCode" type="password" maxlength="6" placeholder="******" required />
-                    </div>
+                    <p class="w-100">You will be redirected to another website after submitting your order</p>
                 </div>
             </div>
-        </form>
-    </div>
-
-    <div class="ticketOverview p-4 d-grid">
-        <h3>Your Tickets Overview</h3>
-        <div class="box d-flex mt-4 gap-4">
-            <img src="../images/tripPic.png" alt="" srcset="" />
-            <div class="text">
-                <h5>Wine tasting In Tuscany</h5>
-                <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-                <p><i class="fa-regular fa-clock"></i>15:00</p>
-            </div>
         </div>
-        <div class="details d-grid gap-4 mt-4">
-            <div class="one w-100">
-                <div class="circleCounter">2</div>
-                <span>Adult (18+) (€32.00)</span>
-                <span class="price">€64.00</span>
+
+        <div class="ticketOverview p-4 d-grid">
+            <h3>Your Tickets Overview</h3>
+            <div class="box d-flex mt-4 gap-4">
+                <img src="../images/tripPic.png" alt="" srcset="" />
+                <div class="text">
+                    <h5>Wine tasting In Tuscany</h5>
+                    <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
+                    <p><i class="fa-regular fa-clock"></i>15:00</p>
+                </div>
             </div>
-            <div class="two">
-                <div class="circleCounter">1</div>
-                <span>Adult (18+) (€32.00)</span>
-                <span class="price">€64.00</span>
+            <div class="details d-grid gap-4 mt-4">
+                <div class="one w-100">
+                    <div class="circleCounter">2</div>
+                    <span>Adult (18+) (€32.00)</span>
+                    <span class="price">€64.00</span>
+                </div>
+                <div class="two">
+                    <div class="circleCounter">1</div>
+                    <span>Adult (18+) (€32.00)</span>
+                    <span class="price">€64.00</span>
+                </div>
+                <div class="three">
+                    <div class="circleCounter">1</div>
+                    <span>Adult (18+) (€32.00)</span>
+                    <span class="price">€64.00</span>
+                </div>
+                <div class="totalPrice">
+                    <span>Total Price</span>
+                    <span class="price">€86.00</span>
+                </div>
             </div>
-            <div class="three">
-                <div class="circleCounter">1</div>
-                <span>Adult (18+) (€32.00)</span>
-                <span class="price">€64.00</span>
-            </div>
-            <div class="totalPrice">
-                <span>Total Price</span>
-                <span class="price">€86.00</span>
-            </div>
+            <a class="nextStepBtnLink w-100 text-center"><button type="submit" class="nextStepBtn mt-4">Confirm</button></a>
+
         </div>
-        <a class="nextStepBtnLink w-100 text-center" asp-action="ConfirmOrder"><button class="nextStepBtn mt-4">Confirm</button></a>
-
     </div>
-
-</div>
+</form>
 
 
 <footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">

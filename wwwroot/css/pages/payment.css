@@ -52,6 +52,7 @@
 .cardDetails,
 .accountDetails {
     position: relative;
+    /*transition:all 0.5s;*/
 }
 
     .cardDetails input,
