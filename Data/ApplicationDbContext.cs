@@ -15,15 +15,20 @@ namespace Travel_Agency_Project.Data {
         public DbSet<Reservations> Reservations { get; set; }
         public DbSet<TourGuide> TourGuides { get; set; }
 
-        // lma 3malt Identity gab error fel add-migration flazem ytshal
         // predefined data in the table
-        //protected override void OnModelCreating ( ModelBuilder modelBuilder ) {
-        //    modelBuilder.Entity<Transportation>().HasData(
-        //        new Transportation { ID = 1, Name = "Car" },
-        //        new Transportation { ID = 2, Name = "Plane" },
-        //        new Transportation { ID = 3, Name = "Bike" },
-        //        new Transportation { ID = 4, Name = "Bus" }
-        //        );
-        //}
+        protected override void OnModelCreating ( ModelBuilder modelBuilder ) {
+
+            // to add multiple rows in the same run
+            base.OnModelCreating( modelBuilder );
+            modelBuilder.Entity<UserReservationDetails>().HasKey( ur => ur.ID );
+
+            // lma 3malt Identity gab error fel add-migration flazem ytshal
+            //    modelBuilder.Entity<Transportation>().HasData(
+            //        new Transportation { ID = 1, Name = "Car" },
+            //        new Transportation { ID = 2, Name = "Plane" },
+            //        new Transportation { ID = 3, Name = "Bike" },
+            //        new Transportation { ID = 4, Name = "Bus" }
+            //        );
+        }
     }
 }

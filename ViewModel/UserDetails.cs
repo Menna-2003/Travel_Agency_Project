@@ -40,5 +40,16 @@ namespace Travel_Agency_Project.ViewModel
         public Tour Tour {
             get; set;
         }
+
+        public int AdultTickets {
+            get; set;
+        }
+        public int ChildTickets {
+            get; set;
+        }
+        public int InfantTickets {
+            get; set;
+        }
+
     }
 }

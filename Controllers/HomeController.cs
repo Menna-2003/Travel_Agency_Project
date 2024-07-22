@@ -13,9 +13,9 @@ namespace Travel_Agency_Project.Controllers
 {
     public class HomeController ( ApplicationDbContext _db ) : Controller {
 		private readonly ILogger<HomeController> _logger;
-        private static BookingDetails _bookingDetails = new BookingDetails();
-        private static UserDetails _userDetails = new UserDetails();
-        private static Payment _payment = new Payment();
+        private static BookingDetails _bookingDetails;
+        private static UserDetails _userDetails;
+        private static Payment _payment;
         private static UserReservationDetails _UserReservationDetails = new UserReservationDetails();
 
 		public IActionResult Index () {
@@ -39,6 +39,8 @@ namespace Travel_Agency_Project.Controllers
         #region Tour Reservation Details
         public IActionResult BookingDetails ( int id ) {
             _UserReservationDetails.TourID = id;
+
+            _bookingDetails = new BookingDetails();
             _bookingDetails.TourID = id;
             _bookingDetails.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
             return View( _bookingDetails );
@@ -47,12 +49,24 @@ namespace Travel_Agency_Project.Controllers
         public IActionResult BookingDetails ( BookingDetails model ) {
 
             _bookingDetails = model;
-            return RedirectToAction( "UserDetails", new { id = _UserReservationDetails.TourID } );
+            _UserReservationDetails.AdultTickets = _bookingDetails.AdultTickets;
+            _UserReservationDetails.ChildTickets = _bookingDetails.ChildTickets;
+            _UserReservationDetails.InfantTickets = _bookingDetails.InfantTickets;
+            return RedirectToAction( "UserDetails", new {
+                id = _UserReservationDetails.TourID,
+                AdultTickets = _UserReservationDetails.AdultTickets,
+                ChildTickets = _UserReservationDetails.ChildTickets,
+                InfantTickets = _UserReservationDetails.InfantTickets,
+            } );
 
         }
         
-        public IActionResult UserDetails (int id) {
+        public IActionResult UserDetails (int id, int AdultTickets, int ChildTickets ,int InfantTickets ) {
+            _userDetails = new UserDetails();
             _userDetails.TourID = id;
+            _userDetails.AdultTickets = AdultTickets;
+            _userDetails.ChildTickets = ChildTickets;
+            _userDetails.InfantTickets = InfantTickets;
             _userDetails.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
             return View( _userDetails );
         }
@@ -60,27 +74,35 @@ namespace Travel_Agency_Project.Controllers
         public IActionResult UserDetails ( UserDetails model ) {
            
             _userDetails = model;
+
+            _UserReservationDetails.FirstName = _userDetails.FirstName;
+            _UserReservationDetails.LastName = _userDetails.LastName;
+            _UserReservationDetails.PhoneNumber = _userDetails.PhoneNumber;
+            _UserReservationDetails.PickupLocation = _userDetails.PickupLocation;
+
             return RedirectToAction( "Payment", new {
-                id = _UserReservationDetails.TourID
+                id = _UserReservationDetails.TourID,
+                AdultTickets = _UserReservationDetails.AdultTickets,
+                ChildTickets = _UserReservationDetails.ChildTickets,
+                InfantTickets = _UserReservationDetails.InfantTickets,
             } );
+
         }
-        public IActionResult Payment (int id) {
+        public IActionResult Payment ( int id, int AdultTickets, int ChildTickets, int InfantTickets ) {
+            _payment = new Payment();
             _payment.TourID = id;
+            _payment.AdultTickets = AdultTickets;
+            _payment.ChildTickets = ChildTickets;
+            _payment.InfantTickets = InfantTickets;
             _payment.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
             return View(_payment);
+
         }
         [HttpPost]
         public IActionResult Payment ( Payment model ) {
 
             _payment = model;
 
-            _UserReservationDetails.AdultTickets = _bookingDetails.AdultTickets;
-            _UserReservationDetails.ChildTickets = _bookingDetails.ChildTickets;
-            _UserReservationDetails.InfantTickets = _bookingDetails.InfantTickets;
-            _UserReservationDetails.FirstName = _userDetails.FirstName;
-            _UserReservationDetails.LastName = _userDetails.LastName;
-            _UserReservationDetails.PhoneNumber = _userDetails.PhoneNumber;
-            _UserReservationDetails.PickupLocation = _userDetails.PickupLocation;
             _UserReservationDetails.PaymentMethod = _payment.PaymentMethod;
 
             _db.UserReservationDetails.Add( _UserReservationDetails );
@@ -111,7 +133,6 @@ namespace Travel_Agency_Project.Controllers
 
             return File( tour.ImageData, tour.ContentType );
         }
-
 
         [ResponseCache( Duration = 0, Location = ResponseCacheLocation.None, NoStore = true )]
 		public IActionResult Error () {

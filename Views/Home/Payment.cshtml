@@ -53,41 +53,43 @@
 
         <div class="ticketOverview p-4 d-grid">
             <h3>Your Tickets Overview</h3>
-            <div class="box d-flex mt-4 gap-4">
-                <img src="../images/tripPic.png" alt="" srcset="" />
+            <div class="box d-flex mt-4 gap-4" style="width:90%">
+                <img src="@Url.Action("GetImage", "Home", new { id = Model.TourID })" alt="Tour Image" />
                 <div class="text">
-                    <h5>@Model.Tour.Name</h5>
-                    <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-                    <p><i class="fa-regular fa-clock"></i>15:00</p>
+                    <h5> @Model.Tour.Name </h5>
+                    <p><i class="fa-regular fa-calendar-days"></i>@Model.Tour.StartDate</p>
+                    <p><i class="fa-regular fa-calendar-days"></i>@Model.Tour.EndDate</p>
                 </div>
             </div>
             <div class="details d-grid gap-4 mt-4">
                 <div class="one w-100">
-                    <div class="circleCounter">2</div>
-                    <span>Adult (18+) (€32.00)</span>
-                    <span class="price">€64.00</span>
+                    <div class="circleCounter" id="AdultsCounter">@Model.AdultTickets</div>
+                    <span>Adult (18+) (€64.00)</span>
+                    <span class="price" id="AdultsPrice" price="64">€0</span>
                 </div>
+
                 <div class="two">
-                    <div class="circleCounter">1</div>
-                    <span>Adult (18+) (€32.00)</span>
-                    <span class="price">€64.00</span>
+                    <div class="circleCounter" id="ChildrenCounter">@Model.ChildTickets</div>
+                    <span>Child (6-17) (€32.00)</span>
+                    <span class="price" id="ChildrenPrice" price="32">€0</span>
                 </div>
+
                 <div class="three">
-                    <div class="circleCounter">1</div>
-                    <span>Adult (18+) (€32.00)</span>
-                    <span class="price">€64.00</span>
+                    <div class="circleCounter" id="InfantCounter">@Model.InfantTickets</div>
+                    <span>Infant (0-5) (€10.00)</span>
+                    <span class="price" id="InfantPrice" price="10">€0</span>
                 </div>
+
                 <div class="totalPrice">
                     <span>Total Price</span>
-                    <span class="price">€86.00</span>
+                    <span class="price" id="TotalPrice">€0</span>
                 </div>
             </div>
-            <a class="nextStepBtnLink w-100 text-center"><button type="submit" class="nextStepBtn mt-4">Confirm</button></a>
-
+            <a class="nextStepBtnLink w-100 text-center"><button class="nextStepBtn mt-4" type="submit">Go to next step</button></a>
         </div>
+
     </div>
 </form>
-
 
 <footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
     <div class="container logo">
@@ -150,3 +152,31 @@
         <p class="text-center">Copyright © 2022. All rights reserved.</p>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let TotalPrice = document.getElementById("TotalPrice");
+        let TotalpriceVar = 0;
+
+        let AdultsCounter = document.getElementById("AdultsCounter");
+        let AdultsPrice = document.getElementById("AdultsPrice");
+        let adultsPriceValue = Number(AdultsCounter.innerText) * Number(AdultsPrice.getAttribute("price"));
+        AdultsPrice.innerText = `€${adultsPriceValue}`;
+
+        let ChildrenCounter = document.getElementById("ChildrenCounter");
+        let ChildrenPrice = document.getElementById("ChildrenPrice");
+        let childrenPriceValue = Number(ChildrenCounter.innerText) * Number(ChildrenPrice.getAttribute("price"));
+        ChildrenPrice.innerText = `€${childrenPriceValue}`;
+
+        let InfantCounter = document.getElementById("InfantCounter");
+        let InfantPrice = document.getElementById("InfantPrice");
+        let infantPriceValue = Number(InfantCounter.innerText) * Number(InfantPrice.getAttribute("price"));
+        InfantPrice.innerText = `€${infantPriceValue}`;
+
+        // Update total price
+        TotalpriceVar = adultsPriceValue + childrenPriceValue + infantPriceValue;
+        TotalPrice.innerText = `€${TotalpriceVar}`;
+    });
+</script>
+
+<script src="~/js/js/payment.js"></script>
