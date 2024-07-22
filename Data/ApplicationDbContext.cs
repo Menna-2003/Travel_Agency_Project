@@ -11,7 +11,7 @@ namespace Travel_Agency_Project.Data {
         // Add new table to the database
         public DbSet<Transportation> Transportations { get; set; }
         public DbSet<Tour> Tours { get; set; }
-        public DbSet<TourReservationDetails> TourReservationDetails { get; set; }
+        public DbSet<UserReservationDetails> UserReservationDetails { get; set; }
         public DbSet<Reservations> Reservations { get; set; }
         public DbSet<TourGuide> TourGuides { get; set; }
 

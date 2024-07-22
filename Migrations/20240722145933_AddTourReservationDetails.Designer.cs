@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Travel_Agency_Project.Data;
 
@@ -11,9 +12,11 @@ using Travel_Agency_Project.Data;
 namespace Travel_Agency_Project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240722145933_AddTourReservationDetails")]
+    partial class AddTourReservationDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -350,24 +353,7 @@ namespace Travel_Agency_Project.Migrations
                     b.ToTable("TourGuides");
                 });
 
-            modelBuilder.Entity("Travel_Agency_Project.Models.Transportation", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Transportations");
-                });
-
-            modelBuilder.Entity("Travel_Agency_Project.Models.UserReservationDetails", b =>
+            modelBuilder.Entity("Travel_Agency_Project.Models.TourReservationDetails", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -408,7 +394,24 @@ namespace Travel_Agency_Project.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("UserReservationDetails");
+                    b.ToTable("TourReservationDetails");
+                });
+
+            modelBuilder.Entity("Travel_Agency_Project.Models.Transportation", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Transportations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

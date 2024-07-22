@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Travel_Agency_Project.Models;
 
-namespace Travel_Agency_Project.Models
+namespace Travel_Agency_Project.ViewModel
 {
     public class UserDetails
     {
@@ -29,6 +30,14 @@ namespace Travel_Agency_Project.Models
         [Required]
         public string PickupLocation
         {
+            get; set;
+        }
+
+        public int TourID {
+            get; set;
+        }
+
+        public Tour Tour {
             get; set;
         }
     }

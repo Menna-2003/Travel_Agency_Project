@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Travel_Agency_Project.Data;
 using Travel_Agency_Project.Models;
 using Travel_Agency_Project.Utility;
+using Travel_Agency_Project.ViewModel;
 
 namespace Travel_Agency_Project.Controllers
 {
@@ -15,7 +16,7 @@ namespace Travel_Agency_Project.Controllers
         private static BookingDetails _bookingDetails = new BookingDetails();
         private static UserDetails _userDetails = new UserDetails();
         private static Payment _payment = new Payment();
-        private static TourReservationDetails _TourReservationDetails = new TourReservationDetails();
+        private static UserReservationDetails _UserReservationDetails = new UserReservationDetails();
 
 		public IActionResult Index () {
             var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
@@ -37,55 +38,52 @@ namespace Travel_Agency_Project.Controllers
 
         #region Tour Reservation Details
         public IActionResult BookingDetails ( int id ) {
-            _TourReservationDetails.TourID = id;
-            return View();
+            _UserReservationDetails.TourID = id;
+            _bookingDetails.TourID = id;
+            _bookingDetails.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
+            return View( _bookingDetails );
         }
         [HttpPost]
         public IActionResult BookingDetails ( BookingDetails model ) {
 
             _bookingDetails = model;
-            return RedirectToAction( "UserDetails" );
-            
+            return RedirectToAction( "UserDetails", new { id = _UserReservationDetails.TourID } );
+
         }
         
-        public IActionResult UserDetails () {
-            return View();
+        public IActionResult UserDetails (int id) {
+            _userDetails.TourID = id;
+            _userDetails.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
+            return View( _userDetails );
         }
         [HttpPost]
         public IActionResult UserDetails ( UserDetails model ) {
            
             _userDetails = model;
-            return RedirectToAction( "Payment" );
+            return RedirectToAction( "Payment", new {
+                id = _UserReservationDetails.TourID
+            } );
         }
-        public IActionResult Payment () {
-            return View();
+        public IActionResult Payment (int id) {
+            _payment.TourID = id;
+            _payment.Tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
+            return View(_payment);
         }
         [HttpPost]
         public IActionResult Payment ( Payment model ) {
 
             _payment = model;
 
-            _TourReservationDetails.AdultTickets = _bookingDetails.AdultTickets;
-            _TourReservationDetails.ChildTickets = _bookingDetails.ChildTickets;
-            _TourReservationDetails.InfantTickets = _bookingDetails.InfantTickets;
-            _TourReservationDetails.FirstName = _userDetails.FirstName;
-            _TourReservationDetails.LastName = _userDetails.LastName;
-            _TourReservationDetails.PhoneNumber = _userDetails.PhoneNumber;
-            _TourReservationDetails.PickupLocation = _userDetails.PickupLocation;
-            _TourReservationDetails.PaymentMethod = _payment.PaymentMethod;
+            _UserReservationDetails.AdultTickets = _bookingDetails.AdultTickets;
+            _UserReservationDetails.ChildTickets = _bookingDetails.ChildTickets;
+            _UserReservationDetails.InfantTickets = _bookingDetails.InfantTickets;
+            _UserReservationDetails.FirstName = _userDetails.FirstName;
+            _UserReservationDetails.LastName = _userDetails.LastName;
+            _UserReservationDetails.PhoneNumber = _userDetails.PhoneNumber;
+            _UserReservationDetails.PickupLocation = _userDetails.PickupLocation;
+            _UserReservationDetails.PaymentMethod = _payment.PaymentMethod;
 
-            //var tourReservationDetails = new TourReservationDetails {
-            //    AdultTickets = _bookingDetails.AdultTickets,
-            //    ChildTickets = _bookingDetails.ChildTickets,
-            //    InfantTickets = _bookingDetails.InfantTickets,
-            //    FirstName = _userDetails.FirstName,
-            //    LastName = _userDetails.LastName,
-            //    PhoneNumber = _userDetails.PhoneNumber,
-            //    PickupLocation = _userDetails.PickupLocation,
-            //    PaymentMethod = _payment.PaymentMethod,
-            //};
-
-            _db.TourReservationDetails.Add( _TourReservationDetails );
+            _db.UserReservationDetails.Add( _UserReservationDetails );
             _db.SaveChanges();
 
             return RedirectToAction( "ConfirmOrder" );

@@ -18,7 +18,7 @@
     <div class="three">3</div>
 </div>
 
-<form asp-action="BookingDetails" asp-controller="Home" method="post">
+<form asp-action="BookingDetails" asp-controller="Home" method="post" >
     <div class="d-flex m-5 justify-content-center gap-5">
 
         <div class="containerLeft w-50 mt-5">
@@ -68,12 +68,12 @@
 
         <div class="ticketOverview p-4 d-grid">
             <h3>Your Tickets Overview</h3>
-            <div class="box d-flex mt-4 gap-4">
-                <img src="../images/tripPic.png" alt="" srcset="" />
+            <div class="box d-flex mt-4 gap-4" style="width:90%">
+                <img src="@Url.Action("GetImage", "Home", new { id = Model.TourID })" alt="Tour Image"/>
                 <div class="text">
-                    <h5>Wine tasting In Tuscany</h5>
-                    <p><i class="fa-regular fa-calendar-days"></i>FRI, 23 DEC 2022</p>
-                    <p><i class="fa-regular fa-clock"></i>15:00</p>
+                    <h5> @Model.Tour.Name </h5>
+                    <p><i class="fa-regular fa-calendar-days"></i>@Model.Tour.StartDate</p>
+                    <p><i class="fa-regular fa-calendar-days"></i>@Model.Tour.EndDate</p>
                 </div>
             </div>
             <div class="details d-grid gap-4 mt-4">

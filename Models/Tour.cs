@@ -73,7 +73,6 @@ namespace Travel_Agency_Project.Models {
         public Transportation TransportationType {
             get; set;
         }
-
         public byte[] ImageData {
             get; set;
         }

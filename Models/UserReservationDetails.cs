@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Travel_Agency_Project.Models {
-    public class TourReservationDetails {
+    public class UserReservationDetails {
 
         [Key]
         public int ID {
@@ -49,6 +49,5 @@ namespace Travel_Agency_Project.Models {
         public int TourID {
             get; set;
         }
-
     }
 }

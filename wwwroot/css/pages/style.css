@@ -105,8 +105,8 @@ span.btn{
     }
 
     .ticketOverview .box img {
-        width: 150px;
-        height: 100px;
+        width: 50%;
+        height: max-content;
         border-radius: 20px;
     }
 
