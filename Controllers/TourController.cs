@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Travel_Agency_Project.Data;
 using Travel_Agency_Project.ViewModel;
@@ -39,21 +40,19 @@ namespace Travel_Agency_Project.Controllers {
                 TotalNumberOfPages = totalNumberOfPages
             };
 
+            model.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+            
             return View( model );
         }
 
 
         public IActionResult Filter ( string destination, DateTime? startDate, DateTime? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
 
-            //var _tours = _db.Tours.Include( m => m.TransportationType ).
-            //Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
-            //            ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
-            //            ( !maxPrice.HasValue || m.Price <= maxPrice ) ) ).ToList();
-
             // Apply filtering conditions
-            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable().Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
-                        ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
-                        ( !maxPrice.HasValue || m.Price <= maxPrice ) ) );
+            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable().
+                Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
+                            ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
+                            ( !maxPrice.HasValue || m.Price <= maxPrice ) ) );
 
             const int pageSize = 10; // Number of tours per page
             // Ensure page number is valid, default to 1 if not specified or less than 1
@@ -71,8 +70,11 @@ namespace Travel_Agency_Project.Controllers {
                 MinPrice = minPrice,
                 MaxPrice = maxPrice,
                 CurrentPage = currentPage,
-                TotalNumberOfPages = totalNumberOfPages
+                TotalNumberOfPages = totalNumberOfPages,
             };
+
+            AllTours.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+
             return View( AllTours );
         }
     }

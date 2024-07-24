@@ -103,7 +103,6 @@ span.btn {
     }
 
 .homeContainer {
-
     height: 84vb;
 }
 
@@ -385,7 +384,7 @@ span.btn {
                 transition: all 0.3s;
                 border: 0px solid #eee;
                 border-radius: 20px;
-                padding:10px 20px;
+                padding: 10px 20px;
             }
 
                 .popularTrips .frame .content .box:hover {

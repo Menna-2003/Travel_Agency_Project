@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Travel_Agency_Project.Data;
 using Travel_Agency_Project.Models;
 using Travel_Agency_Project.Utility;
+using Travel_Agency_Project.ViewModel;
 
 namespace Travel_Agency_Project.Controllers {
     [Authorize]
     public class DashBoardController : Controller {
         private readonly ApplicationDbContext _db;
-
         public DashBoardController ( ApplicationDbContext db ) {
             _db = db;
         }
@@ -21,6 +22,15 @@ namespace Travel_Agency_Project.Controllers {
         #region AddTour
         [Authorize(Roles = RL.RoleAdmin)]
         public IActionResult AddTour () {
+
+            var transportations = _db.Transportations
+                                .Select( a => new SelectListItem {
+                                    Value = a.ID.ToString(),
+                                    Text = a.Name
+                                } ).ToList();
+
+            ViewBag.Transportations = transportations;
+
             return View();
         }
         [HttpPost]

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Security.Cryptography.Xml;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Travel_Agency_Project.Data;
@@ -17,10 +18,12 @@ namespace Travel_Agency_Project.Controllers
         private static UserDetails _userDetails;
         private static Payment _payment;
         private static UserReservationDetails _UserReservationDetails = new UserReservationDetails();
+        TourViewModel tourViewModel = new TourViewModel();
 
 		public IActionResult Index () {
-            var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
-            return View( tours );
+            tourViewModel.tour = _db.Tours.Include( t => t.TransportationType ).ToList();
+            tourViewModel.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+            return View( tourViewModel );
         }
 
         public IActionResult ViewAllTours () {
@@ -114,6 +117,24 @@ namespace Travel_Agency_Project.Controllers
         public IActionResult ConfirmOrder () {
             return View();
         }
+
+        #region cart
+        public IActionResult Cart () {
+            var Reservations = _db.UserReservationDetails.Include( t => t.tour ).ToList();
+            return View(Reservations);
+        }
+        public IActionResult ViewTour ( int id ) {
+            Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
+            return View( tour );
+        }
+        public IActionResult DeleteReservation ( int id ) {
+            UserReservationDetails? Reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id );
+            _db.UserReservationDetails.Remove( Reservation );
+            _db.SaveChanges();
+            return RedirectToAction( "Cart" );
+        }
+        #endregion
+       
         #endregion
 
         public IActionResult AboutUs () {

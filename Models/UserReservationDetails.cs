@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Travel_Agency_Project.Models {
     public class UserReservationDetails {
@@ -47,6 +48,10 @@ namespace Travel_Agency_Project.Models {
 
         [Required]
         public int TourID {
+            get; set;
+        }
+        [ForeignKey( "TourID" )]
+        public Tour tour {
             get; set;
         }
     }

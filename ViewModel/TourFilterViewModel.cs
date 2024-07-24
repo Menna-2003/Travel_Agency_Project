@@ -1,4 +1,5 @@
-﻿using Travel_Agency_Project.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Travel_Agency_Project.Models;
 
 namespace Travel_Agency_Project.ViewModel {
     public class TourFilterViewModel {
@@ -6,6 +7,10 @@ namespace Travel_Agency_Project.ViewModel {
         public string? Distination {
             get; set;
         }
+        public List<SelectListItem>? Distinations {
+            set; get;
+        }
+
         public DateTime? StartDate {
             get; set;
         }
@@ -24,10 +29,10 @@ namespace Travel_Agency_Project.ViewModel {
         public List<Tour> tours {
             get; set;
         }
+
         public int TotalNumberOfPages {
             get; set;
         }
-
         public int CurrentPage {
             get; set;
         }

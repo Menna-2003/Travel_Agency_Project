@@ -1,0 +1,68 @@
+﻿@model IEnumerable<UserReservationDetails>
+@{
+    Layout = "_Layout";
+}
+
+<div class="container-fluid py-4">
+    <h3 class="m-5">Reservations</h3>
+    <div class="table-responsive" style="width:85%; margin-inline:auto">
+        <table class="table align-items-center justify-content-center">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tour Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Start Date</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">End Date</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Adults Tickets</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Children Tickets</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Infant Tickets</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pickup Location</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ( var item in Model ) {
+                    <tr>
+                        <td>
+                            <img src="@Url.Action("GetImage", "Home", new { id = item.tour.ID })" alt="Tour Image" />
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.tour.Name</span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">$@item.tour.Price</span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.tour.StartDate</span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.tour.EndDate</span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.AdultTickets </span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.ChildTickets </span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.InfantTickets </span>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">@item.PickupLocation </span>
+                        </td>
+                        <td>
+                            <a asp-action="ViewTour" asp-route-id="@item.ID" class="btn btn-secondary" role="button">
+                                <span class="material-symbols-outlined"> View </span>
+                            </a>
+                            <a asp-action="DeleteReservation" asp-route-id="@item.ID" class="btn btn-danger" role="button">
+                                <span class="material-symbols-outlined"> Delete </span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>  
