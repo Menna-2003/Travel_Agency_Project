@@ -10,7 +10,9 @@
                 <form class="d-flex flex-column flex-md-row gap-2 mb-3 mb-md-0 w-100" asp-controller="Tour" asp-action="Filter">
                     <div class="form-group col-md">
                         <label for="destination">Destination</label>
-                        <select id="destination" name="destination" asp-items="@Model.Distinations" class="form-control m-0"></select>
+                        <select id="destination" name="destination" asp-items="@Model.Distinations" class="form-control m-0">
+                            <option selected></option>
+                        </select>
                     </div>
                     <div class="form-group col-md">
                         <label for="startDate">Start Date</label>

@@ -46,16 +46,31 @@ namespace Travel_Agency_Project.Controllers {
         }
 
 
-        public IActionResult Filter ( string destination, DateTime? startDate, DateTime? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
+        public IActionResult Filter ( string Distination, DateOnly? startDate, DateOnly? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
 
-            // Apply filtering conditions
-            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable().
-                Where( m => ( string.IsNullOrEmpty( destination ) || m.Distination == destination ) ||
-                            ( ( !minPrice.HasValue || m.Price >= minPrice ) &&
-                            ( !maxPrice.HasValue || m.Price <= maxPrice ) ) );
+            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable();
+
+            if ( !string.IsNullOrEmpty( Distination ) ) {
+                query = query.Where( m => m.Distination == Distination );
+            }
+
+            if ( startDate.HasValue ) {
+                query = query.Where( m => m.StartDate >= startDate.Value );
+            }
+
+            if ( endDate.HasValue ) {
+                query = query.Where( m => m.EndDate <= endDate.Value );
+            }
+
+            if ( minPrice.HasValue ) {
+                query = query.Where( m => m.Price >= minPrice.Value );
+            }
+
+            if ( maxPrice.HasValue ) {
+                query = query.Where( m => m.Price <= maxPrice.Value );
+            }
 
             const int pageSize = 10; // Number of tours per page
-            // Ensure page number is valid, default to 1 if not specified or less than 1
             int currentPage = page ?? 1;
             if ( currentPage < 1 ) {
                 currentPage = 1;
