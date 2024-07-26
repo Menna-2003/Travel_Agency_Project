@@ -34,7 +34,7 @@ namespace Travel_Agency_Project.Controllers
         public IActionResult TourDetails (int id) {
             var tour = _db.Tours.Include( p => p.TransportationType ).FirstOrDefault( p => p.ID == id );
             if ( tour == null ) {
-                return NotFound(); // Or handle the case where the product doesn't exist
+                return NotFound(); // Or handle the case where the tour doesn't exist
             }
             return View( tour );
         }

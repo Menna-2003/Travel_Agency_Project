@@ -4,6 +4,13 @@
     Layout = "_Layout";
 }
 
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+
+@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
+
 <div class="container">
     <div class="container Box1 mt-5 d-flex gap-5">
         <div class="pictures">
@@ -31,7 +38,11 @@
                     </div>
                 </div>
             </div>
-            <a asp-controller="Home" asp-route-id="@Model.ID" asp-action="BookingDetails" class="text-decoration-none text-light"><button class="shadow mb-2 rounded d-block mt-2">Book Now</button></a>
+            @if ( isAuthenticated ) {
+                <a asp-controller="Home" asp-route-id="@Model.ID" asp-action="BookingDetails" class="text-decoration-none text-light"><button class="shadow mb-2 rounded d-block mt-2">Book Now</button></a>
+            } else {
+                <h6 class="text-danger m-3">Log in or Register if you want to book the Tour</h6>
+            }
         </div>
     </div>
    

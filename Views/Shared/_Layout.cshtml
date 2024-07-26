@@ -16,6 +16,9 @@
         roles = await UserManager.GetRolesAsync( user );
     }
 }
+@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,9 +114,11 @@
                     <li class="navbar-item">
                         <a asp-controller="Home" asp-action="AboutUs" class="nav-link @(currentController == "Home" && currentAction == "AboutUs" ? "active" : "")">About Us</a>
                     </li>
-                    <li class="navbar-item">
-                        <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")">Cart</a>
-                    </li>
+                    @if ( isAuthenticated && roles.Contains( "Customer" ) ) {
+                        <li class="navbar-item">
+                            <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")">Cart</a>
+                        </li>
+                    }
                     <li class="navbar-item">
                         <a href="#footer" class="nav-link">Contact Us</a>
                     </li>
