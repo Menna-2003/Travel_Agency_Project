@@ -17,7 +17,7 @@ builder.Services.AddScoped<IEmailSender, EmailService>();
 builder.Services.AddDbContext<ApplicationDbContext>( options => options.UseSqlServer(
     builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
-builder.Services.AddIdentity<AppUser,IdentityRole>( options => {
+builder.Services.AddIdentity<IdentityUser, IdentityRole>( options => {
 	options.SignIn.RequireConfirmedEmail = false;
 } ).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -38,6 +38,10 @@ void ConfigureServices ( IServiceCollection services ) {
         options.LogoutPath = $"/Identity/Account/Logout";
         options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
     } );
+
+    services.AddDefaultIdentity<IdentityUser>( options => options.SignIn.RequireConfirmedAccount = true )
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
 }
 void Configure ( IApplicationBuilder app, IWebHostEnvironment env ) {
     // Your other middleware configuration

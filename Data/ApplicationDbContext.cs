@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Travel_Agency_Project.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Travel_Agency_Project.Data {
-    public class ApplicationDbContext : IdentityDbContext<AppUser> {
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser> {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) {
         
         }

@@ -1,56 +1,65 @@
 ﻿@{
     Layout = "_DashBoard";
 }
-@model Tour
+@model AddTourViewModel
 
 <div class="container-fluid py-4">
     <form method="post" asp-action="AddTour" asp-controller="DashBoard" enctype="multipart/form-data">
         <div class="form-row d-flex gap-4">
             <div class="form-group col-md-6">
-                <label asp-for="Name" for="tourName">Tour Name</label>
-                <input asp-for="Name" type="text" class="form-control" id="tourName" placeholder="Enter Tour Name" />
+                <label asp-for="tour.Name" for="tourName">Tour Name</label>
+                <input asp-for="tour.Name" type="text" class="form-control" id="tourName" placeholder="Enter Tour Name" />
+                <span asp-validation-for="tour.Name" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="Distination" for="distination">Distination</label>
-                <input asp-for="Distination" type="text" class="form-control" id="distination" placeholder="ex : Canada" />
+                <label asp-for="tour.Distination" for="distination">Distination</label>
+                <input asp-for="tour.Distination" type="text" class="form-control" id="distination" placeholder="ex : Canada" />
+                <span asp-validation-for="tour.Distination" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Description" for="discription">Description</label>
-            <input asp-for="Description" type="text" class="form-control" id="discription" />
+            <label asp-for="tour.Description" for="discription">Description</label>
+            <input asp-for="tour.Description" type="text" class="form-control" id="discription" />
+            <span asp-validation-for="tour.Description" class="text-danger"></span>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="StartDate" for="StartDate">Start Date</label>
-                <input asp-for="StartDate" type="date" class="form-control" id="StartDate" />
+                <label asp-for="tour.StartDate" for="StartDate">Start Date</label>
+                <input asp-for="tour.StartDate" type="date" class="form-control" id="StartDate" />
+                <span asp-validation-for="tour.StartDate" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="EndDate" for="EndDate">End Date</label>
-                <input asp-for="EndDate" type="date" class="form-control" id="EndDate" />
+                <label asp-for="tour.EndDate" for="EndDate">End Date</label>
+                <input asp-for="tour.EndDate" type="date" class="form-control" id="EndDate" />
+                <span asp-validation-for="tour.EndDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="AdultsTickets" for="price">Adults Tickets</label>
-                <input asp-for="AdultsTickets" type="number" class="form-control" id="AdultsTickets" />
+                <label asp-for="tour.AdultsTickets" for="price">Adults Tickets</label>
+                <input asp-for="tour.AdultsTickets" type="number" class="form-control" id="AdultsTickets" />
+                <span asp-validation-for="tour.AdultsTickets" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="ChildrenTickets" for="ChildrenTickets ">Children Tickets </label>
-                <input asp-for="ChildrenTickets " type="number" class="form-control" id="ChildrenTickets" />
+                <label asp-for="tour.ChildrenTickets" for="ChildrenTickets ">Children Tickets </label>
+                <input asp-for="tour.ChildrenTickets " type="number" class="form-control" id="ChildrenTickets" />
+                <span asp-validation-for="tour.ChildrenTickets" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="InfantTickets" for="InfantTickets">Infant Tickets</label>
-                <input asp-for="InfantTickets" type="number" class="form-control" id="InfantTickets" />
+                <label asp-for="tour.InfantTickets" for="InfantTickets">Infant Tickets</label>
+                <input asp-for="tour.InfantTickets" type="number" class="form-control" id="InfantTickets" />
+                <span asp-validation-for="tour.InfantTickets" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col-md-6">
-                <label asp-for="HotelName" for="HotelName">Hotel Name</label>
-                <input asp-for="HotelName" type="text" class="form-control" id="HotelName" />
+                <label asp-for="tour.HotelName" for="HotelName">Hotel Name</label>
+                <input asp-for="tour.HotelName" type="text" class="form-control" id="HotelName" />
+                <span asp-validation-for="tour.HotelName" class="text-danger"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Meals" for="Meals">Meals Type</label>
-                <select asp-for="Meals" id="Meals" class="form-control">
+                <label asp-for="tour.Meals" for="Meals">Meals Type</label>
+                <select asp-for="tour.Meals" id="Meals" class="form-control">
                     <option selected>Choose...</option>
                     <option value="Self catering">Self catering</option>
                     <option value="Breakfast included">Breakfast included</option>
@@ -59,28 +68,31 @@
                     <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                     <option value="Breakfast & dinner included">Breakfast & dinner included</option>
                 </select>
+                <span asp-validation-for="tour.Meals" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="Price" for="price">Price</label>
-                <input asp-for="Price" type="number" class="form-control" id="price" />
+                <label asp-for="tour.Price" for="price">Price</label>
+                <input asp-for="tour.Price" type="number" class="form-control" id="price" />
+                <span asp-validation-for="tour.Price" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="form-check">
-                <input asp-for="GuideIncluded" class="form-check-input" type="checkbox" id="guideCheck" />
-                <label asp-for="GuideIncluded" class="form-check-label" for="guideCheck"> Guide Included ? </label>
+                <input asp-for="tour.GuideIncluded" class="form-check-input" type="checkbox" id="guideCheck" />
+                <label asp-for="tour.GuideIncluded" class="form-check-label" for="guideCheck"> Guide Included ? </label>
+                <span asp-validation-for="tour.GuideIncluded" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label asp-for="TransportationId" for="Transportation">Transportation Type</label>
-                <select asp-for="TransportationId" asp-items="@(new SelectList(ViewBag.Transportations, "Value", "Text"))" id="Transportation" class="form-control"></select>
+                <label asp-for="transportationID" for="Transportation">Transportation Type</label>
+                <select asp-for="transportationID" asp-items="Model.Transportations" class="form-control"></select>
+                <span asp-validation-for="transportationID" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row mt-5 custom-file">
-            @* <input  type="file" class="custom-file-input" id="TourPic" /> *@
             <input type="file" name="Image" class="form-control custom-file-input" />
             <label  class="custom-file-label" for="TourPic">Upload Tour Image</label>
         </div>

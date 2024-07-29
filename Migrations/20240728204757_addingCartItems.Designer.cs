@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Travel_Agency_Project.Data;
 
@@ -11,9 +12,11 @@ using Travel_Agency_Project.Data;
 namespace Travel_Agency_Project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240728204757_addingCartItems")]
+    partial class addingCartItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,6 +226,34 @@ namespace Travel_Agency_Project.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Travel_Agency_Project.Models.CartItem", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("CartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("Travel_Agency_Project.Models.Reservations", b =>
                 {
                     b.Property<int>("ID")
@@ -404,10 +435,6 @@ namespace Travel_Agency_Project.Migrations
                     b.Property<int>("TourID")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ID");
 
                     b.HasIndex("TourID");
@@ -466,6 +493,17 @@ namespace Travel_Agency_Project.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Travel_Agency_Project.Models.CartItem", b =>
+                {
+                    b.HasOne("Travel_Agency_Project.Models.Tour", "tour")
+                        .WithMany("CartItems")
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("tour");
+                });
+
             modelBuilder.Entity("Travel_Agency_Project.Models.Reservations", b =>
                 {
                     b.HasOne("Travel_Agency_Project.Models.Transportation", "TransportationType")
@@ -508,6 +546,11 @@ namespace Travel_Agency_Project.Migrations
                         .IsRequired();
 
                     b.Navigation("tour");
+                });
+
+            modelBuilder.Entity("Travel_Agency_Project.Models.Tour", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

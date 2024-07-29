@@ -8,7 +8,8 @@ namespace Travel_Agency_Project.Models {
         public int ID {
             get; set;
         }
-
+        [Required]
+        public string UserId { get; set; }
         [Required]
         public int AdultTickets { get; set; }
         [Required]

@@ -5,8 +5,8 @@
 
 @using Microsoft.AspNetCore.Identity
 @using Travel_Agency_Project.Models
-@inject UserManager<AppUser> UserManager
-@inject SignInManager<AppUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     var user = SignInManager.IsSignedIn( User ) ? await UserManager.GetUserAsync( User ) : null;
@@ -125,7 +125,7 @@
 
                     @if ( user != null && roles.Contains( "Admin" ) ) {
                         <li class="navbar-item">
-                            <a class="nav-link @(currentController == "DashBoard" && currentAction == "Index" ? "active" : "")" asp-area="" asp-controller="DashBoard" asp-action="Index">Profile</a>
+                            <a class="nav-link @(currentController == "DashBoard" && currentAction == "Index" ? "active" : "")" asp-area="" asp-controller="DashBoard" asp-action="Index">Dashboard</a>
                         </li>
                     }
                 </ul>

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Security.Cryptography.Xml;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +13,16 @@ using Travel_Agency_Project.ViewModel;
 
 namespace Travel_Agency_Project.Controllers
 {
-    public class HomeController ( ApplicationDbContext _db ) : Controller {
+    public class HomeController ( ApplicationDbContext _db, UserManager<IdentityUser> userManager ) : Controller {
 		private readonly ILogger<HomeController> _logger;
         private static BookingDetails _bookingDetails;
         private static UserDetails _userDetails;
         private static Payment _payment;
         private static UserReservationDetails _UserReservationDetails = new UserReservationDetails();
         TourViewModel tourViewModel = new TourViewModel();
+        private readonly UserManager<IdentityUser> _userManager = userManager;
 
-		public IActionResult Index () {
+        public IActionResult Index () {
             tourViewModel.tour = _db.Tours.Include( t => t.TransportationType ).ToList();
             tourViewModel.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
             return View( tourViewModel );
@@ -103,10 +105,19 @@ namespace Travel_Agency_Project.Controllers
         }
         [HttpPost]
         public IActionResult Payment ( Payment model ) {
+            var userId = _userManager.GetUserId( User );
+
+            Console.WriteLine(userId);
+
+            if ( userId == null ) {
+                // Handle the case where the user is not logged in or the user ID is not found
+                return RedirectToAction( "Error" );
+            }
 
             _payment = model;
 
             _UserReservationDetails.PaymentMethod = _payment.PaymentMethod;
+            _UserReservationDetails.UserId = userId; // Set the User ID
 
             _db.UserReservationDetails.Add( _UserReservationDetails );
             _db.SaveChanges();
@@ -118,14 +129,24 @@ namespace Travel_Agency_Project.Controllers
             return View();
         }
 
+
+        #endregion
+      
         #region cart
+        
         public IActionResult Cart () {
-            var Reservations = _db.UserReservationDetails.Include( t => t.tour ).ToList();
-            return View(Reservations);
+            var userId = _userManager.GetUserId( User );
+            var reservations = _db.UserReservationDetails.Include( t => t.tour ).Where( r => r.UserId == userId ).ToList();
+            return View( reservations );
         }
         public IActionResult ViewTour ( int id ) {
-            Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
-            return View( tour );
+            var userId = _userManager.GetUserId( User );
+            var reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id && x.UserId == userId );
+            if ( reservation != null ) {
+                _db.UserReservationDetails.Remove( reservation );
+                _db.SaveChanges();
+            }
+            return RedirectToAction( "Cart" );
         }
         public IActionResult DeleteReservation ( int id ) {
             UserReservationDetails? Reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id );
@@ -133,10 +154,9 @@ namespace Travel_Agency_Project.Controllers
             _db.SaveChanges();
             return RedirectToAction( "Cart" );
         }
+        
         #endregion
        
-        #endregion
-
         public IActionResult AboutUs () {
             return View();
         }

@@ -11,6 +11,7 @@ namespace Travel_Agency_Project.Controllers {
     [Authorize]
     public class DashBoardController : Controller {
         private readonly ApplicationDbContext _db;
+        public AddTourViewModel _addTourViewModel;
         public DashBoardController ( ApplicationDbContext db ) {
             _db = db;
         }
@@ -22,32 +23,54 @@ namespace Travel_Agency_Project.Controllers {
         #region AddTour
         [Authorize(Roles = RL.RoleAdmin)]
         public IActionResult AddTour () {
+            //_addTourViewModel = new AddTourViewModel();
+            ////var transportations = _db.Transportations
+            ////                    .Select( a => new SelectListItem {
+            ////                        Value = a.ID.ToString(),
+            ////                        Text = a.Name
+            ////                    } ).ToList();
 
-            var transportations = _db.Transportations
-                                .Select( a => new SelectListItem {
-                                    Value = a.ID.ToString(),
-                                    Text = a.Name
-                                } ).ToList();
+            ////ViewBag.Transportations = transportations;
 
-            ViewBag.Transportations = transportations;
+            //_addTourViewModel.Transportations = _db.Transportations.Select( a => new SelectListItem() { Value = a.ID.ToString(), Text = a.Name } ).ToList();
 
-            return View();
+            //return View( _addTourViewModel );
+
+            var addTourViewModel = new AddTourViewModel();
+            addTourViewModel.Transportations = _db.Transportations.Select( a => new SelectListItem {
+                Value = a.ID.ToString(),
+                Text = a.Name
+            } ).ToList();
+
+            return View( addTourViewModel );
+
         }
+        
         [HttpPost]
         [Authorize( Roles = RL.RoleAdmin )]
-        public async Task<IActionResult> AddTour ( Tour tour, IFormFile Image ) {
-            
+        public async Task<IActionResult> AddTour ( AddTourViewModel viewModel, IFormFile Image ) {
+
             if ( Image != null && Image.Length > 0 ) {
                 using ( var memoryStream = new MemoryStream() ) {
                     await Image.CopyToAsync( memoryStream );
-                    tour.ImageData = memoryStream.ToArray();
-                    tour.ContentType = Image.ContentType;
+                    viewModel.tour.ImageData = memoryStream.ToArray();
+                    viewModel.tour.ContentType = Image.ContentType;
                 }
             }
-
-            _db.Tours.Add( tour );
-            await _db.SaveChangesAsync();
-            return RedirectToAction( "Index" );
+            viewModel.tour.TransportationId = viewModel.transportationID;
+            viewModel.tour.TransportationType = _db.Transportations.FirstOrDefault( x => x.ID == viewModel.transportationID );
+            //if ( ModelState.IsValid && viewModel.tour.TransportationType == null ) {
+                _db.Tours.Add( viewModel.tour );
+                await _db.SaveChangesAsync();
+                return RedirectToAction( "GetToursData" );
+            //} else {
+            //    // Re-populate Transportations in case of validation error
+            //    viewModel.Transportations = _db.Transportations.Select( a => new SelectListItem {
+            //        Value = a.ID.ToString(),
+            //        Text = a.Name
+            //    } ).ToList();
+            //    return View( viewModel );
+            //}
         }
         #endregion
 
@@ -65,7 +88,7 @@ namespace Travel_Agency_Project.Controllers {
             Tour? tour = _db.Tours.FirstOrDefault( x => x.ID == id );
             _db.Tours.Remove(tour);
             _db.SaveChanges();
-            return RedirectToAction( "Index" );
+            return RedirectToAction( "GetToursData" );
         }
         #endregion
 
