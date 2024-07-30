@@ -16,26 +16,26 @@ button.btn {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 
-#navbar {
-    background-color: #ffffffa3;
+.navvyy {
+    background-color: #ffffffa3 !important;
 }
 
 .searching {
     background-color: transparent;
 }
 
-#navbar .navbar-item .nav-link {
-    color: #001d5c;
+.navvyy .navbar-item .nav-link {
+    color: #001d5c !important;
     font-size: 16px;
     font-weight: bold;
     position: relative;
 }
 
-    #navbar .navbar-item .nav-link:hover {
+    .navvyy .navbar-item .nav-link:hover {
         transform: scale(1.05);
     }
 
-    #navbar .navbar-item .nav-link::before {
+    .navvyy .navbar-item .nav-link::before {
         content: "";
         position: absolute;
         bottom: 0px;
@@ -48,12 +48,12 @@ button.btn {
         transition: 0.3s ease-in-out;
     }
 
-#navbar .navbar-item .active::before {
+.navvyy .navbar-item .active::before {
     visibility: visible;
     width: 80%;
 }
 
-#navbar .navbar-item .nav-link:hover::before {
+.navvyy .navbar-item .nav-link:hover::before {
     visibility: visible;
     width: 80%;
 }
@@ -103,7 +103,7 @@ span.btn {
     }
 
 .homeContainer {
-    height: 84vb;
+    min-height: 84vb;
 }
 
 .homeBackGround {
@@ -130,7 +130,23 @@ span.btn {
 
     .innersearching {
         flex-wrap: wrap;
+        height: auto;
     }
+
+        .innersearching .form-group {
+            display: flex;
+            gap: 20px;
+        }
+
+
+    .container-searching {
+        width: 90%;
+    }
+
+        .container-searching h1 {
+            margin: 14px 0;
+            font-size: 43px;
+        }
 
     .searching {
         height: 335px;
@@ -138,8 +154,9 @@ span.btn {
 
     .search-icon {
         position: absolute;
-        top: 0;
+        top: 7px;
         right: 10px;
+        padding: 5px;
     }
 }
 
@@ -425,6 +442,13 @@ span.btn {
     .popularTrips .frame {
         border-width: 0px 78px;
     }
+
+        .popularTrips .frame .content {
+            gap: 0;
+        }
+    .popularTrips .frame {
+        border-width: 0 30px;
+    }
 }
 
 /* *************  bike reservation  **************** */
@@ -444,8 +468,4 @@ span.btn {
 .filterBar select {
     width: 200px;
     margin: 10px 0;
-}
-
-.filterBar button {
-    width: 90%;
 }

@@ -42,6 +42,8 @@ namespace Travel_Agency_Project.Controllers
         }
 
         #region Tour Reservation Details
+  
+        #region bookingDetails
         public IActionResult BookingDetails ( int id ) {
             _UserReservationDetails.TourID = id;
 
@@ -65,7 +67,9 @@ namespace Travel_Agency_Project.Controllers
             } );
 
         }
-        
+        #endregion
+
+        #region userDetails
         public IActionResult UserDetails (int id, int AdultTickets, int ChildTickets ,int InfantTickets ) {
             _userDetails = new UserDetails();
             _userDetails.TourID = id;
@@ -93,6 +97,9 @@ namespace Travel_Agency_Project.Controllers
             } );
 
         }
+        #endregion
+
+        #region payment
         public IActionResult Payment ( int id, int AdultTickets, int ChildTickets, int InfantTickets ) {
             _payment = new Payment();
             _payment.TourID = id;
@@ -124,29 +131,25 @@ namespace Travel_Agency_Project.Controllers
 
             return RedirectToAction( "ConfirmOrder" );
         }
+        #endregion
 
         public IActionResult ConfirmOrder () {
             return View();
         }
 
-
         #endregion
       
         #region cart
-        
         public IActionResult Cart () {
             var userId = _userManager.GetUserId( User );
             var reservations = _db.UserReservationDetails.Include( t => t.tour ).Where( r => r.UserId == userId ).ToList();
             return View( reservations );
         }
-        public IActionResult ViewTour ( int id ) {
+        public IActionResult ViewTourReserved ( int id ) {
             var userId = _userManager.GetUserId( User );
-            var reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id && x.UserId == userId );
-            if ( reservation != null ) {
-                _db.UserReservationDetails.Remove( reservation );
-                _db.SaveChanges();
-            }
-            return RedirectToAction( "Cart" );
+            var reservation = _db.UserReservationDetails.Include( t => t.tour ).Where( r => r.UserId == userId ).FirstOrDefault(x=>x.ID == id);
+
+            return View( reservation );
         }
         public IActionResult DeleteReservation ( int id ) {
             UserReservationDetails? Reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id );
@@ -154,7 +157,6 @@ namespace Travel_Agency_Project.Controllers
             _db.SaveChanges();
             return RedirectToAction( "Cart" );
         }
-        
         #endregion
        
         public IActionResult AboutUs () {

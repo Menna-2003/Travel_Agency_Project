@@ -9,7 +9,7 @@
     <div class="container container-searching">
         <div class="text">
             <h1 class="first text-center text-light">Enjoy in the best way</h1>
-            <p class="text-center text-light " style="font-size:18px">Enjoy our services for your trip anytime</p>
+            <p class="text-center text-light" style="font-size:18px">Enjoy our services for your trip anytime</p>
         </div>
         <div class="container d-grid rounded-3 searching position-relative">
             <div class="innertext text-light text-center pt-3">Filter Trips</div>
@@ -21,21 +21,21 @@
                             <option selected></option>
                         </select>
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="startDate">Start Date</label>
                         <input type="date" id="startDate" name="startDate" class="form-control" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="endDate">End Date</label>
                         <input type="date" id="endDate" name="endDate" class="form-control" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="minPrice">Minimum Price</label>
-                        <input type="number" id="minPrice" name="minPrice" class="form-control" />
+                        <input type="number" id="minPrice" name="minPrice" class="form-control" placeholder="ex: 0" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="maxPrice">Maximum Price</label>
-                        <input type="number" id="maxPrice" name="maxPrice" class="form-control" />
+                        <input type="number" id="maxPrice" name="maxPrice" class="form-control" placeholder="ex: 10000" />
                     </div>
                     <button type="submit" class="search-icon d-flex justify-content-center align-items-center rounded-3 ml-md-3 mt-3 mt-md-0">
                         <i class="fa-solid fa-magnifying-glass" style="font-size: 25px; padding: 0px 15px; color:#fff"></i>
@@ -57,13 +57,13 @@
     <div class="frame" style="height:587px;">
         <div class="content d-flex">
             @foreach ( var tour in Model.tour ) {
-                <a href="#">
+                <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">
                     <div class="box d-grid" style="width:250px">
                         <img src="@Url.Action("GetImage", "Home", new { id = tour.ID })" alt="Tour Image" style="max-width: 100%; height: auto;" />
                         <h4 class="text-black text-center mb-3">@tour.Name</h4>
                         <p class="text-black"><i class="fa-solid fa-hand-holding-dollar"></i> <span>$@tour.Price</span></p>
-                        <p><i class="fa-solid fa-calendar"></i>Start Date : @tour.StartDate</p>
-                        <p><i class="fa-solid fa-calendar"></i>End Date : @tour.EndDate</p>
+                        <p><i class="fa-solid fa-calendar"></i>Start Date: @tour.StartDate</p>
+                        <p><i class="fa-solid fa-calendar"></i>End Date: @tour.EndDate</p>
                         <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">Read More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </a>
@@ -238,51 +238,33 @@
 
 <script>
 
-    let right = document.getElementsByClassName("right")[0];
-    let left = document.getElementsByClassName("left")[0];
-    let content = document.getElementsByClassName("content")[0];
+    document.addEventListener("DOMContentLoaded", function () {
+        let right = document.querySelector(".right");
+        let left = document.querySelector(".left");
+        let content = document.querySelector(".content");
+        let boxWidth = document.querySelector(".box").offsetWidth;
+        let gap = parseInt(getComputedStyle(content).gap) || 0;
 
-    if (window.innerWidth > 780) {
-        width = -1 * (content.offsetWidth - 400);
+        let totalContentWidth = (boxWidth + gap) * content.children.length - gap;
+        let frameWidth = document.querySelector(".frame").offsetWidth;
         let leftspace = 0;
+
         right.addEventListener("click", (e) => {
-            if (leftspace >= width) {
-                leftspace -= 320;
-                console.log(leftspace);
-                let variable = `${leftspace}px`;
-                content.style.left = variable;
+            if (Math.abs(leftspace) < totalContentWidth - frameWidth) {
+                leftspace -= boxWidth + gap;
+                leftspace = Math.max(leftspace, frameWidth - totalContentWidth);
+                content.style.left = `${leftspace}px`;
             }
         });
 
         left.addEventListener("click", (e) => {
-            if (leftspace !== 0) {
-                leftspace += 320;
-                console.log(leftspace);
-                let variable = `${leftspace}px`;
-                content.style.left = variable;
+            if (leftspace < 0) {
+                leftspace += boxWidth + gap;
+                leftspace = Math.min(leftspace, 0);
+                content.style.left = `${leftspace}px`;
             }
         });
-    } else {
-        width = -1 * (content.offsetWidth - 800);
-        let leftspace = 0;
-        right.addEventListener("click", (e) => {
-            if (leftspace >= width) {
-                leftspace -= 260;
-                console.log(leftspace);
-                let variable = `${leftspace}px`;
-                content.style.left = variable;
-            }
-        });
-
-        left.addEventListener("click", (e) => {
-            if (leftspace !== 0) {
-                leftspace += 260;
-                console.log(leftspace);
-                let variable = `${leftspace}px`;
-                content.style.left = variable;
-            }
-        });
-    }
+    });
 
 
 
@@ -294,10 +276,10 @@
         const maxPrice = document.getElementById('maxPrice');
 
         if (!destination.value) {
-            destination.value = 'Destination'; // Set a default value for destination
+            destination.value = ''; // Set a default value for destination
         }
         if (!startDate.value) {
-            startDate.value = '2022-01-01'; // Set a default start date
+            startDate.value = '2025-01-01'; // Set a default start date
         }
         if (!endDate.value) {
             endDate.value = '2022-12-31'; // Set a default end date
@@ -306,7 +288,7 @@
             minPrice.value = '0'; // Set a default minimum price
         }
         if (!maxPrice.value) {
-            maxPrice.value = '99999'; // Set a default maximum price
+            maxPrice.value = '9999999'; // Set a default maximum price
         }
     }
 </script>

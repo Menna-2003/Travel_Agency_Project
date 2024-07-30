@@ -2,36 +2,56 @@
 @{
     Layout = "_Layout";
 }
+<style>
+    .search-icon{
+        width: 60px;
+        height: 60px;
+    }
 
+    @@media (max-width: 780px) {
+    .search-icon {
+        position: absolute;
+        top: 285px;
+        right: 50%;
+        padding: 5px;
+        transform: translateX(50%);
+    }
+
+        .search-icon {
+            width: 90%;
+            height: 40px;
+        }
+}
+</style>
 <div class="container packagesContainer mt-5">
     <div class="d-grid gap-5">
         <div class="filterBar rounded-top">
-            <div class="d-flex flex-column flex-md-row innersearching rounded align-items-md-center p-3 gap-3">
+            <div class="d-flex flex-column flex-md-row innersearching rounded align-items-md-center p-3 gap-3 position-relative">
                 <form class="d-flex flex-column flex-md-row gap-2 mb-3 mb-md-0 w-100" asp-controller="Tour" asp-action="Filter">
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="destination">Destination</label>
                         <select id="destination" name="destination" asp-items="@Model.Distinations" class="form-control m-0">
                             <option selected></option>
                         </select>
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="startDate">Start Date</label>
                         <input type="date" id="startDate" name="startDate" class="form-control" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="endDate">End Date</label>
                         <input type="date" id="endDate" name="endDate" class="form-control" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="minPrice">Minimum Price</label>
                         <input type="number" id="minPrice" name="minPrice" class="form-control" />
                     </div>
-                    <div class="form-group col-md">
+                    <div class="form-group col-md p-0">
                         <label for="maxPrice">Maximum Price</label>
                         <input type="number" id="maxPrice" name="maxPrice" class="form-control" />
                     </div>
-                    <button type="submit" class="search-icon d-flex justify-content-center align-items-center rounded-3 ml-md-3 mt-3 mt-md-0" style="width: 60px; height: 60px;">
-                        <i class="fa-solid fa-magnifying-glass" style="font-size: 20px; padding: 0px 10px;"></i>
+                    <button type="submit" class="search-icon d-flex justify-content-center align-items-center rounded-3 ml-md-3 mt-3 mt-md-0">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 20px; padding: 0px 10px; color:#fff"></i>
                     </button>
                 </form>
             </div>
@@ -43,9 +63,9 @@
                 <div class="d-grid pBox">
                     <img src="@Url.Action("GetImage", "Home", new { id = tour.ID })" alt="Tour Image" style="max-width: 100%; height: auto;" />
                     <h4 class="text-black text-center mb-3">@tour.Name</h4>
-                    <p class="text-black"><i class="fa-solid fa-hand-holding-dollar"></i> <span>$@tour.Price</span></p>
-                    <p><i class="fa-solid fa-calendar"></i>Start Date : @tour.StartDate</p>
-                    <p><i class="fa-solid fa-calendar"></i>End Date : @tour.EndDate</p>
+                    <p class="text-black"><i class="fa-solid fa-hand-holding-dollar me-3" style="color:#fa8b02"></i><span>$@tour.Price</span></p>
+                    <p><i class="fa-solid fa-calendar me-3" style="color:#fa8b02"></i>Start Date : @tour.StartDate</p>
+                    <p><i class="fa-solid fa-calendar me-3" style="color:#fa8b02"></i>End Date : @tour.EndDate</p>
                     <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">Read More <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             }

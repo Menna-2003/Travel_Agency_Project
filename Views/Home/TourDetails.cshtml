@@ -12,26 +12,26 @@
 }
 
 <div class="container">
-    <div class="container Box1 mt-5 d-flex gap-5">
+    <div class="container Box1 mt-5 d-flex flex-column flex-md-row gap-5">
         <div class="pictures">
             <div class="pic">
-                <img src="@Url.Action("GetImage", "Home", new { id = Model.ID })" alt="Tour Image" />
+                <img src="@Url.Action("GetImage", "Home", new { id = Model.ID })" alt="Tour Image" class="img-fluid" />
             </div>
         </div>
         <div class="details">
             <h1 class="m-2 mb-3">@Model.Name</h1>
             <h5 class="m-2 mb-5">@Model.Description</h5>
 
-            <div class="container" style="min-width:100%">
-                <div class="row">
-                    <div class="col">
+            <div class="container p-0">
+                <div class="row flex-wrap">
+                    <div class="col-12 col-md-6">
                         <p class="text-black font-weight-bolder"><i class="fa-solid fa-hand-holding-dollar" style="color:#fa8b02; margin:0 15px 0 0"></i> <span>$@Model.Price</span></p>
                         <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>Start Date : @Model.StartDate</p>
                         <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>End Date : @Model.EndDate</p>
-                        <p><i class="fa-solid fa-road" style="color:#fa8b02; margin:0 15px 0 0"></i>Transportation : @Model.TransportationType.Name</p>
+                        <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>Transportaion Type : @Model.TransportationType.Name</p>
                     </div>
-                    <div class="col">
-                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-location-dot"></i>Distination : @Model.Distination</p>
+                    <div class="col-12 col-md-6">
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-location-dot"></i>Destination : @Model.Distination</p>
                         <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Guide Included : @Model.GuideIncluded</p>
                         <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Hotel Name : @Model.HotelName</p>
                         <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Meals : @Model.Meals</p>
@@ -45,7 +45,6 @@
             }
         </div>
     </div>
-   
 </div>
 
 <footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">

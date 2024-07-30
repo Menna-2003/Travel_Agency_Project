@@ -52,10 +52,10 @@
                             <span class="text-xs font-weight-bold">@item.PickupLocation </span>
                         </td>
                         <td>
-                            <a asp-action="ViewTour" asp-route-id="@item.ID" class="btn btn-secondary" role="button">
+                            <a asp-action="ViewTourReserved" asp-route-id="@item.ID" asp-controller="Home" class="btn btn-secondary" role="button">
                                 <span class="material-symbols-outlined"> View </span>
                             </a>
-                            <a asp-action="DeleteReservation" asp-route-id="@item.ID" class="btn btn-danger" role="button">
+                            <a asp-action="DeleteReservation" asp-route-id="@item.ID" asp-controller="Home" class="btn btn-danger" role="button">
                                 <span class="material-symbols-outlined"> Delete </span>
                             </a>
                         </td>
