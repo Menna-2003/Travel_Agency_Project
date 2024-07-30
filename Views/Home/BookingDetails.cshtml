@@ -24,14 +24,14 @@
         <div class="containerLeft w-50 mt-5">
             <h4>Select Your Tickets</h4>
             <p class="bg-light p-3">
-                Free for kids under 6 and disabled visitors (74%+) <br />
-                Pregnant women, families with strollers, and visitors on crutches can buy priority tickets at the venue
+                Children Tickets with discount 50% <br />
+                Infant Tickets with discount 75% 
             </p>
 
             <div class="option d-flex justify-content-between p-3 mt-3">
                 <div class="text">
                     <h5>Adult (18+)</h5>
-                    <p>$34.00</p>
+                    <p>$@Model.Tour.Price</p>
                 </div>
                 <div class="qty d-flex justify-content-end align-items-center">
                     <span class="minus" id="minus1">-</span>
@@ -43,7 +43,7 @@
             <div class="option d-flex justify-content-between p-3 mt-3">
                 <div class="text">
                     <h5>Child (6-17)</h5>
-                    <p>$34.00</p>
+                    <p>$@(Model.Tour.Price * 0.5)</p>
                 </div>
                 <div class="qty d-flex justify-content-end align-items-center">
                     <span class="minus" id="minus2">-</span>
@@ -55,7 +55,7 @@
             <div class="option d-flex justify-content-between p-3 mt-3 mb-5">
                 <div class="text">
                     <h5>Infant (0-5)</h5>
-                    <p>$34.00</p>
+                    <p>$@(Model.Tour.Price * 0.25)</p>
                 </div>
                 <div class="qty d-flex justify-content-end align-items-center">
                     <span class="minus" id="minus3">-</span>
@@ -79,20 +79,20 @@
             <div class="details d-grid gap-4 mt-4">
                 <div class="one w-100">
                     <div class="circleCounter" id="AdultsCounter">0</div>
-                    <span>Adult (18+) (€64.00)</span>
-                    <span class="price" id="AdultsPrice" price="64">€0</span>
+                    <span>Adult (18+) (€@Model.Tour.Price)</span>
+                    <span class="price" id="AdultsPrice" price="@Model.Tour.Price">€0</span>
                 </div>
 
                 <div class="two">
                     <div class="circleCounter" id="ChildrenCounter">0</div>
-                    <span>Child (6-17) (€32.00)</span>
-                    <span class="price" id="ChildrenPrice" price="32">€0</span>
+                    <span>Child (6-17) (€@(Model.Tour.Price * 0.5))</span>
+                    <span class="price" id="ChildrenPrice" price="@(Model.Tour.Price * 0.5)">€0</span>
                 </div>
 
                 <div class="three">
                     <div class="circleCounter" id="InfantCounter">0</div>
-                    <span>Infant (0-5) (€10.00)</span>
-                    <span class="price" id="InfantPrice" price="10">€0</span>
+                    <span>Infant (0-5) (€@(Model.Tour.Price * 0.25))</span>
+                    <span class="price" id="InfantPrice" price="@(Model.Tour.Price * 0.25)">€0</span>
                 </div>
 
                 <div class="totalPrice">

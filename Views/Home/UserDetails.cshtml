@@ -62,20 +62,20 @@
             <div class="details d-grid gap-4 mt-4">
                 <div class="one w-100">
                     <div class="circleCounter" id="AdultsCounter">@Model.AdultTickets</div>
-                    <span>Adult (18+) (€64.00)</span>
-                    <span class="price" id="AdultsPrice" price="64">€0</span>
+                    <span>Adult (18+) (€@Model.Tour.Price)</span>
+                    <span class="price" id="AdultsPrice" price="@Model.Tour.Price">€0</span>
                 </div>
 
                 <div class="two">
                     <div class="circleCounter" id="ChildrenCounter">@Model.ChildTickets</div>
-                    <span>Child (6-17) (€32.00)</span>
-                    <span class="price" id="ChildrenPrice" price="32">€0</span>
+                    <span>Child (6-17) (€@(Model.Tour.Price * 0.5))</span>
+                    <span class="price" id="ChildrenPrice" price="@(Model.Tour.Price * 0.5)">€0</span>
                 </div>
 
                 <div class="three">
                     <div class="circleCounter" id="InfantCounter">@Model.InfantTickets</div>
-                    <span>Infant (0-5) (€10.00)</span>
-                    <span class="price" id="InfantPrice" price="10">€0</span>
+                    <span>Infant (0-5) (€@(Model.Tour.Price * 0.25))</span>
+                    <span class="price" id="InfantPrice" price="@Model.Tour.Price">€0</span>
                 </div>
 
                 <div class="totalPrice">
