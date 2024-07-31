@@ -12,6 +12,7 @@
 .container .pictures .pic img {
     width: 100%;
     margin-top: 20px;
+    border-radius: 20px;
 }
 
 .Box1 {

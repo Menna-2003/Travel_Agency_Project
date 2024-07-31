@@ -75,7 +75,7 @@
                 <div class="three">
                     <div class="circleCounter" id="InfantCounter">@Model.InfantTickets</div>
                     <span>Infant (0-5) (€@(Model.Tour.Price * 0.25))</span>
-                    <span class="price" id="InfantPrice" price="@Model.Tour.Price">€0</span>
+                    <span class="price" id="InfantPrice" price="@(Model.Tour.Price * 0.25)">€0</span>
                 </div>
 
                 <div class="totalPrice">

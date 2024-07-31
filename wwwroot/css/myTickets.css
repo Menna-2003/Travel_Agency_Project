@@ -59,6 +59,7 @@ table thead th {
 
     .packagesContainer .pBox img {
         width: 207px;
+        border-radius: 20px;
     }
 
     .packagesContainer .pBox:hover {

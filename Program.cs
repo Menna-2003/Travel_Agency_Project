@@ -43,7 +43,7 @@ void ConfigureServices ( IServiceCollection services ) {
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
 }
-void Configure ( IApplicationBuilder app, IWebHostEnvironment env ) {
+void Configure ( IApplicationBuilder app, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager ) {
     // Your other middleware configuration
     app.UseStaticFiles();
     app.UseEndpoints( endpoints => {
@@ -54,6 +54,8 @@ void Configure ( IApplicationBuilder app, IWebHostEnvironment env ) {
         // Allow unauthenticated access to the images folder
         endpoints.MapFallbackToFile( "images/{*path}", "images/{path}" );
     } );
+
+    //RoleInitializer.InitializeAsync( roleManager ).Wait();
 }
 
 var app = builder.Build();

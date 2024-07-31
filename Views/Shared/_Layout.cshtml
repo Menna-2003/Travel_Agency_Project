@@ -87,9 +87,11 @@
                             <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")" style="color:#001d5c">Cart</a>
                         </li>
                     }
-                    <li class="navbar-item">
-                        <a href="#footer" class="nav-link">Contact Us</a>
-                    </li>
+                    @if ( ( currentController == "Home" || currentController == "Tour" ) && ( currentAction == "Index" || currentAction == "AboutUs" || currentAction == "Filter"  ) ) {
+                        <li class="navbar-item">
+                            <a href="#footer" class="nav-link">Contact Us</a>
+                        </li>
+                    }
                     @if ( user != null && roles.Contains( "Admin" ) ) {
                         <li class="navbar-item">
                             <a class="nav-link @(currentController == "DashBoard" && currentAction == "Index" ? "active" : "")" asp-area="" asp-controller="DashBoard" asp-action="Index">Dashboard</a>

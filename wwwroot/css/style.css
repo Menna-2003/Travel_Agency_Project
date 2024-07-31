@@ -395,6 +395,7 @@ span.btn {
             .popularTrips .frame .content .box img {
                 width: 250px;
                 margin-bottom: 20px;
+                border-radius: 20px;
             }
 
             .popularTrips .frame .content .box {
