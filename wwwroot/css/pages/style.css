@@ -4,8 +4,8 @@
 
 .progress {
     position: absolute;
-    top: 165px;
-    left: 380px;
+    top: 150px;
+    left: 371px;
     z-index: -1;
 }
 .buttons {

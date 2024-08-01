@@ -11,6 +11,10 @@
 <div class="container-fluid py-4">
     <h3 class="m-5">Reservations</h3>
 
+    @if ( !Model.Any() ) {
+        <h5 class="text-center text-danger">There is no tours booked</h5>
+    }
+
     @foreach ( var item in Model ) {
         var totalTickets = item.AdultTickets + item.ChildTickets + item.InfantTickets;
         var totalPrice = ( item.AdultTickets * item.tour.Price ) + ( item.ChildTickets * item.tour.Price * 0.5 ) + ( item.InfantTickets * item.tour.Price * 0.25 );

@@ -40,7 +40,7 @@ namespace Travel_Agency_Project.Controllers {
                 TotalNumberOfPages = totalNumberOfPages
             };
 
-            model.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+            model.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).Distinct().ToList();
             
             return View( model );
         }
@@ -88,7 +88,7 @@ namespace Travel_Agency_Project.Controllers {
                 TotalNumberOfPages = totalNumberOfPages,
             };
 
-            AllTours.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+            AllTours.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).Distinct().ToList();
 
             return View( AllTours );
         }

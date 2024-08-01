@@ -18,13 +18,13 @@ namespace Travel_Agency_Project.Controllers
         private static BookingDetails _bookingDetails;
         private static UserDetails _userDetails;
         private static Payment _payment;
-        private static UserReservationDetails _UserReservationDetails = new UserReservationDetails();
+        private static UserReservationDetails _UserReservationDetails;
         TourViewModel tourViewModel = new TourViewModel();
         private readonly UserManager<IdentityUser> _userManager = userManager;
 
         public IActionResult Index () {
             tourViewModel.tour = _db.Tours.Include( t => t.TransportationType ).ToList();
-            tourViewModel.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).ToList();
+            tourViewModel.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).Distinct().ToList();
             return View( tourViewModel );
         }
 
@@ -45,6 +45,7 @@ namespace Travel_Agency_Project.Controllers
   
         #region bookingDetails
         public IActionResult BookingDetails ( int id ) {
+            _UserReservationDetails = new UserReservationDetails();
             _UserReservationDetails.TourID = id;
 
             _bookingDetails = new BookingDetails();

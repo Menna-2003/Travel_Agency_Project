@@ -3,17 +3,23 @@
 @{
     Layout = "_Layout";
 }
-
-@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Identity
-
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
 @{
+    var user = SignInManager.IsSignedIn( User ) ? await UserManager.GetUserAsync( User ) : null;
+    IList<string> roles = new List<string>();
+
+    if ( user != null ) {
+        roles = await UserManager.GetRolesAsync( user );
+    }
+
     var isAuthenticated = User.Identity.IsAuthenticated;
 }
 
 <div class="container">
     <div class="container Box1 mt-5 d-flex flex-column flex-md-row gap-5">
-        <div class="pictures">
+        <div class="pictures w-sm-100 w-lg-50">
             <div class="pic">
                 <img src="@Url.Action("GetImage", "Home", new { id = Model.ID })" alt="Tour Image" class="img-fluid" />
             </div>
@@ -38,9 +44,13 @@
                     </div>
                 </div>
             </div>
-            @if ( isAuthenticated ) {
+            @if ( isAuthenticated && roles.Contains( "Customer") ) {
                 <a asp-controller="Home" asp-route-id="@Model.ID" asp-action="BookingDetails" class="text-decoration-none text-light"><button class="shadow mb-2 rounded d-block mt-2">Book Now</button></a>
-            } else {
+            } else if ( roles.Contains( "Admin" ) ) {
+                <h5 class="text-danger m-3">You're an Admin. You can't book tours</h5>
+
+            }
+            else {
                 <h6 class="text-danger m-3">Log in or Register if you want to book the Tour</h6>
             }
         </div>
