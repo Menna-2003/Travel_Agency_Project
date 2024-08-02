@@ -29,6 +29,16 @@
                         <h5 class="card-title">@item.tour.Name</h5>
                         <p class="card-text">Total Tickets: @totalTickets</p>
                         <p class="card-text">Total Price: @totalPrice</p>
+                        @{
+                            DateTime start = DateTime.Parse( item.tour.StartDate.ToString());
+                            DateTime today = DateTime.Today;
+                        }
+                        @if ( start >= today) {
+                            <p class="card-text">Status: <span style="color:#fa8b02; font-weight:bolder"> in progress </span> </p>
+                        }
+                        else {
+                            <p class="card-text">Status: <span class="text-danger"> Finished </span> </p>
+                        }
                     </div>
                 </div>
                 <div class="col-md-2 d-flex justify-content-end pe-3">

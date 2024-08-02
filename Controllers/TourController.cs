@@ -45,8 +45,7 @@ namespace Travel_Agency_Project.Controllers {
             return View( model );
         }
 
-
-        public IActionResult Filter ( string Distination, DateOnly? startDate, DateOnly? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
+        public IActionResult Filter ( string? Distination, DateOnly? startDate, DateOnly? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
 
             var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable();
 
