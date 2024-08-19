@@ -23,14 +23,9 @@ namespace Travel_Agency_Project.Controllers
         private readonly UserManager<IdentityUser> _userManager = userManager;
 
         public IActionResult Index () {
-            tourViewModel.tour = _db.Tours.Include( t => t.TransportationType ).ToList();
+            tourViewModel.tour = _db.Tours.Include( t => t.TransportationType ).Where(t=>t.StartDate >= DateTime.Now).ToList();
             tourViewModel.Distinations = _db.Tours.Select( a => new SelectListItem() { Value = a.Distination, Text = a.Distination } ).Distinct().ToList();
             return View( tourViewModel );
-        }
-
-        public IActionResult ViewAllTours () {
-            var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
-            return View(tours);
         }
 
         public IActionResult TourDetails (int id) {

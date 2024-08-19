@@ -12,7 +12,7 @@ namespace Travel_Agency_Project.Controllers {
             _db = db;
         }
         public IActionResult Index ( int? page ) {
-            const int pageSize = 10; // Number of tours per page
+            const int pageSize = 8; // Number of tours per page
 
             // Ensure page number is valid, default to 1 if not specified or less than 1
             int currentPage = page ?? 1;
@@ -26,6 +26,7 @@ namespace Travel_Agency_Project.Controllers {
             // Base query
             var query = _db.Tours
                 .Include( m => m.TransportationType )
+                .Where( t => t.StartDate >= DateTime.Now )
                 .OrderBy( m => m.ID ); // Replace with your sorting logic
 
             // Fetch tours for the current page
@@ -47,7 +48,7 @@ namespace Travel_Agency_Project.Controllers {
 
         public IActionResult Filter ( string? Distination, DateTime? startDate, DateTime? endDate, decimal? minPrice, decimal? maxPrice, int? page) {
 
-            var query = _db.Tours.Include( m => m.TransportationType ).AsQueryable();
+            var query = _db.Tours.Include( m => m.TransportationType ).Where( t => t.StartDate >= DateTime.Now ).AsQueryable();
 
             if ( !string.IsNullOrEmpty( Distination ) ) {
                 query = query.Where( m => m.Distination == Distination );
@@ -69,7 +70,7 @@ namespace Travel_Agency_Project.Controllers {
                 query = query.Where( m => m.Price <= maxPrice.Value );
             }
 
-            const int pageSize = 10; // Number of tours per page
+            const int pageSize = 8; // Number of tours per page
             int currentPage = page ?? 1;
             if ( currentPage < 1 ) {
                 currentPage = 1;
