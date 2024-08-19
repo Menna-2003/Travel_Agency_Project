@@ -29,11 +29,11 @@ namespace Travel_Agency_Project.Models {
             get; set;
         }
         [Required]
-        public DateOnly StartDate {
+        public DateTime StartDate {
             get; set;
         }
         [Required]
-        public DateOnly EndDate {
+        public DateTime EndDate {
             get; set;
         }
         [Required]
