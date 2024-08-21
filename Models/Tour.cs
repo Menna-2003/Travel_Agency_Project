@@ -11,28 +11,30 @@ namespace Travel_Agency_Project.Models {
             get; set;
         }
         [Required]
-        [RegularExpression( @"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Invalid Name" )]
+        [RegularExpression( @"^[a-zA-Z''-'\s]{5,15}$", ErrorMessage = "The Name must be 5 to 15 characters long and can only contain letters, spaces, and hyphens." )]
         [Length( 5, 15 )]
         public string Name {
             get; set;
         }
         [Required]
-        [RegularExpression( @"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Invalid Name" )]
+        [RegularExpression( @"^[a-zA-Z''-'\s]{5,15}$", ErrorMessage = "The Distination must be 5 to 15 characters long and can only contain letters, spaces, and hyphens." )]
         [Length( 3, 15 )]
         public string Distination {
             get; set;
         }
-        [RegularExpression( @"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Invalid Name" )]
+        [RegularExpression( @"^[a-zA-Z''-'\s]{5,50}$", ErrorMessage = "The Description must be 5 to 50 characters long and can only contain letters, spaces, and hyphens." )]
         [Required]
         [Length( 5, 50 )]
         public string Description {
             get; set;
         }
         [Required]
+        [FutureDateAttribute]
         public DateTime StartDate {
             get; set;
         }
         [Required]
+        [FutureDateAttribute]
         public DateTime EndDate {
             get; set;
         }

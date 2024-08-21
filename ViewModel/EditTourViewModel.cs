@@ -2,7 +2,7 @@
 using Travel_Agency_Project.Models;
 
 namespace Travel_Agency_Project.ViewModel {
-    public class AddTourViewModel {
+    public class EditTourViewModel {
         public Tour tour {
             get; set;
         }

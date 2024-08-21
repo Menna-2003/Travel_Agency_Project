@@ -1,58 +1,67 @@
 ﻿@{
     Layout = "_DashBoard";
 }
-@model Tour
+@model EditTourViewModel
 
 <div class="container-fluid py-4">
-    <form method="post" asp-action="EditTour">
+    <form method="post" asp-action="EditTour" asp-controller="DashBoard" enctype="multipart/form-data" asp-route-id="@Model.tour.ID">
         <div class="form-row d-flex gap-4">
             <div class="form-group col-md-6">
-                <label asp-for="Name" for="tourName">Tour Name</label>
-                <input asp-for="Name" value="@Model.Name" type="text" class="form-control" id="tourName" placeholder="Enter Tour Name" />
+                <label asp-for="tour.Name" for="tourName">Tour Name</label>
+                <input asp-for="tour.Name" value="@Model.tour.Name" type="text" class="form-control" id="tourName" placeholder="Enter Tour Name" />
+                <span asp-validation-for="tour.Name" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="Distination" for="distination">Distination</label>
-                <input asp-for="Distination" value="@Model.Distination" type="text" class="form-control" id="distination" placeholder="ex : Canada" />
+                <label asp-for="tour.Distination" for="distination">Distination</label>
+                <input asp-for="tour.Distination" value="@Model.tour.Distination" type="text" class="form-control" id="distination" placeholder="ex : Canada" />
+                <span asp-validation-for="tour.Distination" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Description" for="discription">Description</label>
-            <input asp-for="Description" value="@Model.Description" type="text" class="form-control" id="discription" />
+            <label asp-for="tour.Description" for="discription">Description</label>
+            <input asp-for="tour.Description" value="@Model.tour.Description" type="text" class="form-control" id="discription" />
+            <span asp-validation-for="tour.Description" class="text-danger"></span>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="StartDate" for="StartDate">Start Date</label>
-                <input asp-for="StartDate" value="@Model.StartDate.ToString("yyyy-MM-ddTHH:mm")" type="datetime-local" class="form-control" id="StartDate" />
+                <label asp-for="tour.StartDate" for="StartDate">Start Date</label>
+                <input asp-for="tour.StartDate" value="@Model.tour.StartDate.ToString("yyyy-MM-ddTHH:mm")" type="datetime-local" class="form-control" id="StartDate" />
+                <span asp-validation-for="tour.StartDate" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="EndDate" for="EndDate">End Date</label>
-                <input asp-for="EndDate" value="@Model.EndDate.ToString("yyyy-MM-ddTHH:mm")" type="datetime-local" class="form-control" id="EndDate" />
+                <label asp-for="tour.EndDate" for="EndDate">End Date</label>
+                <input asp-for="tour.EndDate" value="@Model.tour.EndDate.ToString("yyyy-MM-ddTHH:mm")" type="datetime-local" class="form-control" id="EndDate" />
+                <span asp-validation-for="tour.EndDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="AdultsTickets" for="price">Adults Tickets</label>
-                <input asp-for="AdultsTickets" value="@Model.AdultsTickets"  type="number" class="form-control" id="AdultsTickets" />
+                <label asp-for="tour.AdultsTickets" for="price">Adults Tickets</label>
+                <input asp-for="tour.AdultsTickets" value="@Model.tour.AdultsTickets" type="number" class="form-control" id="AdultsTickets" />
+                <span asp-validation-for="tour.AdultsTickets" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="ChildrenTickets" for="ChildrenTickets ">Children Tickets </label>
-                <input asp-for="ChildrenTickets " value="@Model.ChildrenTickets" type="number" class="form-control" id="ChildrenTickets" />
+                <label asp-for="tour.ChildrenTickets" for="ChildrenTickets ">Children Tickets </label>
+                <input asp-for="tour.ChildrenTickets " value="@Model.tour.ChildrenTickets" type="number" class="form-control" id="ChildrenTickets" />
+                <span asp-validation-for="tour.ChildrenTickets" class="text-danger"></span>
             </div>
             <div class="form-group col">
-                <label asp-for="InfantTickets" for="InfantTickets">Infant Tickets</label>
-                <input asp-for="InfantTickets" value="@Model.InfantTickets" type="number" class="form-control" id="InfantTickets" />
+                <label asp-for="tour.InfantTickets" for="InfantTickets">Infant Tickets</label>
+                <input asp-for="tour.InfantTickets" value="@Model.tour.InfantTickets" type="number" class="form-control" id="InfantTickets" />
+                <span asp-validation-for="tour.InfantTickets" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col-md-6">
-                <label asp-for="HotelName" for="HotelName">Hotel Name</label>
-                <input asp-for="HotelName" value="@Model.HotelName" type="text" class="form-control" id="HotelName" />
+                <label asp-for="tour.HotelName" for="HotelName">Hotel Name</label>
+                <input asp-for="tour.HotelName" value="@Model.tour.HotelName" type="text" class="form-control" id="HotelName" />
+                <span asp-validation-for="tour.HotelName" class="text-danger"></span>
             </div>
             <div class="form-group col-md-4">
-                <label asp-for="Meals" for="Meals">Meals Type</label>
-                <select asp-for="Meals" id="Meals" class="form-control">
+                <label asp-for="tour.Meals" for="Meals">Meals Type</label>
+                <select asp-for="tour.Meals" id="Meals" class="form-control">
                     @{
-                        if ( Model.Meals == "Choose..." ) {
+                        if ( Model.tour.Meals == "Choose..." ) {
                             <option selected value="Choose..">Choose...</option>
                             <option value="Self catering">Self catering</option>
                             <option value="Breakfast included">Breakfast included</option>
@@ -60,7 +69,7 @@
                             <option value="All-inclusive">All-inclusive</option>
                             <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "Self catering" ) {
+                        } else if ( Model.tour.Meals == "Self catering" ) {
                             <option value="Choose..">Choose...</option>
                             <option selected value="Self catering">Self catering</option>
                             <option value="Breakfast included">Breakfast included</option>
@@ -68,7 +77,7 @@
                             <option value="All-inclusive">All-inclusive</option>
                             <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "Breakfast included" ) {
+                        } else if ( Model.tour.Meals == "Breakfast included" ) {
                             <option value="Choose..">Choose...</option>
                             <option  value="Self catering">Self catering</option>
                             <option selected value="Breakfast included">Breakfast included</option>
@@ -76,7 +85,7 @@
                             <option value="All-inclusive">All-inclusive</option>
                             <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "All meals included" ) {
+                        } else if ( Model.tour.Meals == "All meals included" ) {
                             <option value="Choose..">Choose...</option>
                             <option value="Self catering">Self catering</option>
                             <option  value="Breakfast included">Breakfast included</option>
@@ -84,7 +93,7 @@
                             <option value="All-inclusive">All-inclusive</option>
                             <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "All-inclusive" ) {
+                        } else if ( Model.tour.Meals == "All-inclusive" ) {
                             <option value="Choose..">Choose...</option>
                             <option value="Self catering">Self catering</option>
                             <option value="Breakfast included">Breakfast included</option>
@@ -92,7 +101,7 @@
                             <option selected value="All-inclusive">All-inclusive</option>
                             <option value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "Breakfast & lunch included" ) {
+                        } else if ( Model.tour.Meals == "Breakfast & lunch included" ) {
                             <option value="Choose..">Choose...</option>
                             <option value="Self catering">Self catering</option>
                             <option value="Breakfast included">Breakfast included</option>
@@ -100,7 +109,7 @@
                             <option value="All-inclusive">All-inclusive</option>
                             <option selected value="Breakfast & lunch included">Breakfast & lunch included</option>
                             <option value="Breakfast & dinner included">Breakfast & dinner included</option>
-                        } else if ( Model.Meals == "Breakfast & dinner included" ) {
+                        } else if ( Model.tour.Meals == "Breakfast & dinner included" ) {
                             <option value="Choose..">Choose...</option>
                             <option value="Self catering">Self catering</option>
                             <option value="Breakfast included">Breakfast included</option>
@@ -115,40 +124,42 @@
         </div>
         <div class="form-row d-flex gap-4">
             <div class="form-group col">
-                <label asp-for="Price" for="price">Price</label>
-                <input asp-for="Price" value="@Model.Price" type="number" class="form-control" id="price" />
+                <label asp-for="tour.Price" for="price">Price</label>
+                <input asp-for="tour.Price" value="@Model.tour.Price" type="number" class="form-control" id="price" />
+                <span asp-validation-for="tour.Price" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="form-check">
-                <input asp-for="GuideIncluded" value="@Model.GuideIncluded" class="form-check-input" type="checkbox" id="guideCheck" />
-                <label asp-for="GuideIncluded" class="form-check-label" for="guideCheck"> Guide Included ? </label>
+                <input asp-for="tour.GuideIncluded" value="@Model.tour.GuideIncluded" class="form-check-input" type="checkbox" id="guideCheck" />
+                <label asp-for="tour.GuideIncluded" class="form-check-label" for="guideCheck"> Guide Included ? </label>
+                <span asp-validation-for="tour.GuideIncluded" class="text-danger"></span>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label asp-for="TransportationType.ID" for="Transportation">Transportation Type</label>
-                <select asp-for="TransportationId" id="Transportation" class="form-control">
+                <label asp-for="tour.TransportationType.ID" for="Transportation">Transportation Type</label>
+                <select asp-for="tour.TransportationId" id="Transportation" class="form-control">
                     @{
-                        if(Model.TransportationId == 6 ) {
+                        if ( Model.tour.TransportationId == 6 ) {
                             <option >Choose...</option>
                             <option value="5">Bike</option>
                             <option selected value="6">Car</option>
                             <option value="7">Bus</option>
                             <option value="9">Plane</option>
-                        } else if ( Model.TransportationId == 5 ) {
+                        } else if ( Model.tour.TransportationId == 5 ) {
                             <option>Choose...</option>
                             <option selected value="5">Bike</option>
                             <option value="6">Car</option>
                             <option value="7">Bus</option>
                             <option value="9">Plane</option>
-                        } else if ( Model.TransportationId == 7 ) {
+                        } else if ( Model.tour.TransportationId == 7 ) {
                             <option >Choose...</option>
                             <option value="5">Bike</option>
                             <option value="6">Car</option>
                             <option selected value="7">Bus</option>
                             <option value="9">Plane</option>
-                        } else if ( Model.TransportationId == 9 ) {
+                        } else if ( Model.tour.TransportationId == 9 ) {
                             <option >Choose...</option>
                             <option value="5">Bike</option>
                             <option value="6">Car</option>
@@ -169,7 +180,6 @@
             <input  type="file" class="custom-file-input" id="TourPic" />
             <label  class="custom-file-label" for="TourPic">Upload Tour Image</label>
         </div>
-
         <button type="submit" class="btn" style="background-color: #fa8b02; color: #fff; margin: 50px 0">Update Tour</button>
     </form>
 </div>
