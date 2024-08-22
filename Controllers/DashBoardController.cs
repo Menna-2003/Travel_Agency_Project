@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,10 @@ namespace Travel_Agency_Project.Controllers {
             var tours = _db.Tours.Include( t => t.TransportationType ).ToList();
             return View( tours );
         }
+        public IActionResult ViewTour ( int id ) {
+            Tour tour = _db.Tours.Include( t => t.TransportationType ).FirstOrDefault( x => x.ID == id );
+            return View( tour );
+        }
         #endregion
 
         #region DeleteTour
@@ -115,16 +120,16 @@ namespace Travel_Agency_Project.Controllers {
             ModelState.Remove( "Image" );
 
             if ( string.IsNullOrWhiteSpace( editTourViewModel.tour.Name ) ||
-                !Regex.IsMatch( editTourViewModel.tour.Name, @"^[a-zA-Z''-'\s]{5,15}$" ) ) {
-                ModelState.AddModelError( "tour.Name", "The Name must be 5 to 15 characters long and can only contain letters, spaces, and hyphens." );
+                !Regex.IsMatch( editTourViewModel.tour.Name, @"^[a-zA-Z''-'\s]{5,25}$" ) ) {
+                ModelState.AddModelError( "tour.Name", "The Name must be 5 to 25 characters long and can only contain letters, spaces, and hyphens." );
             }
             if ( string.IsNullOrWhiteSpace( editTourViewModel.tour.Distination ) ||
                 !Regex.IsMatch( editTourViewModel.tour.Distination, @"^[a-zA-Z''-'\s]{5,15}$" ) ) {
                 ModelState.AddModelError( "tour.Distination", "The Distination must be 5 to 15 characters long and can only contain letters, spaces, and hyphens." );
             }
             if ( string.IsNullOrWhiteSpace( editTourViewModel.tour.Description ) ||
-                !Regex.IsMatch( editTourViewModel.tour.Description, @"^[a-zA-Z''-'\s]{5,50}$" ) ) {
-                ModelState.AddModelError( "tour.Description", "The Description must be 5 to 50 characters long and can only contain letters, spaces, and hyphens." );
+                 editTourViewModel.tour.Description.Length > 500 ) {
+                ModelState.AddModelError( "tour.Description", "The Description must max length 500" );
             }
             if ( editTourViewModel.tour.StartDate == default( DateTime ) ||
                 editTourViewModel.tour.StartDate < DateTime.Now ) {
@@ -194,31 +199,44 @@ namespace Travel_Agency_Project.Controllers {
         }
         #endregion
 
-        public IActionResult ViewTour ( int id ) {
-            Tour tour = _db.Tours.FirstOrDefault( x => x.ID == id );
-            return View( tour );
+        #region View Tour Reservations
+        public IActionResult ViewTourReservations () {
+            var reservations = _db.UserReservationDetails.Include( t => t.tour ).ToList();
+            return View( reservations );
         }
+
+        public IActionResult ViewTourReserved ( int id ) {
+            var reservation = _db.UserReservationDetails.Include( t => t.tour ).FirstOrDefault( x => x.ID == id );
+
+            return View( reservation );
+        }
+        public IActionResult DeleteReservation ( int id ) {
+            UserReservationDetails? Reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id );
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).AdultsTickets += Reservation.AdultTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).ChildrenTickets += Reservation.ChildTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).InfantTickets += Reservation.InfantTickets;
+
+            _db.UserReservationDetails.Remove( Reservation );
+            _db.SaveChanges();
+            return RedirectToAction( "ViewTourReservations" );
+        }
+        #endregion
         
-        [Authorize( Roles = RL.RoleAdmin )]
-        public IActionResult TourGuide () {
-            return View();
-        }
+        //[Authorize( Roles = RL.RoleAdmin )]
+        //public IActionResult TourGuide () {
+        //    return View();
+        //}
         
-        [Authorize( Roles = RL.RoleAdmin )]
-        public IActionResult TourGuideDetails () {
-            return View();
-        }
-        
-        public IActionResult Profile () {
-            return View();
-        }
+        //[Authorize( Roles = RL.RoleAdmin )]
+        //public IActionResult TourGuideDetails () {
+        //    return View();
+        //}
         
         public IActionResult GetImage ( int id ) {
             var tour = _db.Tours.Find( id );
             if ( tour == null || tour.ImageData == null ) {
                 return NotFound();
             }
-
             return File( tour.ImageData, tour.ContentType );
         }
     }

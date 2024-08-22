@@ -12,7 +12,7 @@ namespace Travel_Agency_Project.Models {
         }
         [Required]
         [RegularExpression( @"^[a-zA-Z''-'\s]{5,15}$", ErrorMessage = "The Name must be 5 to 15 characters long and can only contain letters, spaces, and hyphens." )]
-        [Length( 5, 15 )]
+        [Length( 5, 25 )]
         public string Name {
             get; set;
         }
@@ -22,9 +22,8 @@ namespace Travel_Agency_Project.Models {
         public string Distination {
             get; set;
         }
-        [RegularExpression( @"^[a-zA-Z''-'\s]{5,50}$", ErrorMessage = "The Description must be 5 to 50 characters long and can only contain letters, spaces, and hyphens." )]
         [Required]
-        [Length( 5, 50 )]
+        [StringLength(500)]
         public string Description {
             get; set;
         }

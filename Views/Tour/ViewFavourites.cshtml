@@ -1,0 +1,48 @@
+﻿@model IEnumerable<UserFavourites>
+@{
+    Layout = "_Layout";
+}
+<style>
+    .custom-card {
+        width: 70%;
+        margin: 0 auto; /* Center the card horizontally */
+    }
+</style>
+<div class="container-fluid py-4">
+    <h3 class="m-5">Favourites</h3>
+
+    @if ( !Model.Any() ) {
+        <h5 class="text-center text-danger">There is no tours booked</h5>
+    }
+
+    @foreach ( var item in Model ) {
+        <div class="card mb-3 custom-card">
+            <div class="row gap-3 g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="@Url.Action("GetImage", "Home", new { id = item.tour.ID })" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-5">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.tour.Name</h5>
+                        <p class="card-text">Start Date: @item.tour.StartDate</p>
+                        <p class="card-text">End Date: @item.tour.EndDate</p>
+                        <p class="card-text">Price: @item.tour.Price</p>
+                        @if ( item.tour.StartDate >= DateTime.Today ) {
+                            <p class="card-text">Status: <span style="color:#fa8b02; font-weight:bolder"> in progress </span> </p>
+                        } else {
+                            <p class="card-text">Status: <span class="text-danger"> Finished </span> </p>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-end pe-3">
+                    <a asp-action="TourDetails" asp-route-id="@item.tour.ID" asp-controller="Home" class="btn me-2" style="background-color:#fa8b02; color:#fff" role="button">
+                        <span class="material-symbols-outlined">View</span>
+                    </a>
+                    <a asp-action="DeleteFavourite" asp-route-id="@item.ID" asp-controller="Tour" class="btn btn-danger" role="button">
+                        <span class="material-symbols-outlined">Delete</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

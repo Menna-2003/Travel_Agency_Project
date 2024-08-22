@@ -109,9 +109,6 @@ namespace Travel_Agency_Project.Controllers
         [HttpPost]
         public IActionResult Payment ( Payment model ) {
             var userId = _userManager.GetUserId( User );
-
-            Console.WriteLine(userId);
-
             if ( userId == null ) {
                 // Handle the case where the user is not logged in or the user ID is not found
                 return RedirectToAction( "Error" );
@@ -121,6 +118,10 @@ namespace Travel_Agency_Project.Controllers
 
             _UserReservationDetails.PaymentMethod = _payment.PaymentMethod;
             _UserReservationDetails.UserId = userId; // Set the User ID
+
+            _db.Tours.FirstOrDefault( p => p.ID == _UserReservationDetails.TourID ).AdultsTickets -= _UserReservationDetails.AdultTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == _UserReservationDetails.TourID ).ChildrenTickets -= _UserReservationDetails.ChildTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == _UserReservationDetails.TourID ).InfantTickets -= _UserReservationDetails.InfantTickets;
 
             _db.UserReservationDetails.Add( _UserReservationDetails );
             _db.SaveChanges();
@@ -149,6 +150,10 @@ namespace Travel_Agency_Project.Controllers
         }
         public IActionResult DeleteReservation ( int id ) {
             UserReservationDetails? Reservation = _db.UserReservationDetails.FirstOrDefault( x => x.ID == id );
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).AdultsTickets += Reservation.AdultTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).ChildrenTickets += Reservation.ChildTickets;
+            _db.Tours.FirstOrDefault( p => p.ID == Reservation.TourID ).InfantTickets += Reservation.InfantTickets;
+
             _db.UserReservationDetails.Remove( Reservation );
             _db.SaveChanges();
             return RedirectToAction( "Cart" );

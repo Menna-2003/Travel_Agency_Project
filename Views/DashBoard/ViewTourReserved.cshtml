@@ -1,0 +1,121 @@
+﻿@model Travel_Agency_Project.Models.UserReservationDetails
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="container Box1 mt-5 d-flex flex-column flex-md-row gap-5">
+        <div class="pictures">
+            <div class="pic">
+                <img src="@Url.Action("GetImage", "Home", new { id = Model.tour.ID })" alt="Tour Image" class="img-fluid" />
+            </div>
+        </div>
+        <div class="details">
+            <h3 class="m-2 mb-3">Tour Reservation Details</h3>
+            <h5 class="m-2 mb-3">Tour Name: @Model.tour.Name</h5>
+            <p class="m-2 mb-5">Tour Description: @Model.tour.Description</p>
+
+            <div class="container p-0">
+                <h3> Your Information </h3>
+                <div class="row flex-wrap">
+                    <div class="col-12 col-md-6">
+                        <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>Name: @Model.FirstName @Model.LastName</p>
+                        <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>Phone Number: @Model.PhoneNumber</p>
+                        <p><i class="fa-solid fa-road" style="color:#fa8b02; margin:0 15px 0 0"></i>Pickup Location: @Model.PickupLocation</p>
+                        @if ( Model.PaymentMethod == 1 ) {
+                            <p><i class="fa-solid fa-road" style="color:#fa8b02; margin:0 15px 0 0"></i>Payment Method: Cash</p>
+                        } else {
+                            <p><i class="fa-solid fa-road" style="color:#fa8b02; margin:0 15px 0 0"></i>Payment Method: Visa</p>
+                        }
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p>Tickets: </p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-location-dot"></i>Adult Tickets: @Model.AdultTickets</p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Child Tickets: @Model.ChildTickets</p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Infant Tickets: @Model.InfantTickets</p>
+                    </div>
+                </div>
+                <h3> Tour Information </h3>
+                <div class="row flex-wrap">
+                    <div class="col-12 col-md-6">
+                        <p class="text-black font-weight-bolder"><i class="fa-solid fa-hand-holding-dollar" style="color:#fa8b02; margin:0 15px 0 0"></i> <span>$@Model.tour.Price</span></p>
+                        <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>Start Date : @Model.tour.StartDate</p>
+                        <p><i class="fa-solid fa-calendar" style="color:#fa8b02; margin:0 15px 0 0"></i>End Date : @Model.tour.EndDate</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-location-dot"></i>Destination : @Model.tour.Distination</p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Guide Included : @Model.tour.GuideIncluded</p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Hotel Name : @Model.tour.HotelName</p>
+                        <p> <i style="color:#fa8b02; margin:0 15px 0 0" class="fa-solid fa-user-tie"></i>Meals : @Model.tour.Meals</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row gap-3 mt-3">
+                <a asp-action="DeleteReservation" asp-route-id="@Model.ID" class="text-decoration-none text-light"><button class="btn btn-danger">Delete this Reservation</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" class="footerLayout d-grid mt-5 text-light p-5 pb-0">
+    <div class="container logo">
+        <img src="~/images/logo.png" alt="" srcset="" class="img-fluid" />
+    </div>
+    <div class="container footerCont justify-content-between border-bottom border-top pb-5 pt-5 mt-3 mb-3">
+        <div class="services">
+            <h5>Services</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Bike and Rickshaw rental</li>
+                <li>Guided Tours of Lucca</li>
+                <li>Guided Bike Tour of Lucca</li>
+                <li>Trip In The Tuscan Hills</li>
+                <li>Transportation With Luxury Cars</li>
+                <li>Wine Tours By Bus With Guide</li>
+            </ul>
+        </div>
+        <div class="home">
+            <h5>Home</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Tour Packages</li>
+            </ul>
+        </div>
+        <div class="help">
+            <h5>Help</h5>
+            <ul class="list-unstyled mt-4">
+                <li>Terms of use</li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <h5>Contacts</h5>
+            <ul class="list-unstyled mt-4">
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Maadi, Cairo</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+205828555454</p>
+                </li>
+                <li class="d-flex gap-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>example@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <div class="socialMedia">
+            <h5>Social Media</h5>
+            <ul class="list-unstyled d-flex mt-4 gap-4 justify-content-center">
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container m-0">
+        <p class="text-center">Copyright © 2022. All rights reserved.</p>
+    </div>
+</footer>

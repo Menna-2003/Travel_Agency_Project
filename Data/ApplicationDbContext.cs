@@ -13,6 +13,7 @@ namespace Travel_Agency_Project.Data {
         public DbSet<Transportation> Transportations { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<UserReservationDetails> UserReservationDetails { get; set; }
+        public DbSet<UserFavourites> UserFavourites { get; set; }
         public DbSet<Reservations> Reservations { get; set; }
         public DbSet<TourGuide> TourGuides { get; set; }
 

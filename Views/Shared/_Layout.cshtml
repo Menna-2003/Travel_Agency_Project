@@ -86,6 +86,9 @@
                         <li class="navbar-item">
                             <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")" style="color:#001d5c">Cart</a>
                         </li>
+                        <li class="navbar-item">
+                            <a asp-controller="Tour" asp-action="ViewFavourites" class="nav-link @(currentController == "Tour" && currentAction == "ViewFavourites" ? "active" : "")" style="color:#001d5c">Favourites</a>
+                        </li>
                     }
                     @if ( ( currentController == "Home" || currentController == "Tour" ) && ( currentAction == "Index" || currentAction == "AboutUs" || currentAction == "Filter"  ) ) {
                         <li class="navbar-item">

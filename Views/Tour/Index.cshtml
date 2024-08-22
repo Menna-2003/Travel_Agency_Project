@@ -2,6 +2,20 @@
 @{
     Layout = "_Layout";
 }
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    var user = SignInManager.IsSignedIn( User ) ? await UserManager.GetUserAsync( User ) : null;
+    IList<string> roles = new List<string>();
+
+    if ( user != null ) {
+        roles = await UserManager.GetRolesAsync( user );
+    }
+
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
 <style>
     .search-icon{
         width: 60px;
@@ -66,7 +80,12 @@
                     <p class="text-black"><i class="fa-solid fa-hand-holding-dollar me-3" style="color:#fa8b02"></i><span>$@tour.Price</span></p>
                     <p><i class="fa-solid fa-calendar me-3" style="color:#fa8b02"></i>Start Date : @tour.StartDate</p>
                     <p><i class="fa-solid fa-calendar me-3" style="color:#fa8b02"></i>End Date : @tour.EndDate</p>
-                    <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    <div class="d-flex justify-content-around">
+                        @if ( isAuthenticated && roles.Contains( "Customer" ) ) {
+                            <a asp-controller="Tour" asp-action="AddToFavourite" asp-route-id="@tour.ID" id="AddtoFav"><i class="fa-solid fa-heart" style="color:#cbcbcb"></i></a>
+                        }                        
+                        <a asp-controller="Home" asp-action="TourDetails" asp-route-id="@tour.ID">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             }
         </div>
