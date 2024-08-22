@@ -82,17 +82,17 @@
                     <li class="navbar-item">
                         <a asp-controller="Home" asp-action="AboutUs" class="nav-link @(currentController == "Home" && currentAction == "AboutUs" ? "active" : "")" style="color:#001d5c">About Us</a>
                     </li>
-                    @if ( isAuthenticated && roles.Contains( "Customer" ) ) {
-                        <li class="navbar-item">
-                            <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")" style="color:#001d5c">Cart</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a asp-controller="Tour" asp-action="ViewFavourites" class="nav-link @(currentController == "Tour" && currentAction == "ViewFavourites" ? "active" : "")" style="color:#001d5c">Favourites</a>
-                        </li>
-                    }
                     @if ( ( currentController == "Home" || currentController == "Tour" ) && ( currentAction == "Index" || currentAction == "AboutUs" || currentAction == "Filter"  ) ) {
                         <li class="navbar-item">
                             <a href="#footer" class="nav-link">Contact Us</a>
+                        </li>
+                    }
+                    @if ( isAuthenticated && roles.Contains( "Customer" ) ) {
+                        <li class="navbar-item">
+                            <a asp-controller="Home" asp-action="Cart" class="nav-link @(currentController == "Home" && currentAction == "Cart" ? "active" : "")"><i class="fa-solid fa-cart-shopping" style="color:#001d5c"></i></a>
+                        </li>
+                        <li class="navbar-item">
+                            <a asp-controller="Tour" asp-action="ViewFavourites" class="nav-link @(currentController == "Tour" && currentAction == "ViewFavourites" ? "active" : "")"><i class="fa-solid fa-heart" style="color:#001d5c"></i></a>
                         </li>
                     }
                     @if ( user != null && roles.Contains( "Admin" ) ) {
