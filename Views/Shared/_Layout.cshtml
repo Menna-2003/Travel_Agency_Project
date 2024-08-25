@@ -101,11 +101,13 @@
                         </li>
                     }
                 </ul>
-                <ul class="navbar-nav">
-                    <li class="navbar-item">
-                        <partial name="_LoginPartial" />
-                    </li>
-                </ul>
+                @if ( ( currentController == "Home" || currentController == "Tour" ) && ( currentAction == "Index" || currentAction == "AboutUs" || currentAction == "Filter" || currentAction == "TourDetails" ) ) {
+                    <ul class="navbar-nav">
+                        <li class="navbar-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+                    </ul> 
+                }
             </div>
         </nav>
     </header>

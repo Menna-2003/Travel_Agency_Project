@@ -10,7 +10,13 @@
 </style>
 <div class="container-fluid py-4">
     <h3 class="m-5">Reservations</h3>
-
+    @if ( Model.Any() ) {
+        <div class="container text-end">
+            <a asp-action="CheckOut" asp-controller="Home" class="btn me-2" style="background-color:#fa8b02; color:#fff" role="button">
+                <span class="material-symbols-outlined">Checkout</span>
+            </a>
+        </div>
+    }
     @if ( !Model.Any() ) {
         <h5 class="text-center text-danger">There is no tours booked</h5>
     }
@@ -52,4 +58,5 @@
             </div>
         </div>
     }
+
 </div>

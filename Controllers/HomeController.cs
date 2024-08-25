@@ -158,8 +158,17 @@ namespace Travel_Agency_Project.Controllers
             _db.SaveChanges();
             return RedirectToAction( "Cart" );
         }
+        public IActionResult CheckOut (  ) {
+            var userId = _userManager.GetUserId( User );
+            var reservations = _db.UserReservationDetails.Include( t => t.tour ).Where( r => r.UserId == userId ).ToList();            
+            foreach ( var reservation in reservations ) {
+                _db.UserReservationDetails.Remove( reservation );
+            }
+            _db.SaveChanges();
+            return RedirectToAction( "Cart" );
+        }
         #endregion
-       
+
         public IActionResult AboutUs () {
             return View();
         }
