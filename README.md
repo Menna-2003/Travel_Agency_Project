@@ -28,7 +28,7 @@ Welcome to the **Travel Agency** project! This web application is built using **
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/travel-agency.git
+   git clone https://github.com/Menna-2003/Travel_Agency_Project.git
    ```
 2. Restore dependencies and set up your database with SQL Server.
    - Go to tools => NuGet Package manager => manage NuGet package for solution
